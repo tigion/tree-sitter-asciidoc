@@ -1,0 +1,139 @@
+==================
+Header: Document Title
+==================
+
+= Document Title
+
+---
+
+(document
+  (document_header
+    (document_title)))
+
+==================
+Header: Authors, Revision, Attributes
+==================
+
+= Document Title
+John Doe
+1.0
+:toc:
+:toclevels: 2
+
+---
+
+(document
+  (document_header
+    (document_title)
+    (document_authors)
+    (document_revision)
+    (document_attribute
+      (attribute_name))
+    (document_attribute
+      (attribute_name)
+      (attribute_value))))
+
+==================
+Header: Comment + Document Title
+==================
+
+// Comment
+= Document Title
+
+---
+
+(document
+  (comment
+    (comment_line))
+  (document_header
+    (document_title)))
+
+==================
+Body: Section 1
+==================
+
+== Section 1
+
+---
+
+(document
+  (document_body
+    (section)))
+
+==================
+Body: Comment + Section 1
+==================
+
+// Comment
+== Section 1
+
+---
+
+(document
+  (comment
+    (comment_line))
+  (document_body
+    (section)))
+
+==================
+Header + Body
+==================
+
+= Document Title
+
+== Section 1
+
+---
+
+(document
+  (document_header
+    (document_title))
+  (document_body
+    (section)))
+
+==================
+Header + Body: Part
+==================
+
+= Document Title
+
+= Part 1
+
+== Section 1
+
+---
+
+(document
+  (document_header
+    (document_title))
+  (document_body
+    (part)
+    (section)))
+
+==================
+Header + Body: Comments + Part
+==================
+
+// Comment
+= Document Title
+
+// Comment
+= Part 1
+
+// Comment
+== Section 1
+
+---
+
+(document
+  (comment
+    (comment_line))
+  (document_header
+    (document_title))
+  (document_body
+    (comment
+      (comment_line))
+    (part)
+    (comment
+      (comment_line))
+    (section)))

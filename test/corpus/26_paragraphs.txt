@@ -1,0 +1,56 @@
+==================
+Praragraph
+==================
+
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+
+---
+
+(document
+  (document_body
+    (paragraph)))
+
+==================
+Praragraph 2
+==================
+
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+
+---
+
+(document
+  (document_body
+    (paragraph)))
+
+==================
+Praragraphs
+==================
+
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+
+---
+
+(document
+  (document_body
+    (paragraph)
+    (paragraph)))
+
+==================
+Praragraphs 2
+
+:error
+==================
+
+A===
+
+===A
+
+---
+
+(document
+  (document_body
+    (paragraph)
+    (paragraph)))

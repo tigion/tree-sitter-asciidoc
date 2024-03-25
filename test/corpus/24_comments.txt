@@ -1,0 +1,116 @@
+==================
+Comment Line Style
+==================
+
+// Comment
+
+---
+
+(document
+  (comment
+    (comment_line)))
+
+==================
+Comment Block Style
+==================
+
+////
+Comment
+////
+
+////
+Comment text
+Comment text
+
+Comment text
+////
+
+---
+
+(document
+  (comment
+    (comment_block))
+  (comment
+    (comment_block)))
+
+==================
+Comment Open Block Style
+==================
+
+[comment]
+--
+Comment text
+--
+
+[comment]
+--
+Comment text
+Comment text
+
+Comment text
+--
+
+---
+
+(document
+  (comment
+    (element_attributes)
+    (open_block))
+  (comment
+    (element_attributes)
+    (open_block)))
+
+==================
+Comment Paragraph Style
+==================
+
+[comment]
+Comment text
+
+---
+
+(document
+  (comment
+    (element_attributes)
+    (paragraph)))
+
+==================
+Comment (multiple)
+==================
+
+// Comment text
+
+[comment]
+Comment text
+
+// Comment text
+
+[comment]
+--
+Comment text
+Comment text
+
+Comment text
+--
+////
+Comment text
+Comment text
+
+Comment text
+////
+
+---
+
+(document
+  (comment
+    (comment_line))
+  (comment
+    (element_attributes)
+    (paragraph))
+  (comment
+    (comment_line))
+  (comment
+    (element_attributes)
+    (open_block))
+  (comment
+    (comment_block)))

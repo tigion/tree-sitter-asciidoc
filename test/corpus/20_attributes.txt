@@ -1,0 +1,67 @@
+==================
+Document Attribute
+==================
+
+:attribute:
+
+---
+
+(document
+  (document_body
+    (document_attribute
+      (attribute_name))))
+
+==================
+Document Attribute + Value
+==================
+
+:attribute: value
+
+---
+
+(document
+  (document_body
+    (document_attribute
+      (attribute_name)
+      (attribute_value))))
+
+==================
+Document Attributes
+==================
+
+:attribute1:
+:attribute2: value
+
+---
+
+(document
+  (document_body
+    (document_attribute
+      (attribute_name))
+    (document_attribute
+      (attribute_name)
+      (attribute_value))))
+
+==================
+Element Attribute
+==================
+
+[attribute]
+
+---
+
+(document
+  (document_body
+    (element_attributes)))
+
+==================
+Element Attributes
+==================
+
+[attribute1,attribute2,attribute3=value]
+
+---
+
+(document
+  (document_body
+    (element_attributes)))

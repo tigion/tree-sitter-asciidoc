@@ -1,0 +1,152 @@
+==================|||
+Open Block
+==================|||
+
+--
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+--
+
+--
+Lorem ipsum dolor sit amet,
+
+qui minim labore adipisicing minim sint.
+--
+
+---|||
+
+(document
+  (document_body
+    (open_block)
+    (open_block)))
+
+==================|||
+Listing Block
+==================|||
+
+----
+printf("Hello, World!");
+----
+
+[listing]
+--
+printf("Hello, World!");
+--
+
+[listing]
+printf("Hello, World!");
+
+---|||
+
+(document
+  (document_body
+    (listing_block)
+    (listing_block
+      (element_attributes)
+      (open_block))
+    (listing_block
+      (element_attributes)
+      (paragraph))))
+
+==================|||
+Literal Block
+==================|||
+
+....
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+....
+
+[literal]
+--
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+--
+
+[literal]
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+
+---|||
+
+(document
+  (document_body
+    (literal_block)
+    (literal_block
+      (element_attributes)
+      (open_block))
+    (literal_block
+      (element_attributes)
+      (paragraph))))
+
+==================|||
+Sidebar Block
+==================|||
+
+****
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+****
+
+[sidebar]
+--
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+--
+
+[sidebar]
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+
+---|||
+
+(document
+  (document_body
+    (sidebar_block)
+    (sidebar_block
+       (element_attributes)
+       (open_block))
+    (sidebar_block
+       (element_attributes)
+       (paragraph))))
+
+==================|||
+Example Block
+==================|||
+
+====
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+====
+
+[example]
+--
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+--
+
+[example]
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+
+---|||
+
+(document
+  (document_body
+    (example_block)
+    (example_block
+      (element_attributes)
+      (open_block))
+    (example_block
+      (element_attributes)
+      (paragraph))))
+
+==================|||
+Passthrough Block
+==================|||
+
+++++
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+++++
+
+[pass]
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+
+---|||
+
+(document
+  (document_body
+    (pass_block)
+    (pass_block
+      (element_attributes)
+      (paragraph))))

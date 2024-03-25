@@ -1,0 +1,41 @@
+==================|||
+Break
+==================|||
+
+'''
+
+---|||
+
+(document
+  (document_body
+    (break)))
+
+==================|||
+Breaks (Markdown)
+==================|||
+
+---
+- - -
+***
+* * *
+
+---|||
+
+(document
+  (document_body
+    (break)
+    (break)
+    (break)
+    (break)))
+
+==================|||
+Page Break
+==================|||
+
+<<<
+
+---|||
+
+(document
+  (document_body
+    (page_break)))

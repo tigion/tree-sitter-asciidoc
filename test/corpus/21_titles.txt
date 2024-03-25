@@ -1,0 +1,11 @@
+==================
+Title (of a block)
+==================
+
+.Title
+
+---
+
+(document
+  (document_body
+    (title)))

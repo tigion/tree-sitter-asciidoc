@@ -929,6 +929,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "image"
+        },
+        {
+          "type": "SYMBOL",
           "name": "catch_unresolved"
         }
       ]
@@ -1675,6 +1679,70 @@
           "name": "_x_line"
         }
       }
+    },
+    "image": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_block_image_macro"
+        }
+      ]
+    },
+    "_block_image_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "image::"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "target"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "["
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "image_attributes"
+                  },
+                  "named": true,
+                  "value": "attributes"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "]"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        }
+      ]
+    },
+    "target": {
+      "type": "PATTERN",
+      "value": "[^\\[]+"
+    },
+    "image_attributes": {
+      "type": "PATTERN",
+      "value": "[^\\]]+"
     },
     "catch_unresolved": {
       "type": "TOKEN",

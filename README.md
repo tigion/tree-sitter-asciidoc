@@ -156,6 +156,20 @@ Not everything in the checklists is relevant to grammar.
 - [ ] Cross References
 - [ ] Footnotes
 - [ ] Images
+
+  - [x] Block Image Macro (no attributes)
+
+  ```lisp
+  (image
+    (target))
+
+  (image
+    (target)
+    (attributes))
+  ```
+
+  - [ ] Inline Image Macro
+
 - [ ] Audio and Video
 - [ ] Icons
 - [ ] Keyboard Macro

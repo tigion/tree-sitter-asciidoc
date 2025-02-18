@@ -307,6 +307,7 @@ module.exports = grammar({
         $.comment,
         $._block,
         $.paragraph,
+        $.image,
         $.catch_unresolved,
       ),
 
@@ -517,9 +518,37 @@ module.exports = grammar({
 
     // ------------------------------------------------------------------------
 
+    // Images
+    // - https://docs.asciidoctor.org/asciidoc/latest/macros/images/
+    //
+    // - target may be a relative path or a URL
+    // - [...] optional attribute list
+    //   - first attribute is the alt text
+
+    image: ($) =>
+      choice(
+        $._block_image_macro,
+        // $._inline_image_macro),
+      ),
+
+    // Block image macro
+    _block_image_macro: ($) =>
+      seq(
+        "image::",
+        $.target,
+        seq("[", optional(alias($.image_attributes, $.attributes)), "]"),
+        $._newline,
+      ),
+    target: (_) => /[^\[]+/,
+    image_attributes: (_) => /[^\]]+/, // TODO: attributes
+
+    // Inline image
+
+    // ------------------------------------------------------------------------
+
     // Other body parts (blocks)
     //
-    // TODO: image, code block, table, blocks, ...
+    // TODO: code block, table, blocks, ...
     //
 
     // ------------------------------------------------------------------------

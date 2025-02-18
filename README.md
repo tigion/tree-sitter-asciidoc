@@ -229,14 +229,14 @@ Not everything in the checklists is relevant to grammar.
 
     ```lisp
     (comment
-      (comment_line))
+      (_comment_line))
     ```
 
   - [x] Comment Block
 
     ```lisp
     (comment
-      (comment_block))
+      (_comment_block))
     ```
 
   - [x] Comment Open Block Style

@@ -1,3 +1,12 @@
+/**
+ * @file AsciiDoc grammar for tree-sitter
+ * @author Christoph Zirkelbach
+ * @license MIT
+ */
+
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
+
 /* global grammar, optional, seq, repeat, repeat1, choice, prec, token, alias */
 
 module.exports = grammar({

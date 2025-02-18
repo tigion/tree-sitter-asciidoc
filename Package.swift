@@ -2,47 +2,36 @@
 import PackageDescription
 
 let package = Package(
-    name: "TreeSitterYourLanguageName",
-    platforms: [.macOS(.v10_13), .iOS(.v11)],
+    name: "TreeSitterAsciiDoc",
     products: [
-        .library(name: "TreeSitterYourLanguageName", targets: ["TreeSitterYourLanguageName"]),
+        .library(name: "TreeSitterAsciiDoc", targets: ["TreeSitterAsciiDoc"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/ChimeHQ/SwiftTreeSitter", from: "0.8.0"),
+    ],
     targets: [
-        .target(name: "TreeSitterYourLanguageName",
-                path: ".",
-                exclude: [
-                    "Cargo.toml",
-                    "Makefile",
-                    "binding.gyp",
-                    "bindings/c",
-                    "bindings/go",
-                    "bindings/node",
-                    "bindings/python",
-                    "bindings/rust",
-                    "prebuilds",
-                    "grammar.js",
-                    "package.json",
-                    "package-lock.json",
-                    "pyproject.toml",
-                    "setup.py",
-                    "test",
-                    "examples",
-                    ".editorconfig",
-                    ".github",
-                    ".gitignore",
-                    ".gitattributes",
-                    ".gitmodules",
-                ],
-                sources: [
-                    "src/parser.c",
-                    // NOTE: if your language has an external scanner, add it here.
-                ],
-                resources: [
-                    .copy("queries")
-                ],
-                publicHeadersPath: "bindings/swift",
-                cSettings: [.headerSearchPath("src")])
+        .target(
+            name: "TreeSitterAsciiDoc",
+            dependencies: [],
+            path: ".",
+            sources: [
+                "src/parser.c",
+                // NOTE: if your language has an external scanner, add it here.
+            ],
+            resources: [
+                .copy("queries")
+            ],
+            publicHeadersPath: "bindings/swift",
+            cSettings: [.headerSearchPath("src")]
+        ),
+        .testTarget(
+            name: "TreeSitterAsciiDocTests",
+            dependencies: [
+                "SwiftTreeSitter",
+                "TreeSitterAsciiDoc",
+            ],
+            path: "bindings/swift/TreeSitterAsciiDocTests"
+        )
     ],
     cLanguageStandard: .c11
 )

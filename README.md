@@ -68,6 +68,41 @@ Not everything in the checklists is relevant to grammar.
 
 ### Document Body
 
+#### Parts & Sections
+
+- [x] Parts
+
+  ```lisp
+  (part)
+    (part_header
+      (part_header_marker)
+      (part_header_content)))
+  ```
+
+- [x] Sections Level 1 bis 5
+
+  ```lisp
+  (section_level1
+    (section_header
+      (section_header_marker)
+      (section_header_content)))
+  ```
+
+  - [x] Nested Sections Level
+
+    ```lisp
+      (section_level1
+        (section_header
+          (section_header_marker)
+          (section_header_content))
+        (section_level2
+          (section_header
+            (section_header_marker)
+            (section_header_content))))
+    ```
+
+#### Blocks
+
 - [x] Document Attributes
 
   ```lisp
@@ -80,24 +115,12 @@ Not everything in the checklists is relevant to grammar.
 
   - [x] Line
 
-  ```lisp
-  (element_attributes
-    (_attribute_list
-      (_attribute_unparsed
-      ...)))
-  ```
-
-- [x] Sections
-
-  ```lisp
-  (section)
-  ```
-
-- [x] Parts
-
-  ```lisp
-  (part)
-  ```
+    ```lisp
+    (element_attributes
+      (_attribute_list
+        (_attribute_unparsed
+        ...)))
+    ```
 
 - [x] Paragraphs
 

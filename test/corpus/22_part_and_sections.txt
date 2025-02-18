@@ -12,11 +12,26 @@ Sections 1 to 5
 
 (document
   (document_body
-    (section)
-    (section)
-    (section)
-    (section)
-    (section)))
+    (section_level1
+      (section_header
+        (section_header_marker)
+        (section_header_content))
+      (section_level2
+        (section_header
+          (section_header_marker)
+          (section_header_content))
+        (section_level3
+          (section_header
+            (section_header_marker)
+            (section_header_content))
+          (section_level4
+            (section_header
+              (section_header_marker)
+              (section_header_content))
+            (section_level5
+              (section_header
+                (section_header_marker)
+                (section_header_content)))))))))
 
 ==================
 Document Title + Part + Sections 1 to 5
@@ -35,11 +50,31 @@ Document Title + Part + Sections 1 to 5
 
 (document
   (document_header
-    (document_title))
+    (document_title
+      (document_title_marker)
+      (document_title_content)))
   (document_body
-    (part)
-    (section)
-    (section)
-    (section)
-    (section)
-    (section)))
+    (part
+      (part_header
+        (part_header_marker)
+        (part_header_content))
+      (section_level1
+        (section_header
+          (section_header_marker)
+          (section_header_content))
+        (section_level2
+          (section_header
+            (section_header_marker)
+            (section_header_content))
+          (section_level3
+            (section_header
+              (section_header_marker)
+              (section_header_content))
+            (section_level4
+              (section_header
+                (section_header_marker)
+                (section_header_content))
+              (section_level5
+                (section_header
+                  (section_header_marker)
+                  (section_header_content))))))))))

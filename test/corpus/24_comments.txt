@@ -7,8 +7,7 @@ Comment Line Style
 ---
 
 (document
-  (comment
-    (comment_line)))
+  (comment))
 
 ==================
 Comment Block Style
@@ -28,10 +27,8 @@ Comment text
 ---
 
 (document
-  (comment
-    (comment_block))
-  (comment
-    (comment_block)))
+  (comment)
+  (comment))
 
 ==================
 Comment Open Block Style
@@ -102,15 +99,12 @@ Comment text
 ---
 
 (document
-  (comment
-    (comment_line))
+  (comment)
   (comment
     (element_attributes)
     (paragraph))
-  (comment
-    (comment_line))
+  (comment)
   (comment
     (element_attributes)
     (open_block))
-  (comment
-    (comment_block)))
+  (comment))

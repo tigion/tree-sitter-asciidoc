@@ -8,7 +8,9 @@ Header: Document Title
 
 (document
   (document_header
-    (document_title)))
+    (document_title
+      (document_title_marker)
+      (document_title_content))))
 
 ==================
 Header: Authors, Revision, Attributes
@@ -24,7 +26,9 @@ John Doe
 
 (document
   (document_header
-    (document_title)
+    (document_title
+      (document_title_marker)
+      (document_title_content))
     (document_authors)
     (document_revision)
     (document_attribute
@@ -43,10 +47,11 @@ Header: Comment + Document Title
 ---
 
 (document
-  (comment
-    (comment_line))
+  (comment)
   (document_header
-    (document_title)))
+    (document_title
+      (document_title_marker)
+      (document_title_content))))
 
 ==================
 Body: Section 1
@@ -58,7 +63,10 @@ Body: Section 1
 
 (document
   (document_body
-    (section)))
+    (section_level1
+      (section_header
+        (section_header_marker)
+        (section_header_content)))))
 
 ==================
 Body: Comment + Section 1
@@ -70,10 +78,12 @@ Body: Comment + Section 1
 ---
 
 (document
-  (comment
-    (comment_line))
+  (comment)
   (document_body
-    (section)))
+    (section_level1
+      (section_header
+        (section_header_marker)
+        (section_header_content)))))
 
 ==================
 Header + Body
@@ -87,9 +97,39 @@ Header + Body
 
 (document
   (document_header
-    (document_title))
+    (document_title
+      (document_title_marker)
+      (document_title_content)))
   (document_body
-    (section)))
+    (section_level1
+      (section_header
+        (section_header_marker)
+        (section_header_content)))))
+
+==================
+Header + Body: Comments
+==================
+
+// Comment
+= Document Title
+
+// Comment
+== Section 1
+
+---
+
+(document
+  (comment)
+  (document_header
+    (document_title
+      (document_title_marker)
+      (document_title_content)))
+  (document_body
+    (comment)
+    (section_level1
+      (section_header
+        (section_header_marker)
+        (section_header_content)))))
 
 ==================
 Header + Body: Part
@@ -105,10 +145,18 @@ Header + Body: Part
 
 (document
   (document_header
-    (document_title))
+    (document_title
+      (document_title_marker)
+      (document_title_content)))
   (document_body
-    (part)
-    (section)))
+    (part
+      (part_header
+        (part_header_marker)
+        (part_header_content))
+      (section_level1
+        (section_header
+          (section_header_marker)
+          (section_header_content))))))
 
 ==================
 Header + Body: Comments + Part
@@ -126,14 +174,19 @@ Header + Body: Comments + Part
 ---
 
 (document
-  (comment
-    (comment_line))
+  (comment)
   (document_header
-    (document_title))
+    (document_title
+      (document_title_marker)
+      (document_title_content)))
   (document_body
-    (comment
-      (comment_line))
-    (part)
-    (comment
-      (comment_line))
-    (section)))
+    (comment)
+    (part
+      (part_header
+        (part_header_marker)
+        (part_header_content))
+      (comment)
+      (section_level1
+        (section_header
+          (section_header_marker)
+          (section_header_content))))))

@@ -34,6 +34,5 @@
     "bindings/node/*",
     "queries/*",
     "src/**"
-  ],
-  "tree-sitter": []
+  ]
 }

@@ -38,18 +38,28 @@ module.exports = grammar({
         seq(
           $.document_title,
           repeat(prec(1, $.comment)),
+          // optional($._comments),
           optional(
             seq(
               $.document_authors,
               optional(seq(repeat(prec(1, $.comment)), $.document_revision)),
+              // optional(seq(optional($._comments), $.document_revision)),
             ),
           ),
           optional($._document_attributes),
         ),
       ),
+    // _comments: ($) => repeat1(prec(1, $.comment)),
 
     // Document title
-    document_title: ($) => prec(2, seq("= ", repeat1($._char), $._newline)),
+    // document_title: ($) => prec(2, seq("= ", repeat1($._char), $._newline)),
+    document_title: ($) =>
+      prec(
+        2,
+        seq($.document_title_marker, " ", $.document_title_content, $._newline),
+      ),
+    document_title_marker: (_) => prec(2, "="),
+    document_title_content: ($) => repeat1($._char),
     // Document authors
     document_authors: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
     // Document revision
@@ -63,21 +73,10 @@ module.exports = grammar({
     // Body
     document_body: ($) =>
       repeat1(
-        seq(
-          choice(
-            $._x_blank_line,
-            $.document_attribute,
-            $.element_attributes,
-            $.title,
-            $.part,
-            $.section,
-            $.page_break,
-            $.break,
-            $.comment,
-            $._block,
-            $.paragraph,
-            $.catch_unresolved,
-          ),
+        choice(
+          $._section,
+          // alias(prec.right(repeat1($._block_not_section)), $.section),
+          prec.right(repeat1($._block_not_section)),
         ),
       ),
 
@@ -105,6 +104,7 @@ module.exports = grammar({
     // - handling of incorrect attributes (e.g. missing last `:`)
     // - inline attributes
     //
+    // _attribute: ($) => choice($.attribute /*, $.no_attribute*/),
     document_attribute: ($) =>
       seq(
         ":",
@@ -134,19 +134,181 @@ module.exports = grammar({
 
     // ------------------------------------------------------------------------
 
-    // Titles
+    // Parts & Sections
+    // - https://docs.asciidoctor.org/asciidoc/latest/sections/titles-and-levels/
     //
-    // TODO: ...
+    // - part is a special section level 0
+
+    _section: ($) =>
+      choice(
+        $.part,
+        $.section_level1,
+        $.section_level2,
+        $.section_level3,
+        $.section_level4,
+        $.section_level5,
+      ),
+
+    part: ($) =>
+      prec.right(
+        seq(
+          $.part_header,
+          repeat(
+            choice(
+              choice(
+                $.section_level1,
+                $.section_level2,
+                $.section_level3,
+                $.section_level4,
+                $.section_level5,
+              ),
+              $._block_not_section,
+            ),
+          ),
+        ),
+      ),
+    section_level1: ($) =>
+      prec.right(
+        seq(
+          alias($.section_level1_header, $.section_header),
+          repeat(
+            choice(
+              choice(
+                $.section_level2,
+                $.section_level3,
+                $.section_level4,
+                $.section_level5,
+              ),
+              $._block_not_section,
+            ),
+          ),
+        ),
+      ),
+    section_level2: ($) =>
+      prec.right(
+        seq(
+          alias($.section_level2_header, $.section_header),
+          repeat(
+            choice(
+              choice($.section_level3, $.section_level4, $.section_level5),
+              $._block_not_section,
+            ),
+          ),
+        ),
+      ),
+    section_level3: ($) =>
+      prec.right(
+        seq(
+          alias($.section_level3_header, $.section_header),
+          repeat(
+            choice(
+              choice($.section_level4, $.section_level5),
+              $._block_not_section,
+            ),
+          ),
+        ),
+      ),
+    section_level4: ($) =>
+      prec.right(
+        seq(
+          alias($.section_level4_header, $.section_header),
+          repeat(choice($.section_level5, $._block_not_section)),
+        ),
+      ),
+    section_level5: ($) =>
+      prec.right(
+        seq(
+          alias($.section_level5_header, $.section_header),
+          repeat($._block_not_section),
+        ),
+      ),
+
+    part_header: ($) =>
+      prec(
+        1,
+        seq(
+          alias($.section_level0_header_marker, $.part_header_marker),
+          " ",
+          alias($.section_header_content, $.part_header_content),
+          $._newline,
+        ),
+      ),
+    section_level1_header: ($) =>
+      prec(
+        1,
+        seq(
+          alias($.section_level1_header_marker, $.section_header_marker),
+          " ",
+          $.section_header_content,
+          $._newline,
+        ),
+      ),
+    section_level2_header: ($) =>
+      prec(
+        1,
+        seq(
+          alias($.section_level2_header_marker, $.section_header_marker),
+          " ",
+          $.section_header_content,
+          $._newline,
+        ),
+      ),
+    section_level3_header: ($) =>
+      prec(
+        1,
+        seq(
+          alias($.section_level3_header_marker, $.section_header_marker),
+          " ",
+          $.section_header_content,
+          $._newline,
+        ),
+      ),
+    section_level4_header: ($) =>
+      prec(
+        1,
+        seq(
+          alias($.section_level4_header_marker, $.section_header_marker),
+          " ",
+          $.section_header_content,
+          $._newline,
+        ),
+      ),
+    section_level5_header: ($) =>
+      prec(
+        1,
+        seq(
+          alias($.section_level5_header_marker, $.section_header_marker),
+          " ",
+          $.section_header_content,
+          $._newline,
+        ),
+      ),
+
     //
-    title: ($) => seq(".", repeat1(/[^\s]/), $._newline),
+    section_level0_header_marker: (_) => "=",
+    section_level1_header_marker: (_) => "==",
+    section_level2_header_marker: (_) => "===",
+    section_level3_header_marker: (_) => "====",
+    section_level4_header_marker: (_) => "=====",
+    section_level5_header_marker: (_) => "======",
+
+    section_header_content: ($) => repeat1($._char),
 
     // ------------------------------------------------------------------------
 
-    // Sections
-    // - https://docs.asciidoctor.org/asciidoc/latest/sections/titles-and-levels/
-    //
-    part: ($) => seq("= ", repeat1($._char), $._newline),
-    section: ($) => seq(/={2,6} /, repeat1($._char), $._newline),
+    _block_not_section: ($) =>
+      choice(
+        $._x_blank_line,
+        $.document_attribute,
+        $.element_attributes,
+        $.page_break,
+        $.break,
+        $.title,
+        $.comment,
+        $._block,
+        $.paragraph,
+        $.catch_unresolved,
+      ),
 
     // ------------------------------------------------------------------------
 
@@ -160,21 +322,31 @@ module.exports = grammar({
 
     // ------------------------------------------------------------------------
 
+    // Titles
+    //
+    // TODO: ...
+    //
+    title: ($) => seq(".", repeat1(/[^\s]/), $._newline),
+    // eslint-disable-next-line no-useless-escape
+    // macro: (_) => /\[[^#\[].+[^\]]\]\n/,
+
+    // ------------------------------------------------------------------------
+
     // Comments
     // - https://docs.asciidoctor.org/asciidoc/latest/comments/
     //
     comment: ($) =>
       choice(
-        $.comment_line,
-        $.comment_block,
+        $._comment_line,
+        $._comment_block,
         // $._comment_open_block,
         // $._comment_paragraph,
         $._comment_block_style,
       ),
     // Line style
-    comment_line: ($) => seq("//", $._x_line),
+    _comment_line: ($) => seq("//", $._x_line),
     // Block style
-    comment_block: ($) =>
+    _comment_block: ($) =>
       seq(
         "////",
         $._newline,
@@ -345,14 +517,37 @@ module.exports = grammar({
 
     // ------------------------------------------------------------------------
 
+    // Other body parts (blocks)
+    //
+    // TODO: image, code block, table, blocks, ...
+    //
+
+    // ------------------------------------------------------------------------
+
     // Catches the unresolved rest
     catch_unresolved: (_) => token(prec(-1, /.*/)),
 
     // ------------------------------------------------------------------------
 
-    _x_line: ($) => seq(repeat1($._char), $._newline),
+    _x_line: ($) =>
+      choice(
+        // seq(":", /[^:\n]*/, optional(seq(":", optional($._char))), $._newline), // incorrect attributes
+        // seq(
+        //   ":",
+        //   alias($.attribute_name, $._off_todo),
+        //   ":",
+        //   repeat1($._char),
+        //   $._newline,
+        // ),
+
+        // seq("[[", repeat($._char), optional("]"), optional("]"), $._newline),
+        // seq("[", repeat($._char), $._newline),
+
+        seq(repeat1($._char), $._newline),
+      ),
     _char: (_) => /[^\n]/,
     _newline: () => "\n",
-    _x_blank_line: ($) => seq("", $._newline),
+    _x_blank_line: ($) => seq($._newline),
+    // _x_blank_line: ($) => seq("", $._newline),
   },
 });

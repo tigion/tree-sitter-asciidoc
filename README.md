@@ -204,14 +204,11 @@ Not everything in the checklists is relevant to grammar.
 
   - [x] Block Image Macro
 
-  ```lisp
-  (image
-    (target))
-
-  (image
-    (target)
-    (attributes))
-  ```
+    ```lisp
+    (macro
+      (name)
+      (target))
+    ```
 
   - [ ] Inline Image Macro
 
@@ -315,8 +312,17 @@ Not everything in the checklists is relevant to grammar.
     ```
 
 - [ ] Includes
+
   - [x] Include Block Macro
+
+    ```lisp
+    (macro
+      (name)
+      (target))
+    ```
+
   - [ ] Include Inline Macro
+
 - [ ] Conditionals
 - [ ] Passthroughs
 

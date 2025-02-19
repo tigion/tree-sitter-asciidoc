@@ -320,6 +320,7 @@ module.exports = grammar({
         $._block,
         $.paragraph,
         $.list,
+        $.list_continuation_marker,
         // $.image,
         // $.include,
         $.catch_unresolved,
@@ -528,6 +529,16 @@ module.exports = grammar({
     // list_marker: (_) => token(seq(/[ ]*/, choice(/[-]+/, /[*]+/, /[.]+/), " ")),
 
     _list_content: ($) => repeat1($._char),
+
+    // ------------------------------------------------------------------------
+
+    // List Continuation
+    //
+    // TODO:
+    // - [x] Identify a simple `x` in line
+    // - [ ] Context?
+
+    list_continuation_marker: (_) => "+\n",
 
     // ------------------------------------------------------------------------
 

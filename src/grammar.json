@@ -953,6 +953,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "list_continuation_marker"
+        },
+        {
+          "type": "SYMBOL",
           "name": "catch_unresolved"
         }
       ]
@@ -1861,6 +1865,10 @@
         "type": "SYMBOL",
         "name": "_char"
       }
+    },
+    "list_continuation_marker": {
+      "type": "STRING",
+      "value": "+\n"
     },
     "catch_unresolved": {
       "type": "TOKEN",

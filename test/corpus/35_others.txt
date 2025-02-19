@@ -1,0 +1,16 @@
+==================
+List Continuation
+==================
+
+* List item
++
+Lorem ipsum.
+
+---
+
+(document
+  (document_body
+    (list
+      (marker))
+    (list_continuation_marker)
+    (paragraph)))

@@ -40,6 +40,7 @@ Not everything in the checklists is relevant to grammar.
 - [x] Paragraphs
 - [ ] Blocks with title, attributes, anchor, title
 - [ ] Text and inline elements
+- [ ] Nested Blocks (like example_block inside example_block)
 
 ### Document Header
 
@@ -157,7 +158,7 @@ Not everything in the checklists is relevant to grammar.
 - [ ] Footnotes
 - [ ] Images
 
-  - [x] Block Image Macro (no attributes)
+  - [x] Block Image Macro
 
   ```lisp
   (image
@@ -270,6 +271,8 @@ Not everything in the checklists is relevant to grammar.
     ```
 
 - [ ] Includes
+  - [x] Include Block Macro
+  - [ ] Include Inline Macro
 - [ ] Conditionals
 - [ ] Passthroughs
 

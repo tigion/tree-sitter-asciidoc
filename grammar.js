@@ -117,12 +117,14 @@ module.exports = grammar({
     document_attribute: ($) =>
       seq(
         ":",
+        optional($.attribute_unset),
         $.attribute_name,
         ":",
         optional(seq(" ", $.attribute_value)),
         // optional($.attribute_value),
         $._newline,
       ),
+    attribute_unset: (_) => "!",
     attribute_name: (_) => /[a-zA-Z0-9_][a-zA-Z0-9_-]*/,
     attribute_value: ($) => repeat1($._char),
 
@@ -333,12 +335,9 @@ module.exports = grammar({
     // ------------------------------------------------------------------------
 
     // Titles
-    //
-    // TODO: ...
-    //
-    title: ($) => seq(".", repeat1(/[^\s]/), $._newline),
-    // eslint-disable-next-line no-useless-escape
-    // macro: (_) => /\[[^#\[].+[^\]]\]\n/,
+    // - [x] Only recognize syntax
+    // - [ ] Reference to the next block
+    title: ($) => seq(".", /[^\s]/, repeat($._char), $._newline),
 
     // ------------------------------------------------------------------------
 
@@ -364,22 +363,6 @@ module.exports = grammar({
         "////",
         $._newline,
       ),
-    // // Open Block style
-    // _comment_open_block: ($) =>
-    //   seq(
-    //     "[",
-    //     "comment",
-    //     "]",
-    //     $._newline,
-    //     "--",
-    //     $._newline,
-    //     repeat(choice($._x_line, $._x_blank_line)),
-    //     "--",
-    //     $._newline,
-    //   ),
-    // // Paragraph style
-    // _comment_paragraph: ($) =>
-    //   seq("[", "comment", "]", $._newline, $._x_paragraph),
     // Open Block or Paragraph style
     _comment_block_style: ($) =>
       seq(
@@ -587,5 +570,8 @@ module.exports = grammar({
     _newline: () => "\n",
     _x_blank_line: ($) => seq($._newline),
     // _x_blank_line: ($) => seq("", $._newline),
+
+    // eslint-disable-next-line no-useless-escape
+    // macro: (_) => /\[[^#\[].+[^\]]\]\n/,
   },
 });

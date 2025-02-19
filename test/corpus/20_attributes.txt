@@ -12,6 +12,21 @@ Document Attribute
       (attribute_name))))
 
 ==================
+Document Attribute Toggled
+==================
+
+:!attribute:
+
+---
+
+(document
+  (document_body
+    (document_attribute
+      (attribute_unset)
+      (attribute_name))))
+
+
+==================
 Document Attribute + Value
 ==================
 

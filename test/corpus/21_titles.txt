@@ -1,8 +1,20 @@
 ==================
-Title (of a block)
+Title
 ==================
 
 .Title
+
+---
+
+(document
+  (document_body
+    (title)))
+
+==================
+Title with whitespaces
+==================
+
+.Title with whitespaces
 
 ---
 

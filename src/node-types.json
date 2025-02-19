@@ -69,6 +69,10 @@
           "named": true
         },
         {
+          "type": "attribute_unset",
+          "named": true
+        },
+        {
           "type": "attribute_value",
           "named": true
         }
@@ -1037,6 +1041,10 @@
   },
   {
     "type": "attribute_name",
+    "named": true
+  },
+  {
+    "type": "attribute_unset",
     "named": true
   },
   {

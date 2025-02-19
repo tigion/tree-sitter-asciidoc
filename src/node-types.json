@@ -1045,7 +1045,15 @@
     "named": false
   },
   {
+    "type": "****\n",
+    "named": false
+  },
+  {
     "type": "++++",
+    "named": false
+  },
+  {
+    "type": "++++\n",
     "named": false
   },
   {
@@ -1057,7 +1065,15 @@
     "named": false
   },
   {
+    "type": "--\n",
+    "named": false
+  },
+  {
     "type": "----",
+    "named": false
+  },
+  {
+    "type": "----\n",
     "named": false
   },
   {
@@ -1066,6 +1082,10 @@
   },
   {
     "type": "....",
+    "named": false
+  },
+  {
+    "type": "....\n",
     "named": false
   },
   {
@@ -1094,6 +1114,10 @@
   },
   {
     "type": "====",
+    "named": false
+  },
+  {
+    "type": "====\n",
     "named": false
   },
   {

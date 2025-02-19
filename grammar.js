@@ -411,21 +411,14 @@ module.exports = grammar({
 
     // Open Block with block style
     open_block: ($) =>
-      seq(
-        "--",
-        $._newline,
-        repeat(choice($._x_line, $._x_blank_line)),
-        "--",
-        $._newline,
-      ),
+      seq("--\n", repeat(choice($._x_line, $._x_blank_line)), "--", $._newline),
 
     // Listing
     listing_block: ($) => choice($._listing_block, $._listing_block_style),
     // Block style
     _listing_block: ($) =>
       seq(
-        "----",
-        $._newline,
+        "----\n",
         repeat(choice($._x_line, $._x_blank_line)),
         "----",
         $._newline,
@@ -444,8 +437,7 @@ module.exports = grammar({
     // Block style
     _literal_block: ($) =>
       seq(
-        "....",
-        $._newline,
+        "....\n",
         repeat(choice($._x_line, $._x_blank_line)),
         "....",
         $._newline,
@@ -464,8 +456,7 @@ module.exports = grammar({
     // Block style
     _sidebar_block: ($) =>
       seq(
-        "****",
-        $._newline,
+        "****\n",
         repeat(choice($._x_line, $._x_blank_line)),
         "****",
         $._newline,
@@ -484,8 +475,7 @@ module.exports = grammar({
     // Block style
     _example_block: ($) =>
       seq(
-        "====",
-        $._newline,
+        "====\n",
         repeat(choice($._x_line, $._x_blank_line)),
         "====",
         $._newline,
@@ -504,8 +494,7 @@ module.exports = grammar({
     // Block style
     _pass_block: ($) =>
       seq(
-        "++++",
-        $._newline,
+        "++++\n",
         repeat(choice($._x_line, $._x_blank_line)),
         "++++",
         $._newline,
@@ -526,53 +515,6 @@ module.exports = grammar({
     //
     paragraph: ($) => prec.right(repeat1($._x_line)),
     _x_paragraph: ($) => prec.right(repeat1($._x_line)),
-
-    // ------------------------------------------------------------------------
-
-    // Images
-    // - https://docs.asciidoctor.org/asciidoc/latest/macros/images/
-    //
-    // - target may be a relative path or a URL
-    // - [...] optional attribute list
-    //   - first attribute is the alt text
-
-    // image: ($) =>
-    //   choice(
-    //     $._block_image_macro,
-    //     // $._inline_image_macro),
-    //   ),
-    //
-    // // Block image
-    // _block_image_macro: ($) =>
-    //   seq(
-    //     "image::",
-    //     alias($.image_target, $.target),
-    //     seq("[", optional(alias($.image_attributes, $.attributes)), "]"),
-    //     $._newline,
-    //   ),
-    // image_target: (_) => /[^\[]+/,
-    // image_attributes: (_) => /[^\]]+/,
-
-    // Inline image
-
-    // ------------------------------------------------------------------------
-
-    // Includes
-
-    // include: ($) => choice($._block_include),
-    //
-    // // Block include
-    // _block_include: ($) =>
-    //   seq(
-    //     "include::",
-    //     alias($.include_target, $.target),
-    //     seq("[", optional(alias($.include_attributes, $.attributes)), "]"),
-    //     $._newline,
-    //   ),
-    // include_target: (_) => /[^\[]+/,
-    // include_attributes: (_) => /[^\]]+/,
-
-    // Inline include
 
     // ------------------------------------------------------------------------
 

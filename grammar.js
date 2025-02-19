@@ -523,7 +523,8 @@ module.exports = grammar({
     list: ($) => $._list_item,
     _list_item: ($) =>
       seq(alias($.list_marker, $.marker), $._list_content, $._newline),
-    list_marker: (_) => token(seq(choice(/[-]+/, /[*]+/, /[.]+/), " ")),
+    list_marker: (_) =>
+      token(seq(choice(/[-]+/, /[*]+/, /[.]+/, /[0-9]+./), " ")),
     // list_marker: (_) => token(seq(/[ ]*/, choice(/[-]+/, /[*]+/, /[.]+/), " ")),
 
     _list_content: ($) => repeat1($._char),

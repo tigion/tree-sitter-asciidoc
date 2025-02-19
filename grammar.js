@@ -319,6 +319,7 @@ module.exports = grammar({
         $.comment,
         $._block,
         $.paragraph,
+        $.list,
         // $.image,
         // $.include,
         $.catch_unresolved,
@@ -572,6 +573,26 @@ module.exports = grammar({
     // include_attributes: (_) => /[^\]]+/,
 
     // Inline include
+
+    // ------------------------------------------------------------------------
+
+    // Lists
+    // - https://docs.asciidoctor.org/asciidoc/latest/lists/unordered/
+    //
+    // TODO:
+    // - [x] Identify a simple list line
+    // - [x] Don't recognize `+**.*` as list marker
+    // - [ ] List with list items
+    // - [ ] Nested list items
+
+    // list: ($) => seq(repeat1($.list_item), $._newline),
+    list: ($) => $._list_item,
+    _list_item: ($) =>
+      seq(alias($.list_marker, $.marker), $._list_content, $._newline),
+    list_marker: (_) => token(seq(choice(/[-]+/, /[*]+/, /[.]+/), " ")),
+    // list_marker: (_) => token(seq(/[ ]*/, choice(/[-]+/, /[*]+/, /[.]+/), " ")),
+
+    _list_content: ($) => repeat1($._char),
 
     // ------------------------------------------------------------------------
 

@@ -122,6 +122,10 @@
           "named": true
         },
         {
+          "type": "list",
+          "named": true
+        },
+        {
           "type": "listing_block",
           "named": true
         },
@@ -282,6 +286,21 @@
     }
   },
   {
+    "type": "list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "listing_block",
     "named": true,
     "fields": {},
@@ -400,6 +419,10 @@
         },
         {
           "type": "example_block",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -575,6 +598,10 @@
           "named": true
         },
         {
+          "type": "list",
+          "named": true
+        },
+        {
           "type": "listing_block",
           "named": true
         },
@@ -666,6 +693,10 @@
           "named": true
         },
         {
+          "type": "list",
+          "named": true
+        },
+        {
           "type": "listing_block",
           "named": true
         },
@@ -753,6 +784,10 @@
           "named": true
         },
         {
+          "type": "list",
+          "named": true
+        },
+        {
           "type": "listing_block",
           "named": true
         },
@@ -836,6 +871,10 @@
           "named": true
         },
         {
+          "type": "list",
+          "named": true
+        },
+        {
           "type": "listing_block",
           "named": true
         },
@@ -912,6 +951,10 @@
         },
         {
           "type": "example_block",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -1096,6 +1139,10 @@
   {
     "type": "literal",
     "named": false
+  },
+  {
+    "type": "marker",
+    "named": true
   },
   {
     "type": "pass",

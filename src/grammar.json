@@ -953,6 +953,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "list"
+        },
+        {
+          "type": "SYMBOL",
           "name": "catch_unresolved"
         }
       ]
@@ -1786,60 +1790,25 @@
         }
       }
     },
-    "image": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_block_image_macro"
-        }
-      ]
+    "list": {
+      "type": "SYMBOL",
+      "name": "_list_item"
     },
-    "_block_image_macro": {
+    "_list_item": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "STRING",
-          "value": "image::"
-        },
         {
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "image_target"
+            "name": "list_marker"
           },
           "named": true,
-          "value": "target"
+          "value": "marker"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "["
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "image_attributes"
-                  },
-                  "named": true,
-                  "value": "attributes"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "STRING",
-              "value": "]"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_list_content"
         },
         {
           "type": "SYMBOL",
@@ -1847,82 +1816,46 @@
         }
       ]
     },
-    "image_target": {
-      "type": "PATTERN",
-      "value": "[^\\[]+"
-    },
-    "image_attributes": {
-      "type": "PATTERN",
-      "value": "[^\\]]+"
-    },
-    "include": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_block_include"
-        }
-      ]
-    },
-    "_block_include": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "include::"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "include_target"
-          },
-          "named": true,
-          "value": "target"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "["
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "include_attributes"
-                  },
-                  "named": true,
-                  "value": "attributes"
+    "list_marker": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[-]+"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[*]+"
                 },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "STRING",
-              "value": "]"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_newline"
-        }
-      ]
+                "named": true,
+                "value": "tmp"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[.]+"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": " "
+          }
+        ]
+      }
     },
-    "include_target": {
-      "type": "PATTERN",
-      "value": "[^\\[]+"
-    },
-    "include_attributes": {
-      "type": "PATTERN",
-      "value": "[^\\]]+"
+    "_list_content": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_char"
+      }
     },
     "catch_unresolved": {
       "type": "TOKEN",

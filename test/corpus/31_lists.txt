@@ -1,0 +1,50 @@
+==================
+List
+==================
+
+* item
+
+---
+
+(document
+  (document_body
+    (list
+      (marker))))
+
+==================
+List Marker
+==================
+
+* item
+- item
+. item
+
+---
+
+(document
+  (document_body
+    (list
+      (marker))
+    (list
+      (marker))
+    (list
+      (marker))))
+
+==================
+List Nested
+==================
+
+* item
+** item
+*** item
+
+---
+
+(document
+  (document_body
+    (list
+      (marker))
+    (list
+      (marker))
+    (list
+      (marker))))

@@ -146,6 +146,7 @@ Not everything in the checklists is relevant to grammar.
 - [ ] Text Formatting and Punctuation
   - [ ] ...
 - [ ] Lists
+  - [x] Simple identification of list lines
   - [ ] Unordered Lists
   - [ ] Ordered Lists
   - [ ] Checklists

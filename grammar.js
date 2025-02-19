@@ -279,7 +279,7 @@ module.exports = grammar({
         1,
         seq(
           alias($.section_level4_header_marker, $.section_header_marker),
-          " ",
+          // " ",
           $.section_header_content,
           $._newline,
         ),
@@ -398,6 +398,7 @@ module.exports = grammar({
     // TODO:
     // - Source Code Block as a special Listing Block with a language attribute
     // - Also Markdown ``` Source Code Block?
+    // - Currently is only one nesting for example_block supported.
     //
     _block: ($) =>
       choice(
@@ -411,18 +412,13 @@ module.exports = grammar({
 
     // Open Block with block style
     open_block: ($) =>
-      seq("--\n", repeat(choice($._x_line, $._x_blank_line)), "--", $._newline),
+      seq("--\n", repeat(choice($._x_line, $._x_blank_line)), "--\n"),
 
     // Listing
     listing_block: ($) => choice($._listing_block, $._listing_block_style),
     // Block style
     _listing_block: ($) =>
-      seq(
-        "----\n",
-        repeat(choice($._x_line, $._x_blank_line)),
-        "----",
-        $._newline,
-      ),
+      seq("----\n", repeat(choice($._x_line, $._x_blank_line)), "----\n"),
     // Open Block or Paragraph style
     _listing_block_style: ($) =>
       seq(
@@ -436,12 +432,7 @@ module.exports = grammar({
     literal_block: ($) => choice($._literal_block, $._literal_block_style),
     // Block style
     _literal_block: ($) =>
-      seq(
-        "....\n",
-        repeat(choice($._x_line, $._x_blank_line)),
-        "....",
-        $._newline,
-      ),
+      seq("....\n", repeat(choice($._x_line, $._x_blank_line)), "....\n"),
     // Open Block or Paragraph style
     _literal_block_style: ($) =>
       seq(
@@ -455,12 +446,7 @@ module.exports = grammar({
     sidebar_block: ($) => choice($._sidebar_block, $._sidebar_block_style),
     // Block style
     _sidebar_block: ($) =>
-      seq(
-        "****\n",
-        repeat(choice($._x_line, $._x_blank_line)),
-        "****",
-        $._newline,
-      ),
+      seq("****\n", repeat(choice($._x_line, $._x_blank_line)), "****\n"),
     // Open Block or Paragraph style
     _sidebar_block_style: ($) =>
       seq(
@@ -475,10 +461,21 @@ module.exports = grammar({
     // Block style
     _example_block: ($) =>
       seq(
-        "====\n",
+        alias("====\n", $.example_block_marker_start),
+        repeat(
+          choice(
+            $._x_line,
+            $._x_blank_line,
+            alias($._example_block_level2, $.example_block),
+          ),
+        ),
+        alias("====\n", $.example_block_marker_end),
+      ),
+    _example_block_level2: ($) =>
+      seq(
+        alias("=====\n", $.example_block_marker_start),
         repeat(choice($._x_line, $._x_blank_line)),
-        "====",
-        $._newline,
+        alias("=====\n", $.example_block_marker_end),
       ),
     // Open Block or Paragraph style
     _example_block_style: ($) =>
@@ -493,12 +490,7 @@ module.exports = grammar({
     pass_block: ($) => choice($._pass_block, $._pass_block_style),
     // Block style
     _pass_block: ($) =>
-      seq(
-        "++++\n",
-        repeat(choice($._x_line, $._x_blank_line)),
-        "++++",
-        $._newline,
-      ),
+      seq("++++\n", repeat(choice($._x_line, $._x_blank_line)), "++++\n"),
     // Paragraph style
     _pass_block_style: ($) =>
       seq(

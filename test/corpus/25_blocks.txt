@@ -123,13 +123,37 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (example_block)
+    (example_block
+      (example_block_marker_start)
+      (example_block_marker_end))
     (example_block
       (element_attributes)
       (open_block))
     (example_block
       (element_attributes)
       (paragraph))))
+
+==================|||
+Example Block (1x nested)
+==================|||
+
+====
+=====
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
+=====
+====
+
+---|||
+
+(document
+  (document_body
+    (example_block
+      (example_block_marker_start)
+      (example_block
+        (example_block_marker_start)
+        (example_block_marker_end))
+      (example_block_marker_end))))
+
 
 ==================|||
 Passthrough Block

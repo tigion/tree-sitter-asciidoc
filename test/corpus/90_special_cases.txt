@@ -1,12 +1,12 @@
-==================
+==================|||
 Case 01
-==================
+==================|||
 
 Lorem ipsum.
 
 ==== Section Level 3 Header
 
----
+---|||
 
 (document
   (document_body
@@ -15,3 +15,28 @@ Lorem ipsum.
       (section_header
         (section_header_marker)
         (section_header_content)))))
+
+==================|||
+Case 02
+==================|||
+
+.Hinweis: push-Error Konflikte lösen
+[%collapsible]
+====
+=====
+Lorem ipsum.
+=====
+====
+
+---|||
+
+(document
+  (document_body
+    (title)
+    (element_attributes)
+    (example_block
+      (example_block_marker_start)
+      (example_block
+        (example_block_marker_start)
+        (example_block_marker_end))
+      (example_block_marker_end))))

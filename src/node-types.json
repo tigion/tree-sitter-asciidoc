@@ -268,10 +268,22 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "element_attributes",
+          "named": true
+        },
+        {
+          "type": "example_block",
+          "named": true
+        },
+        {
+          "type": "example_block_marker_end",
+          "named": true
+        },
+        {
+          "type": "example_block_marker_start",
           "named": true
         },
         {
@@ -557,11 +569,6 @@
   },
   {
     "type": "section_header_content",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "section_header_marker",
     "named": true,
     "fields": {}
   },
@@ -1041,15 +1048,7 @@
     "named": false
   },
   {
-    "type": "****",
-    "named": false
-  },
-  {
     "type": "****\n",
-    "named": false
-  },
-  {
-    "type": "++++",
     "named": false
   },
   {
@@ -1061,15 +1060,7 @@
     "named": false
   },
   {
-    "type": "--",
-    "named": false
-  },
-  {
     "type": "--\n",
-    "named": false
-  },
-  {
-    "type": "----",
     "named": false
   },
   {
@@ -1078,10 +1069,6 @@
   },
   {
     "type": ".",
-    "named": false
-  },
-  {
-    "type": "....",
     "named": false
   },
   {
@@ -1113,14 +1100,6 @@
     "named": false
   },
   {
-    "type": "====",
-    "named": false
-  },
-  {
-    "type": "====\n",
-    "named": false
-  },
-  {
     "type": "[",
     "named": false
   },
@@ -1149,6 +1128,14 @@
     "named": false
   },
   {
+    "type": "example_block_marker_end",
+    "named": true
+  },
+  {
+    "type": "example_block_marker_start",
+    "named": true
+  },
+  {
     "type": "image",
     "named": false
   },
@@ -1171,6 +1158,10 @@
   {
     "type": "pass",
     "named": false
+  },
+  {
+    "type": "section_header_marker",
+    "named": true
   },
   {
     "type": "sidebar",

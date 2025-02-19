@@ -4,9 +4,7 @@
       "name": "asciidoc",
       "camelcase": "AsciiDoc",
       "scope": "source.asciidoc",
-      "file-types": [
-        ".adoc"
-      ],
+      "file-types": ["adoc"],
       "injection-regex": "^asciidoc$"
     }
   ],
@@ -32,3 +30,4 @@
     "swift": true
   }
 }
+

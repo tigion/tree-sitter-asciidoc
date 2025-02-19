@@ -1,0 +1,104 @@
+==================
+Macro (Block)
+:skip
+==================
+
+macro::target[]
+
+---
+
+(document
+  (document_body
+    (macro
+      (name)
+      (target))))
+
+==================
+Macro (Block) Attributes
+:skip
+==================
+
+macro::target[value,value]
+macro::target["value 1", value]
+
+---
+
+(document
+  (document_body
+    (macro
+      (name)
+      (target)
+      (attributes))
+    (macro
+      (name)
+      (target)
+      (attributes))))
+
+==================
+Image (Block)
+==================
+
+image::image.png[]
+
+---
+
+(document
+  (document_body
+    (macro
+      (name)
+      (target))))
+
+==================
+Image (Block) Attributes
+==================
+
+image::image.png["Alt text",500,600]
+image::image.png["Alt text", 500, 600]
+
+---
+
+(document
+  (document_body
+    (macro
+      (name)
+      (target)
+      (attributes))
+    (macro
+      (name)
+      (target)
+      (attributes))))
+
+==================
+Include (Block)
+==================
+
+include::file.adoc[]
+
+---
+
+(document
+  (document_body
+    (macro
+      (name)
+      (target))))
+
+
+==================
+Include (Block) Attributes
+==================
+
+include::file.adoc[attribute1,attribute2]
+include::file.adoc["attribute text", attribute2]
+
+---
+
+(document
+  (document_body
+    (macro
+      (name)
+      (target)
+      (attributes))
+    (macro
+      (name)
+      (target)
+      (attributes))))

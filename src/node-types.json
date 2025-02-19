@@ -1,5 +1,10 @@
 [
   {
+    "type": "attribute_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "attribute_value",
     "named": true,
     "fields": {}
@@ -117,15 +122,15 @@
           "named": true
         },
         {
-          "type": "image",
-          "named": true
-        },
-        {
           "type": "listing_block",
           "named": true
         },
         {
           "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -206,6 +211,10 @@
         {
           "type": "document_title",
           "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
         }
       ]
     }
@@ -273,25 +282,6 @@
     }
   },
   {
-    "type": "image",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "attributes",
-          "named": true
-        },
-        {
-          "type": "target",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "listing_block",
     "named": true,
     "fields": {},
@@ -336,6 +326,34 @@
         }
       ]
     }
+  },
+  {
+    "type": "macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attributes",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "target",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "open_block",
@@ -385,15 +403,15 @@
           "named": true
         },
         {
-          "type": "image",
-          "named": true
-        },
-        {
           "type": "listing_block",
           "named": true
         },
         {
           "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -557,15 +575,15 @@
           "named": true
         },
         {
-          "type": "image",
-          "named": true
-        },
-        {
           "type": "listing_block",
           "named": true
         },
         {
           "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -648,15 +666,15 @@
           "named": true
         },
         {
-          "type": "image",
-          "named": true
-        },
-        {
           "type": "listing_block",
           "named": true
         },
         {
           "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -735,15 +753,15 @@
           "named": true
         },
         {
-          "type": "image",
-          "named": true
-        },
-        {
           "type": "listing_block",
           "named": true
         },
         {
           "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -818,15 +836,15 @@
           "named": true
         },
         {
-          "type": "image",
-          "named": true
-        },
-        {
           "type": "listing_block",
           "named": true
         },
         {
           "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -897,15 +915,15 @@
           "named": true
         },
         {
-          "type": "image",
-          "named": true
-        },
-        {
           "type": "listing_block",
           "named": true
         },
         {
           "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -1020,6 +1038,10 @@
     "named": false
   },
   {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": "<<<",
     "named": false
   },
@@ -1038,10 +1060,6 @@
   {
     "type": "]",
     "named": false
-  },
-  {
-    "type": "attribute_name",
-    "named": true
   },
   {
     "type": "attribute_unset",
@@ -1064,7 +1082,11 @@
     "named": false
   },
   {
-    "type": "image::",
+    "type": "image",
+    "named": false
+  },
+  {
+    "type": "include",
     "named": false
   },
   {

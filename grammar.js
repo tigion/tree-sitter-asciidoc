@@ -75,7 +75,7 @@ module.exports = grammar({
     document_revision: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
     // Document attributes
     _document_attributes: ($) =>
-      repeat1(choice($.comment, $.document_attribute)),
+      repeat1(choice($.comment, $.document_attribute, $.macro)),
 
     // ------------------------------------------------------------------------
 
@@ -125,7 +125,7 @@ module.exports = grammar({
         $._newline,
       ),
     attribute_unset: (_) => "!",
-    attribute_name: (_) => /[a-zA-Z0-9_][a-zA-Z0-9_-]*/,
+    attribute_name: ($) => $._attribute_name,
     attribute_value: ($) => repeat1($._char),
 
     // Element Attributes
@@ -314,11 +314,13 @@ module.exports = grammar({
         $.element_attributes,
         $.page_break,
         $.break,
+        $.macro,
         $.title,
         $.comment,
         $._block,
         $.paragraph,
-        $.image,
+        // $.image,
+        // $.include,
         $.catch_unresolved,
       ),
 
@@ -331,6 +333,22 @@ module.exports = grammar({
     //
     break: ($) => seq(choice("'''", /- ?- ?-/, /\* ?\* ?\*/), $._newline),
     page_break: ($) => seq("<<<", $._newline),
+
+    // ------------------------------------------------------------------------
+
+    // Macros
+    macro: ($) =>
+      seq(
+        alias($.macro_name, $.name),
+        "::",
+        alias($.macro_target, $.target),
+        seq("[", optional(alias($.macro_attributes, $.attributes)), "]"),
+        $._newline,
+      ),
+    macro_name: (_) => choice("image", "include"),
+    // macro_name: ($) => $._macro_name, // FIX: Problem with other nodes start with chars.
+    macro_target: (_) => /[^\[]+/,
+    macro_attributes: (_) => /[^\]]+/,
 
     // ------------------------------------------------------------------------
 
@@ -517,24 +535,43 @@ module.exports = grammar({
     // - [...] optional attribute list
     //   - first attribute is the alt text
 
-    image: ($) =>
-      choice(
-        $._block_image_macro,
-        // $._inline_image_macro),
-      ),
-
-    // Block image macro
-    _block_image_macro: ($) =>
-      seq(
-        "image::",
-        $.target,
-        seq("[", optional(alias($.image_attributes, $.attributes)), "]"),
-        $._newline,
-      ),
-    target: (_) => /[^\[]+/,
-    image_attributes: (_) => /[^\]]+/, // TODO: attributes
+    // image: ($) =>
+    //   choice(
+    //     $._block_image_macro,
+    //     // $._inline_image_macro),
+    //   ),
+    //
+    // // Block image
+    // _block_image_macro: ($) =>
+    //   seq(
+    //     "image::",
+    //     alias($.image_target, $.target),
+    //     seq("[", optional(alias($.image_attributes, $.attributes)), "]"),
+    //     $._newline,
+    //   ),
+    // image_target: (_) => /[^\[]+/,
+    // image_attributes: (_) => /[^\]]+/,
 
     // Inline image
+
+    // ------------------------------------------------------------------------
+
+    // Includes
+
+    // include: ($) => choice($._block_include),
+    //
+    // // Block include
+    // _block_include: ($) =>
+    //   seq(
+    //     "include::",
+    //     alias($.include_target, $.target),
+    //     seq("[", optional(alias($.include_attributes, $.attributes)), "]"),
+    //     $._newline,
+    //   ),
+    // include_target: (_) => /[^\[]+/,
+    // include_attributes: (_) => /[^\]]+/,
+
+    // Inline include
 
     // ------------------------------------------------------------------------
 
@@ -570,6 +607,9 @@ module.exports = grammar({
     _newline: () => "\n",
     _x_blank_line: ($) => seq($._newline),
     // _x_blank_line: ($) => seq("", $._newline),
+
+    _attribute_name: (_) => /[a-zA-Z0-9_][a-zA-Z0-9_-]*/,
+    _macro_name: (_) => /[a-zA-Z0-9][a-zA-Z0-9-]*/,
 
     // eslint-disable-next-line no-useless-escape
     // macro: (_) => /\[[^#\[].+[^\]]\]\n/,

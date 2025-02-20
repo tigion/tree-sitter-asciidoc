@@ -318,10 +318,18 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "element_attributes",
+          "named": true
+        },
+        {
+          "type": "listing_block_marker_end",
+          "named": true
+        },
+        {
+          "type": "listing_block_marker_start",
           "named": true
         },
         {
@@ -341,10 +349,18 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "element_attributes",
+          "named": true
+        },
+        {
+          "type": "literal_block_marker_end",
+          "named": true
+        },
+        {
+          "type": "literal_block_marker_start",
           "named": true
         },
         {
@@ -389,7 +405,21 @@
   {
     "type": "open_block",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "open_block_marker_end",
+          "named": true
+        },
+        {
+          "type": "open_block_marker_start",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "page_break",
@@ -539,7 +569,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "element_attributes",
@@ -547,6 +577,14 @@
         },
         {
           "type": "paragraph",
+          "named": true
+        },
+        {
+          "type": "pass_block_marker_end",
+          "named": true
+        },
+        {
+          "type": "pass_block_marker_start",
           "named": true
         }
       ]
@@ -1037,7 +1075,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "element_attributes",
@@ -1049,6 +1087,14 @@
         },
         {
           "type": "paragraph",
+          "named": true
+        },
+        {
+          "type": "sidebar_block_marker_end",
+          "named": true
+        },
+        {
+          "type": "sidebar_block_marker_start",
           "named": true
         }
       ]
@@ -1072,31 +1118,11 @@
     "named": false
   },
   {
-    "type": "****\n",
-    "named": false
-  },
-  {
-    "type": "++++\n",
-    "named": false
-  },
-  {
     "type": ",",
     "named": false
   },
   {
-    "type": "--\n",
-    "named": false
-  },
-  {
-    "type": "----\n",
-    "named": false
-  },
-  {
     "type": ".",
-    "named": false
-  },
-  {
-    "type": "....\n",
     "named": false
   },
   {
@@ -1176,16 +1202,48 @@
     "named": false
   },
   {
+    "type": "listing_block_marker_end",
+    "named": true
+  },
+  {
+    "type": "listing_block_marker_start",
+    "named": true
+  },
+  {
     "type": "literal",
     "named": false
+  },
+  {
+    "type": "literal_block_marker_end",
+    "named": true
+  },
+  {
+    "type": "literal_block_marker_start",
+    "named": true
   },
   {
     "type": "marker",
     "named": true
   },
   {
+    "type": "open_block_marker_end",
+    "named": true
+  },
+  {
+    "type": "open_block_marker_start",
+    "named": true
+  },
+  {
     "type": "pass",
     "named": false
+  },
+  {
+    "type": "pass_block_marker_end",
+    "named": true
+  },
+  {
+    "type": "pass_block_marker_start",
+    "named": true
   },
   {
     "type": "section_header_marker",
@@ -1194,6 +1252,14 @@
   {
     "type": "sidebar",
     "named": false
+  },
+  {
+    "type": "sidebar_block_marker_end",
+    "named": true
+  },
+  {
+    "type": "sidebar_block_marker_start",
+    "named": true
   },
   {
     "type": "target",

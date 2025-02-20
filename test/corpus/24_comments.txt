@@ -51,9 +51,13 @@ Comment text
 
 (document
   (comment
-    (open_block))
+    (open_block
+      (open_block_marker_start)
+      (open_block_marker_end)))
   (comment
-    (open_block)))
+    (open_block
+      (open_block_marker_start)
+      (open_block_marker_end))))
 
 ==================
 Comment Paragraph Style
@@ -101,5 +105,7 @@ Comment text
     (paragraph))
   (comment)
   (comment
-    (open_block))
+    (open_block
+      (open_block_marker_start)
+      (open_block_marker_end)))
   (comment))

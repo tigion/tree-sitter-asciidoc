@@ -1274,8 +1274,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "--\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "--\n"
+          },
+          "named": true,
+          "value": "open_block_marker_start"
         },
         {
           "type": "REPEAT",
@@ -1298,8 +1303,13 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "--\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "--\n"
+          },
+          "named": true,
+          "value": "open_block_marker_end"
         }
       ]
     },
@@ -1320,8 +1330,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "----\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "----\n"
+          },
+          "named": true,
+          "value": "listing_block_marker_start"
         },
         {
           "type": "REPEAT",
@@ -1344,8 +1359,13 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "----\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "----\n"
+          },
+          "named": true,
+          "value": "listing_block_marker_end"
         }
       ]
     },
@@ -1414,8 +1434,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "....\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "....\n"
+          },
+          "named": true,
+          "value": "literal_block_marker_start"
         },
         {
           "type": "REPEAT",
@@ -1438,8 +1463,13 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "....\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "....\n"
+          },
+          "named": true,
+          "value": "literal_block_marker_end"
         }
       ]
     },
@@ -1508,8 +1538,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "****\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "****\n"
+          },
+          "named": true,
+          "value": "sidebar_block_marker_start"
         },
         {
           "type": "REPEAT",
@@ -1532,8 +1567,13 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "****\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "****\n"
+          },
+          "named": true,
+          "value": "sidebar_block_marker_end"
         }
       ]
     },
@@ -1758,8 +1798,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "++++\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "++++\n"
+          },
+          "named": true,
+          "value": "pass_block_marker_start"
         },
         {
           "type": "REPEAT",
@@ -1782,8 +1827,13 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "++++\n"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "++++\n"
+          },
+          "named": true,
+          "value": "pass_block_marker_end"
         }
       ]
     },

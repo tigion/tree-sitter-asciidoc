@@ -432,16 +432,20 @@ module.exports = grammar({
 
     // Open Block with block style
     open_block: ($) =>
-      seq("--\n", repeat(prec.left(choice($._x_line, $._blank_lines))), "--\n"),
+      seq(
+        alias("--\n", $.open_block_marker_start),
+        repeat(prec.left(choice($._x_line, $._blank_lines))),
+        alias("--\n", $.open_block_marker_end),
+      ),
 
     // Listing
     listing_block: ($) => choice($._listing_block, $._listing_block_style),
     // Block style
     _listing_block: ($) =>
       seq(
-        "----\n",
+        alias("----\n", $.listing_block_marker_start),
         repeat(prec.left(choice($._x_line, $._blank_lines))),
-        "----\n",
+        alias("----\n", $.listing_block_marker_end),
       ),
     // Open Block or Paragraph style
     _listing_block_style: ($) =>
@@ -457,9 +461,9 @@ module.exports = grammar({
     // Block style
     _literal_block: ($) =>
       seq(
-        "....\n",
+        alias("....\n", $.literal_block_marker_start),
         repeat(prec.left(choice($._x_line, $._blank_lines))),
-        "....\n",
+        alias("....\n", $.literal_block_marker_end),
       ),
     // Open Block or Paragraph style
     _literal_block_style: ($) =>
@@ -475,9 +479,9 @@ module.exports = grammar({
     // Block style
     _sidebar_block: ($) =>
       seq(
-        "****\n",
+        alias("****\n", $.sidebar_block_marker_start),
         repeat(prec.left(choice($._x_line, $._blank_lines))),
-        "****\n",
+        alias("****\n", $.sidebar_block_marker_end),
       ),
     // Open Block or Paragraph style
     _sidebar_block_style: ($) =>
@@ -507,6 +511,7 @@ module.exports = grammar({
       ),
     _example_block_level2: ($) =>
       seq(
+        // optional($.element_attributes),
         alias("=====\n", $.example_block_marker_start),
         repeat(prec.left(choice($._x_line, $._blank_lines))),
         alias("=====\n", $.example_block_marker_end),
@@ -525,9 +530,9 @@ module.exports = grammar({
     // Block style
     _pass_block: ($) =>
       seq(
-        "++++\n",
+        alias("++++\n", $.pass_block_marker_start),
         repeat(prec.left(choice($._x_line, $._blank_lines))),
-        "++++\n",
+        alias("++++\n", $.pass_block_marker_end),
       ),
     // Paragraph style
     _pass_block_style: ($) =>

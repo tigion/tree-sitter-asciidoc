@@ -16,8 +16,12 @@ qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (open_block)
-    (open_block)))
+    (open_block
+      (open_block_marker_start)
+      (open_block_marker_end))
+    (open_block
+      (open_block_marker_start)
+      (open_block_marker_end))))
 
 ==================|||
 Listing Block
@@ -39,10 +43,14 @@ printf("Hello, World!");
 
 (document
   (document_body
-    (listing_block)
+    (listing_block
+      (listing_block_marker_start)
+      (listing_block_marker_end))
     (listing_block
       (element_attributes)
-      (open_block))
+      (open_block
+        (open_block_marker_start)
+        (open_block_marker_end)))
     (listing_block
       (element_attributes)
       (paragraph))))
@@ -67,10 +75,14 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (literal_block)
+    (literal_block
+      (literal_block_marker_start)
+      (literal_block_marker_end))
     (literal_block
       (element_attributes)
-      (open_block))
+      (open_block
+        (open_block_marker_start)
+        (open_block_marker_end)))
     (literal_block
       (element_attributes)
       (paragraph))))
@@ -95,10 +107,14 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (sidebar_block)
     (sidebar_block
-       (element_attributes)
-       (open_block))
+      (sidebar_block_marker_start)
+      (sidebar_block_marker_end))
+    (sidebar_block
+      (element_attributes)
+      (open_block
+        (open_block_marker_start)
+        (open_block_marker_end)))
     (sidebar_block
        (element_attributes)
        (paragraph))))
@@ -128,7 +144,9 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
       (example_block_marker_end))
     (example_block
       (element_attributes)
-      (open_block))
+      (open_block
+        (open_block_marker_start)
+        (open_block_marker_end)))
     (example_block
       (element_attributes)
       (paragraph))))
@@ -170,7 +188,9 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (pass_block)
+    (pass_block
+      (pass_block_marker_start)
+      (pass_block_marker_end))
     (pass_block
       (element_attributes)
       (paragraph))))

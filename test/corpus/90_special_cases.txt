@@ -38,5 +38,6 @@ Lorem ipsum.
       (example_block_marker_start)
       (example_block
         (example_block_marker_start)
+        (paragraph)
         (example_block_marker_end))
       (example_block_marker_end))))

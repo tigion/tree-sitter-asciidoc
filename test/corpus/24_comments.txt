@@ -53,10 +53,13 @@ Comment text
   (comment
     (open_block
       (open_block_marker_start)
+      (paragraph)
       (open_block_marker_end)))
   (comment
     (open_block
       (open_block_marker_start)
+      (paragraph)
+      (paragraph)
       (open_block_marker_end))))
 
 ==================
@@ -107,5 +110,7 @@ Comment text
   (comment
     (open_block
       (open_block_marker_start)
+      (paragraph)
+      (paragraph)
       (open_block_marker_end)))
   (comment))

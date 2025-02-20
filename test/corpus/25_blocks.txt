@@ -18,9 +18,12 @@ qui minim labore adipisicing minim sint.
   (document_body
     (open_block
       (open_block_marker_start)
+        (paragraph)
       (open_block_marker_end))
     (open_block
       (open_block_marker_start)
+        (paragraph)
+        (paragraph)
       (open_block_marker_end))))
 
 ==================|||
@@ -45,15 +48,43 @@ printf("Hello, World!");
   (document_body
     (listing_block
       (listing_block_marker_start)
+      (listing_block_content
+        (paragraph))
       (listing_block_marker_end))
     (listing_block
       (element_attributes)
       (open_block
         (open_block_marker_start)
+          (paragraph)
         (open_block_marker_end)))
     (listing_block
       (element_attributes)
       (paragraph))))
+
+
+==================|||
+Listing Block Callouts
+==================|||
+
+----
+printf("Hello, World!"); <1> <2>
+----
+<1> This is a callout.
+<2> This is a callout.
+
+---|||
+
+(document
+  (document_body
+    (listing_block
+      (listing_block_marker_start)
+      (listing_block_content
+        (paragraph))
+      (listing_block_marker_end)
+      (listing_callout
+        (callout))
+      (listing_callout
+        (callout)))))
 
 ==================|||
 Literal Block
@@ -77,11 +108,13 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
   (document_body
     (literal_block
       (literal_block_marker_start)
+        (paragraph)
       (literal_block_marker_end))
     (literal_block
       (element_attributes)
       (open_block
         (open_block_marker_start)
+          (paragraph)
         (open_block_marker_end)))
     (literal_block
       (element_attributes)
@@ -109,11 +142,13 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
   (document_body
     (sidebar_block
       (sidebar_block_marker_start)
+        (paragraph)
       (sidebar_block_marker_end))
     (sidebar_block
       (element_attributes)
       (open_block
         (open_block_marker_start)
+          (paragraph)
         (open_block_marker_end)))
     (sidebar_block
        (element_attributes)
@@ -141,11 +176,13 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
   (document_body
     (example_block
       (example_block_marker_start)
+        (paragraph)
       (example_block_marker_end))
     (example_block
       (element_attributes)
       (open_block
         (open_block_marker_start)
+          (paragraph)
         (open_block_marker_end)))
     (example_block
       (element_attributes)
@@ -169,6 +206,7 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
       (example_block_marker_start)
       (example_block
         (example_block_marker_start)
+        (paragraph)
         (example_block_marker_end))
       (example_block_marker_end))))
 
@@ -190,6 +228,7 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
   (document_body
     (pass_block
       (pass_block_marker_start)
+      (paragraph)
       (pass_block_marker_end))
     (pass_block
       (element_attributes)

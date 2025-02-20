@@ -13,6 +13,64 @@ Header: Document Title
       (document_title_content))))
 
 ==================
+Header: Authors
+==================
+
+= Document Title
+John Doe
+
+---
+
+(document
+  (document_header
+    (document_title
+      (document_title_marker)
+      (document_title_content))
+    (document_authors)))
+
+
+==================
+Header: Authors + Comments
+==================
+
+= Document Title
+John Doe
+// Comment
+// Comment
+// Comment
+
+---
+
+(document
+  (document_header
+    (document_title
+      (document_title_marker)
+      (document_title_content))
+    (document_authors)
+    (comment)
+    (comment)
+    (comment)))
+
+==================
+Header: Authors, Revision
+==================
+
+= Document Title
+John Doe
+1.0
+
+---
+
+(document
+  (document_header
+    (document_title
+      (document_title_marker)
+      (document_title_content))
+    (document_authors)
+    (document_revision)))
+
+
+==================
 Header: Authors, Revision, Attributes
 ==================
 
@@ -36,6 +94,67 @@ John Doe
     (document_attribute
       (attribute_name)
       (attribute_value))))
+
+==================
+Header: Authors, Revision, Attributes + Comments
+==================
+
+// Comment
+= Document Title
+// Comment
+John Doe
+// Comment
+1.0
+// Comment
+:toc:
+:toclevels: 2
+
+---
+
+(document
+  (comment)
+  (document_header
+    (document_title
+      (document_title_marker)
+      (document_title_content))
+    (comment)
+    (document_authors)
+    (comment)
+    (document_revision)
+    (comment)
+    (document_attribute
+      (attribute_name))
+    (document_attribute
+      (attribute_name)
+      (attribute_value))))
+
+==================
+Header: Authors, Attributes + Comments
+==================
+
+= Document Title
+// Comment
+John Doe
+// Comment
+:toc:
+:toclevels: 2
+
+---
+
+(document
+  (document_header
+    (document_title
+      (document_title_marker)
+      (document_title_content))
+    (comment)
+    (document_authors)
+    (comment)
+    (document_attribute
+      (attribute_name))
+    (document_attribute
+      (attribute_name)
+      (attribute_value))))
+
 
 ==================
 Header: Comment + Document Title

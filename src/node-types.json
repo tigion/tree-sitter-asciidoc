@@ -19,13 +19,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "element_attributes",
-          "named": true
-        },
         {
           "type": "open_block",
           "named": true

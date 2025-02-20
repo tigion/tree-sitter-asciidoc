@@ -51,10 +51,8 @@ Comment text
 
 (document
   (comment
-    (element_attributes)
     (open_block))
   (comment
-    (element_attributes)
     (open_block)))
 
 ==================
@@ -68,7 +66,6 @@ Comment text
 
 (document
   (comment
-    (element_attributes)
     (paragraph)))
 
 ==================
@@ -101,10 +98,8 @@ Comment text
 (document
   (comment)
   (comment
-    (element_attributes)
     (paragraph))
   (comment)
   (comment
-    (element_attributes)
     (open_block))
   (comment))

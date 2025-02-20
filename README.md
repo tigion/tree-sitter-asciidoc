@@ -71,6 +71,7 @@ Not everything in the checklists is relevant to grammar.
     (document_revision)
     (document_attribute))
     ...
+
   (document_body
     ...))
 ```
@@ -299,7 +300,7 @@ Not everything in the checklists is relevant to grammar.
 
     ```lisp
     (comment
-      (element_attributes)
+      (_comment_attributes)
       (open_block))
     ```
 
@@ -307,7 +308,7 @@ Not everything in the checklists is relevant to grammar.
 
     ```lisp
     (comment
-      (element_attributes)
+      (_comment_attributes)
       (paragraph))
     ```
 

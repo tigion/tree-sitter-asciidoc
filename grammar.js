@@ -13,25 +13,35 @@ module.exports = grammar({
   name: "asciidoc",
 
   extras: (_) => [],
-  // extras: ($) => [$.comment],
+  // extras: ($) => [$._comment],
   // extras: (_) => ["\n"],
   // extras: (_) => [
-  //   // $.comment,
+  //   // $._comment,
   //   // /\s/,
   //   "\n",
   //   // /\n/,
   // ],
 
+  conflicts: ($) => [[$.document_header], [$._block_not_section]],
+
   rules: {
     // Document
+    //
+    // 1. (optional) Blank Lines and/or Comments
+    // 2. Choices:
+    //   - Only Document Header
+    //   - Document Header + Blank Lines + Document Body
+    //   - Only Document Body
+    //
+    //
     document: ($) =>
       seq(
-        repeat(prec(1, choice($._x_blank_line, $.comment))),
+        repeat(prec(10, choice($._blank_lines, $._comments))),
         choice(
           optional(
             seq(
               $.document_header,
-              optional(seq($._x_blank_line, $.document_body)),
+              optional(seq($._blank_lines, $.document_body)),
             ),
           ),
           optional($.document_body),
@@ -42,23 +52,29 @@ module.exports = grammar({
 
     // Header
     //
+    // 1. Document Title
+    // 2. (optional) Comments
+    // 3. (optional) Authors or Authors + (Comments) + Revision
+    // 4. (optional) Document Attributes
+    //
     document_header: ($) =>
       prec.right(
         seq(
+          // Document Title
           $.document_title,
-          repeat(prec(1, $.comment)),
-          // optional($._comments),
+          // (optional) Comments
+          optional($._comments),
+          // (optional) Authors or Authors + (Comments) + Revision
           optional(
             seq(
               $.document_authors,
-              optional(seq(repeat(prec(1, $.comment)), $.document_revision)),
-              // optional(seq(optional($._comments), $.document_revision)),
+              optional(seq(optional($._comments), $.document_revision)),
             ),
           ),
+          // (optional) Document Attributes
           optional($._document_attributes),
         ),
       ),
-    // _comments: ($) => repeat1(prec(1, $.comment)),
 
     // Document title
     // document_title: ($) => prec(2, seq("= ", repeat1($._char), $._newline)),
@@ -75,7 +91,7 @@ module.exports = grammar({
     document_revision: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
     // Document attributes
     _document_attributes: ($) =>
-      repeat1(choice($.comment, $.document_attribute, $.macro)),
+      repeat1(choice($._comments, $.document_attribute, $.macro)),
 
     // ------------------------------------------------------------------------
 
@@ -308,23 +324,59 @@ module.exports = grammar({
     // ------------------------------------------------------------------------
 
     _block_not_section: ($) =>
-      choice(
-        $._x_blank_line,
-        $.document_attribute,
-        $.element_attributes,
-        $.page_break,
-        $.break,
-        $.macro,
-        $.title,
-        $.comment,
-        $._block,
-        $.paragraph,
-        $.list,
-        $.list_continuation_marker,
-        // $.image,
-        // $.include,
-        $.catch_unresolved,
+      prec.left(
+        choice(
+          $._blank_lines,
+          $._comments,
+          $.document_attribute,
+          $.element_attributes,
+          $.page_break,
+          $.break,
+          $.macro,
+          $.title,
+          $._block,
+          $.paragraph,
+          $.list,
+          $.list_continuation_marker,
+          // $.image,
+          // $.include,
+          $.catch_unresolved,
+        ),
       ),
+
+    // ------------------------------------------------------------------------
+
+    // Comments
+    // - https://docs.asciidoctor.org/asciidoc/latest/comments/
+
+    // Comments are one big comment
+    // comment: ($) => $._comments,
+
+    // Multiple consecutive comments
+    _comments: ($) => prec.right(repeat1($.comment)),
+
+    // One comment type
+    comment: ($) =>
+      prec.left(
+        choice($._comment_line, $._comment_block, $._comment_block_style),
+      ),
+
+    // Comment Types
+    // Line style
+    _comment_line: ($) => seq("//", $._x_line),
+    // Block style
+    _comment_block: ($) =>
+      seq(
+        "////",
+        $._newline,
+        repeat(prec.left(choice($._x_line, $._blank_lines))),
+        "////",
+        $._newline,
+      ),
+    // Open Block or Paragraph style
+    _comment_block_style: ($) =>
+      seq($._comment_attributes, $._newline, choice($.open_block, $.paragraph)),
+    _comment_attributes: (_) => seq("[", "comment", "]"),
 
     // ------------------------------------------------------------------------
 
@@ -361,39 +413,6 @@ module.exports = grammar({
 
     // ------------------------------------------------------------------------
 
-    // Comments
-    // - https://docs.asciidoctor.org/asciidoc/latest/comments/
-    //
-    comment: ($) =>
-      choice(
-        $._comment_line,
-        $._comment_block,
-        // $._comment_open_block,
-        // $._comment_paragraph,
-        $._comment_block_style,
-      ),
-    // Line style
-    _comment_line: ($) => seq("//", $._x_line),
-    // Block style
-    _comment_block: ($) =>
-      seq(
-        "////",
-        $._newline,
-        repeat(choice($._x_line, $._x_blank_line)),
-        "////",
-        $._newline,
-      ),
-    // Open Block or Paragraph style
-    _comment_block_style: ($) =>
-      seq(
-        alias($._comment_attributes, $.element_attributes),
-        $._newline,
-        choice($.open_block, $.paragraph),
-      ),
-    _comment_attributes: (_) => seq("[", "comment", "]"),
-
-    // ------------------------------------------------------------------------
-
     // Blocks
     //
     // TODO:
@@ -413,13 +432,17 @@ module.exports = grammar({
 
     // Open Block with block style
     open_block: ($) =>
-      seq("--\n", repeat(choice($._x_line, $._x_blank_line)), "--\n"),
+      seq("--\n", repeat(prec.left(choice($._x_line, $._blank_lines))), "--\n"),
 
     // Listing
     listing_block: ($) => choice($._listing_block, $._listing_block_style),
     // Block style
     _listing_block: ($) =>
-      seq("----\n", repeat(choice($._x_line, $._x_blank_line)), "----\n"),
+      seq(
+        "----\n",
+        repeat(prec.left(choice($._x_line, $._blank_lines))),
+        "----\n",
+      ),
     // Open Block or Paragraph style
     _listing_block_style: ($) =>
       seq(
@@ -433,7 +456,11 @@ module.exports = grammar({
     literal_block: ($) => choice($._literal_block, $._literal_block_style),
     // Block style
     _literal_block: ($) =>
-      seq("....\n", repeat(choice($._x_line, $._x_blank_line)), "....\n"),
+      seq(
+        "....\n",
+        repeat(prec.left(choice($._x_line, $._blank_lines))),
+        "....\n",
+      ),
     // Open Block or Paragraph style
     _literal_block_style: ($) =>
       seq(
@@ -447,7 +474,11 @@ module.exports = grammar({
     sidebar_block: ($) => choice($._sidebar_block, $._sidebar_block_style),
     // Block style
     _sidebar_block: ($) =>
-      seq("****\n", repeat(choice($._x_line, $._x_blank_line)), "****\n"),
+      seq(
+        "****\n",
+        repeat(prec.left(choice($._x_line, $._blank_lines))),
+        "****\n",
+      ),
     // Open Block or Paragraph style
     _sidebar_block_style: ($) =>
       seq(
@@ -464,10 +495,12 @@ module.exports = grammar({
       seq(
         alias("====\n", $.example_block_marker_start),
         repeat(
-          choice(
-            $._x_line,
-            $._x_blank_line,
-            alias($._example_block_level2, $.example_block),
+          prec.left(
+            choice(
+              $._x_line,
+              $._blank_lines,
+              alias($._example_block_level2, $.example_block),
+            ),
           ),
         ),
         alias("====\n", $.example_block_marker_end),
@@ -475,7 +508,7 @@ module.exports = grammar({
     _example_block_level2: ($) =>
       seq(
         alias("=====\n", $.example_block_marker_start),
-        repeat(choice($._x_line, $._x_blank_line)),
+        repeat(prec.left(choice($._x_line, $._blank_lines))),
         alias("=====\n", $.example_block_marker_end),
       ),
     // Open Block or Paragraph style
@@ -491,7 +524,11 @@ module.exports = grammar({
     pass_block: ($) => choice($._pass_block, $._pass_block_style),
     // Block style
     _pass_block: ($) =>
-      seq("++++\n", repeat(choice($._x_line, $._x_blank_line)), "++++\n"),
+      seq(
+        "++++\n",
+        repeat(prec.left(choice($._x_line, $._blank_lines))),
+        "++++\n",
+      ),
     // Paragraph style
     _pass_block_style: ($) =>
       seq(
@@ -550,7 +587,7 @@ module.exports = grammar({
     // ------------------------------------------------------------------------
 
     // Catches the unresolved rest
-    catch_unresolved: (_) => token(prec(-1, /.*/)),
+    catch_unresolved: (_) => token(prec(-10, /.*/)),
 
     // ------------------------------------------------------------------------
 
@@ -570,15 +607,14 @@ module.exports = grammar({
 
         seq(repeat1($._char), $._newline),
       ),
+
+    _blank_lines: ($) => repeat1($._blank_line),
+    _blank_line: ($) => seq($._newline),
+
     _char: (_) => /[^\n]/,
     _newline: () => "\n",
-    _x_blank_line: ($) => seq($._newline),
-    // _x_blank_line: ($) => seq("", $._newline),
 
     _attribute_name: (_) => /[a-zA-Z0-9_][a-zA-Z0-9_-]*/,
     _macro_name: (_) => /[a-zA-Z0-9][a-zA-Z0-9-]*/,
-
-    // eslint-disable-next-line no-useless-escape
-    // macro: (_) => /\[[^#\[].+[^\]]\]\n/,
   },
 });

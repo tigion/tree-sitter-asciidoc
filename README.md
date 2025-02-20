@@ -271,6 +271,19 @@ Not everything in the checklists is relevant to grammar.
       (open_block/paragraph))
     ```
 
+  - [x] Callouts
+
+    ```lisp
+    (listing_block
+      (listing_block_marker_start)
+      (listing_block_content
+        (block_content
+          (paragraph))
+      (listing_block_marker_end)
+      (listing_callout
+        (callout))
+    ```
+
 - [ ] Tables
 - [ ] Equations and Formulas (STEM)
 - [x] Open Blocks

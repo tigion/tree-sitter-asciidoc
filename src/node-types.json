@@ -479,11 +479,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "callout",
+          "named": true
+        },
+        {
+          "type": "line_continuation_marker",
           "named": true
         }
       ]
@@ -1566,6 +1570,10 @@
   {
     "type": "include",
     "named": false
+  },
+  {
+    "type": "line_continuation_marker",
+    "named": true
   },
   {
     "type": "list_continuation_marker",

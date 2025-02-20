@@ -468,7 +468,8 @@ module.exports = grammar({
         choice($._listing_block, $._listing_block_style),
         repeat($.listing_callout),
       ),
-    listing_callout: ($) => seq($.callout, " ", repeat1($._char), $._newline),
+    listing_callout: ($) => seq($.callout, " ", $._line_with_newline),
+    // listing_callout: ($) => seq($.callout, " ", repeat1($._char), $._newline),
     callout: (_) => /<[0-9]+>/,
     // Block style
     _listing_block: ($) =>
@@ -649,10 +650,20 @@ module.exports = grammar({
         // seq("[", repeat($._char), $._newline),
 
         seq(repeat1($._char), $._newline),
+        // $._line_with_newline,
       ),
 
     _blank_lines: ($) => repeat1($._blank_line),
     _blank_line: ($) => seq($._newline),
+
+    _line_with_newline: ($) =>
+      choice(
+        $._newline,
+        seq(/[^\n+ ]+/, $._line_with_newline),
+        seq(/[ +]/, $._line_with_newline),
+        seq($.line_continuation_marker, $._line_with_newline),
+      ),
+    line_continuation_marker: (_) => " +\n",
 
     _char: (_) => /[^\n]/,
     _newline: () => "\n",

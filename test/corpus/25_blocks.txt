@@ -64,6 +64,7 @@ printf("Hello, World!");
 
 ==================|||
 Listing Block Callouts
+:skip
 ==================|||
 
 ----

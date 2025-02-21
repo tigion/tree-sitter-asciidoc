@@ -199,11 +199,8 @@
       }
     },
     "document_title_content": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_char"
-      }
+      "type": "SYMBOL",
+      "name": "_inner_line"
     },
     "document_authors": {
       "type": "SEQ",
@@ -213,15 +210,8 @@
           "value": "[^:=\\n]"
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_char"
-          }
-        },
-        {
           "type": "SYMBOL",
-          "name": "_newline"
+          "name": "_line"
         }
       ]
     },
@@ -233,15 +223,8 @@
           "value": "[^:=\\n]"
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_char"
-          }
-        },
-        {
           "type": "SYMBOL",
-          "name": "_newline"
+          "name": "_line"
         }
       ]
     },
@@ -351,11 +334,8 @@
       "name": "_attribute_name"
     },
     "attribute_value": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_char"
-      }
+      "type": "SYMBOL",
+      "name": "_inner_line"
     },
     "element_attributes": {
       "type": "SYMBOL",
@@ -900,11 +880,8 @@
       "value": "======"
     },
     "section_header_content": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_char"
-      }
+      "type": "SYMBOL",
+      "name": "_inner_line"
     },
     "_block_not_section": {
       "type": "PREC_LEFT",
@@ -1008,7 +985,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_x_line"
+          "name": "_line"
         }
       ]
     },
@@ -1033,7 +1010,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "_x_line"
+                  "name": "_line"
                 },
                 {
                   "type": "SYMBOL",
@@ -1953,18 +1930,7 @@
         "type": "REPEAT1",
         "content": {
           "type": "SYMBOL",
-          "name": "_x_line"
-        }
-      }
-    },
-    "_x_paragraph": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "REPEAT1",
-        "content": {
-          "type": "SYMBOL",
-          "name": "_x_line"
+          "name": "_line"
         }
       }
     },
@@ -2028,11 +1994,8 @@
       }
     },
     "_list_content": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_char"
-      }
+      "type": "SYMBOL",
+      "name": "_inner_line"
     },
     "list_continuation_marker": {
       "type": "STRING",
@@ -2069,6 +2032,26 @@
           ]
         }
       ]
+    },
+    "_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_inner_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        }
+      ]
+    },
+    "_inner_line": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_char"
+      }
     },
     "_blank_lines": {
       "type": "REPEAT1",
@@ -2143,8 +2126,12 @@
       "value": "[^\\n]"
     },
     "_newline": {
-      "type": "STRING",
-      "value": "\n"
+      "type": "PATTERN",
+      "value": "\\r?\\n"
+    },
+    "_white_space": {
+      "type": "PATTERN",
+      "value": "[ \\t]+"
     },
     "_attribute_name": {
       "type": "PATTERN",

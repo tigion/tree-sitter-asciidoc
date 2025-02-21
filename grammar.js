@@ -84,11 +84,13 @@ module.exports = grammar({
         seq($.document_title_marker, " ", $.document_title_content, $._newline),
       ),
     document_title_marker: (_) => prec(2, "="),
-    document_title_content: ($) => repeat1($._char),
+    document_title_content: ($) => $._inner_line,
     // Document authors
-    document_authors: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
+    // document_authors: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
+    document_authors: ($) => seq(/[^:=\n]/, $._line),
     // Document revision
-    document_revision: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
+    // document_revision: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
+    document_revision: ($) => seq(/[^:=\n]/, $._line),
     // Document attributes
     _document_attributes: ($) =>
       repeat1(choice($._comments, $.document_attribute, $.macro)),
@@ -142,7 +144,8 @@ module.exports = grammar({
       ),
     attribute_unset: (_) => "!",
     attribute_name: ($) => $._attribute_name,
-    attribute_value: ($) => repeat1($._char),
+    // attribute_value: ($) => repeat1($._char),
+    attribute_value: ($) => $._inner_line,
 
     // Element Attributes
     //
@@ -319,7 +322,8 @@ module.exports = grammar({
     section_level4_header_marker: (_) => "=====",
     section_level5_header_marker: (_) => "======",
 
-    section_header_content: ($) => repeat1($._char),
+    // section_header_content: ($) => repeat1($._char),
+    section_header_content: ($) => $._inner_line,
 
     // ------------------------------------------------------------------------
 
@@ -361,13 +365,15 @@ module.exports = grammar({
 
     // Comment Types
     // Line style
-    _comment_line: ($) => seq("//", $._x_line),
+    // _comment_line: ($) => seq("//", $._x_line),
+    _comment_line: ($) => seq("//", $._line),
     // Block style
     _comment_block: ($) =>
       seq(
         "////",
         $._newline,
-        repeat(prec.left(choice($._x_line, $._blank_lines))),
+        // repeat(prec.left(choice($._x_line, $._blank_lines))),
+        repeat(prec.left(choice($._line, $._blank_lines))),
         "////",
         $._newline,
       ),
@@ -444,7 +450,7 @@ module.exports = grammar({
             $.macro,
             $.title,
             $._block,
-            $.paragraph, // $._x_line,
+            $.paragraph,
             $.list,
             $.list_continuation_marker,
             // $.catch_unresolved, // WARNING: This freezes Neovim with input `--`
@@ -587,8 +593,8 @@ module.exports = grammar({
     // Paragraphs
     // - https://docs.asciidoctor.org/asciidoc/latest/blocks/paragraphs/
     //
-    paragraph: ($) => prec.right(repeat1($._x_line)),
-    _x_paragraph: ($) => prec.right(repeat1($._x_line)),
+    paragraph: ($) => prec.right(repeat1($._line)),
+    // paragraph: ($) => prec.right(repeat1(alias($._line, $.line))),
 
     // ------------------------------------------------------------------------
 
@@ -609,7 +615,8 @@ module.exports = grammar({
       token(seq(choice(/[-]+/, /[*]+/, /[.]+/, /[0-9]+./), " ")),
     // list_marker: (_) => token(seq(/[ ]*/, choice(/[-]+/, /[*]+/, /[.]+/), " ")),
 
-    _list_content: ($) => repeat1($._char),
+    // _list_content: ($) => repeat1($._char),
+    _list_content: ($) => $._inner_line,
 
     // ------------------------------------------------------------------------
 
@@ -653,6 +660,9 @@ module.exports = grammar({
         // $._line_with_newline,
       ),
 
+    _line: ($) => seq($._inner_line, $._newline),
+    _inner_line: ($) => repeat1($._char),
+
     _blank_lines: ($) => repeat1($._blank_line),
     _blank_line: ($) => seq($._newline),
 
@@ -667,7 +677,9 @@ module.exports = grammar({
     line_continuation_marker: (_) => " +\n",
 
     _char: (_) => /[^\n]/,
-    _newline: () => "\n",
+
+    _newline: (_) => /\r?\n/,
+    _white_space: (_) => /[ \t]+/, // TODO: Use instead of `" "`?
 
     _attribute_name: (_) => /[a-zA-Z0-9_][a-zA-Z0-9_-]*/,
     _macro_name: (_) => /[a-zA-Z0-9][a-zA-Z0-9-]*/,

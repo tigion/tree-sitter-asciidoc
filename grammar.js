@@ -342,6 +342,7 @@ module.exports = grammar({
           $.paragraph,
           $.list,
           $.list_continuation_marker,
+          $.admonition,
           $.catch_unresolved,
         ),
       ),
@@ -389,8 +390,10 @@ module.exports = grammar({
     // - `'''`
     // - Markdown: `---`, `- - -`, `***`,  `* * *`
     //
-    break: ($) => seq(choice("'''", /- ?- ?-/, /\* ?\* ?\*/), $._newline),
-    page_break: ($) => seq("<<<", $._newline),
+    break: ($) => seq($.break_marker, $._newline),
+    break_marker: (_) => choice("'''", /- ?- ?-/, /\* ?\* ?\*/),
+    page_break: ($) => seq($.page_break_marker, $._newline),
+    page_break_marker: (_) => "<<<",
 
     // ------------------------------------------------------------------------
 
@@ -413,7 +416,8 @@ module.exports = grammar({
     // Titles
     // - [x] Only recognize syntax
     // - [ ] Reference to the next block
-    title: ($) => seq(".", /[^\s]/, repeat($._char), $._newline),
+    // title: ($) => seq(".", /[^\s]/, repeat($._char), $._newline),
+    title: ($) => seq(".", $._no_white_space, $._line),
 
     // ------------------------------------------------------------------------
 
@@ -453,6 +457,7 @@ module.exports = grammar({
             $.paragraph,
             $.list,
             $.list_continuation_marker,
+            $.admonition,
             // $.catch_unresolved, // WARNING: This freezes Neovim with input `--`
           ),
         ),
@@ -630,6 +635,35 @@ module.exports = grammar({
 
     // ------------------------------------------------------------------------
 
+    // Admonitions
+
+    // admonition: ($) =>
+    //   choice(
+    //     $.admonition_note,
+    //     $.admonition_tip,
+    //     $.admonition_important,
+    //     $.admonition_caution,
+    //     $.admonition_warning,
+    //   ),
+    //
+    // admonition_note: ($) => seq($.admonition_note_marker, ":", $._line),
+    // admonition_note_marker: (_) => "NOTE",
+    // admonition_tip: ($) => seq($.admonition_tip_marker, ":", $._line),
+    // admonition_tip_marker: (_) => "TIP",
+    // admonition_important: ($) =>
+    //   seq($.admonition_important_marker, ":", $._line),
+    // admonition_important_marker: (_) => "IMPORTANT",
+    // admonition_caution: ($) => seq($.admonition_caution_marker, ":", $._line),
+    // admonition_caution_marker: (_) => "CAUTION",
+    // admonition_warning: ($) => seq($.admonition_warning_marker, ":", $._line),
+    // admonition_warning_marker: (_) => "WARNING",
+
+    admonition: ($) => seq($.admonition_marker, ":", $._line),
+    admonition_marker: (_) =>
+      choice("NOTE", "TIP", "IMPORTANT", "CAUTION", "WARNING"),
+
+    // ------------------------------------------------------------------------
+
     // Other body parts (blocks)
     //
     // TODO: code block, table, blocks, ...
@@ -680,8 +714,11 @@ module.exports = grammar({
 
     _newline: (_) => /\r?\n/,
     _white_space: (_) => /[ \t]+/, // TODO: Use instead of `" "`?
+    _no_white_space: (_) => /[^ \t]/,
 
     _attribute_name: (_) => /[a-zA-Z0-9_][a-zA-Z0-9_-]*/,
     _macro_name: (_) => /[a-zA-Z0-9][a-zA-Z0-9-]*/,
+
+    // _x: (_) => token.immediate(' '),
   },
 });

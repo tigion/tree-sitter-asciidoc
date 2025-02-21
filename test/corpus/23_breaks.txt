@@ -8,7 +8,8 @@ Break
 
 (document
   (document_body
-    (break)))
+    (break
+      (break_marker))))
 
 ==================|||
 Breaks (Markdown)
@@ -23,10 +24,14 @@ Breaks (Markdown)
 
 (document
   (document_body
-    (break)
-    (break)
-    (break)
-    (break)))
+    (break
+      (break_marker))
+    (break
+      (break_marker))
+    (break
+      (break_marker))
+    (break
+      (break_marker))))
 
 ==================|||
 Page Break
@@ -38,4 +43,5 @@ Page Break
 
 (document
   (document_body
-    (page_break)))
+    (page_break
+      (page_break_marker))))

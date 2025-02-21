@@ -218,6 +218,9 @@ Not everything in the checklists is relevant to grammar.
 - [ ] Keyboard Macro
 - [ ] Button and Menu UI Macros
 - [ ] Admonitions
+  - [x] One Line
+  - [ ] Multi Line
+  - [ ] Block notation
 - [x] Sidebars
 
   ```lisp

@@ -616,7 +616,7 @@ module.exports = grammar({
     // List Continuation
     //
     // TODO:
-    // - [x] Identify a simple `x` in line
+    // - [x] Identify a simple `+` line
     // - [ ] Context?
 
     list_continuation_marker: (_) => "+\n",
@@ -656,6 +656,7 @@ module.exports = grammar({
     _blank_lines: ($) => repeat1($._blank_line),
     _blank_line: ($) => seq($._newline),
 
+    // FIX: Currently only a workaround for the problem with the ` +` line continuation.
     _line_with_newline: ($) =>
       choice(
         $._newline,

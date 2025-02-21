@@ -70,7 +70,16 @@ Listing Block Callouts
 printf("Hello, World!"); <1> <2>
 ----
 <1> This is a callout.
-<2> This is a callout.
+<2> This is a callout. +
+    This is a second line of the callout.
+<3> This is a callout. +
+This is a second line of the callout.
+<4> This is a + callout + .
+<5>
+<6> x
+x<7>
+
+<22> This is a callout.
 
 ---|||
 
@@ -84,7 +93,17 @@ printf("Hello, World!"); <1> <2>
       (listing_callout
         (callout))
       (listing_callout
-        (callout)))))
+        (callout)
+        (line_continuation_marker))
+      (listing_callout
+        (callout)
+        (line_continuation_marker))
+      (listing_callout
+        (callout)))
+    (paragraph)
+    (paragraph)
+
+      ))
 
 ==================|||
 Literal Block

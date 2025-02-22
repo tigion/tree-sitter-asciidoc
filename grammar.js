@@ -658,7 +658,26 @@ module.exports = grammar({
     // admonition_warning: ($) => seq($.admonition_warning_marker, ":", $._line),
     // admonition_warning_marker: (_) => "WARNING",
 
-    admonition: ($) => seq($.admonition_marker, ":", $._line),
+    admonition: ($) => choice($.admonition_line, $.admonition_block_style),
+
+    // Line
+    admonition_line: ($) => seq($.admonition_marker, ":", $._line),
+
+    // Open Block or Paragraph style
+    //
+    // TODO:
+    // - [ ] Update tests
+    // - [ ] Hidde unrelated nodes
+    // - [ ] Update highlights.scm
+    //
+    admonition_block_style: ($) =>
+      seq(
+        alias($.admonition_attributes, $.element_attributes),
+        $._newline,
+        choice($.example_block, $.open_block, $.paragraph),
+      ),
+    admonition_attributes: ($) => seq("[", $.admonition_marker, "]"),
+
     admonition_marker: (_) =>
       choice("NOTE", "TIP", "IMPORTANT", "CAUTION", "WARNING"),
 

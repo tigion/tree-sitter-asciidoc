@@ -1,6 +1,6 @@
-==================
+==================|||
 Admonitions (one line)
-==================
+==================|||
 
 NOTE: Lorem ipsum dolor sit amet.
 
@@ -12,7 +12,7 @@ CAUTION: Lorem ipsum dolor sit amet.
 
 WARNING: Lorem ipsum dolor sit amet.
 
----
+---|||
 
 (document
   (document_body
@@ -26,3 +26,26 @@ WARNING: Lorem ipsum dolor sit amet.
       (admonition_marker))
     (admonition
       (admonition_marker))))
+
+==================|||
+Admonitions (block style)
+==================|||
+
+[NOTE]
+====
+Lorem ipsum dolor sit amet.
+====
+
+[NOTE]
+--
+Lorem ipsum dolor sit amet.
+--
+
+[NOTE]
+Lorem ipsum dolor sit amet.
+
+---|||
+
+(document
+  (document_body
+    (admonition)))

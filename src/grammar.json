@@ -2011,6 +2011,19 @@
       "value": "+\n"
     },
     "admonition": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "admonition_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "admonition_block_style"
+        }
+      ]
+    },
+    "admonition_line": {
       "type": "SEQ",
       "members": [
         {
@@ -2024,6 +2037,58 @@
         {
           "type": "SYMBOL",
           "name": "_line"
+        }
+      ]
+    },
+    "admonition_block_style": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "admonition_attributes"
+          },
+          "named": true,
+          "value": "element_attributes"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "example_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "open_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "paragraph"
+            }
+          ]
+        }
+      ]
+    },
+    "admonition_attributes": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "admonition_marker"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },

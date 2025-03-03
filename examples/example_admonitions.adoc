@@ -1,0 +1,71 @@
+= Admonitions
+
+== Note
+
+NOTE: Lorem ipsum
+
+[NOTE]
+--
+Lorem ipsum
+--
+
+[NOTE]
+====
+Lorem ipsum
+====
+
+== Tip
+
+TIP: Lorem ipsum
+
+[TIP]
+--
+Lorem ipsum
+--
+
+[TIP]
+====
+Lorem ipsum
+====
+
+== Warning
+
+WARNING: Lorem ipsum
+
+[WARNING]
+--
+Lorem ipsum
+--
+
+[WARNING]
+====
+Lorem ipsum
+====
+
+== Important
+
+IMPORTANT: Lorem ipsum
+
+[IMPORTANT]
+--
+Lorem ipsum
+--
+
+[IMPORTANT]
+====
+Lorem ipsum
+====
+
+== Caution
+
+CAUTION: Lorem ipsum
+
+[CAUTION]
+--
+Lorem ipsum
+--
+
+[CAUTION]
+====
+Lorem ipsum
+====

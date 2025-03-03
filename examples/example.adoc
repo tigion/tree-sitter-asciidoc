@@ -2,7 +2,7 @@
 Author
 1.0
 
-== Paragraph
+== Section
 
 Lorem ipsum dolor sit amet,
 qui minim labore adipisicing
@@ -10,6 +10,8 @@ minim sint cillum sint.
 
 - List item
 - List item
++
+Extra line
 
 .Title
 Hallo

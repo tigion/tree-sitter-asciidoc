@@ -1,0 +1,26 @@
+= Conditionals
+:attribute: true
+
+== ifdef
+
+ifdef::attribute+aaa+bbb[]
+Lorem ipsum 1
+endif::[]
+
+ifndef::attribute,aaa[]
+Lorem ipsum 2
+endif::[]
+
+ifdef::attribute[Lorem ipsum]
+
+ifeval::["{attribute}" == "true"]
+Lorem ipsum 3
+endif::[]
+
+ifeval::[{attribute} == 1]
+Lorem ipsum 3
+endif::[]
+
+
+include::conditionals.adoc[]
+image::conditionals.png[]

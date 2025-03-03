@@ -30,6 +30,15 @@
 (macro (target) @markup.link)
 (macro (attributes) @constant)
 
+; Conditional
+; (conditional) @keyword.function
+(conditional_name) @keyword.function "::" @punctuation.bracket
+(conditional (attribute_name) @property)
+(conditional_attribute_separator) @keyword.function
+(conditional_bracket) @punctuation.bracket
+(conditional_condition_part) @string
+(conditional_condition_operator) @operator
+
 ; Blocks
 [
   (open_block_marker_start)

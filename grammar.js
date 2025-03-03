@@ -347,6 +347,7 @@ module.exports = grammar({
             $.list,
             $.list_continuation_marker,
             $.admonition,
+            $.conditional,
           ),
         ),
       ),
@@ -646,6 +647,98 @@ module.exports = grammar({
 
     admonition_marker: (_) =>
       choice("NOTE", "TIP", "IMPORTANT", "CAUTION", "WARNING"),
+
+    // ------------------------------------------------------------------------
+
+    // Conditionals
+    // - https://docs.asciidoctor.org/asciidoc/latest/directives/conditionals/
+    //
+    // TODO:
+    // - [ ] Support single line and block style
+
+    conditional: ($) =>
+      choice($._conditional_simple, $._conditional_ifeval_simple),
+    // conditional: ($) => choice($.conditional_block, $.conditional_line),
+
+    // ifdef, ifndef, endif
+    _conditional_simple: ($) =>
+      seq(
+        $.conditional_name,
+        "::",
+        optional($._conditional_attributes),
+        alias("[", $.conditional_bracket),
+        optional($.conditional_content),
+        alias("]", $.conditional_bracket),
+        $._newline,
+      ),
+    conditional_name: (_) => choice("ifdef", "ifndef", "endif"),
+    conditional_content: (_) => /[^\]\n]+/,
+
+    // ifeval
+    _conditional_ifeval_simple: ($) =>
+      seq(
+        alias("ifeval", $.conditional_name),
+        "::",
+        optional($._conditional_attributes),
+        alias("[", $.conditional_bracket),
+        optional($.conditional_condition),
+        alias("]", $.conditional_bracket),
+        $._newline,
+      ),
+    conditional_condition: ($) =>
+      seq(
+        optional($._white_space),
+        $.conditional_condition_part,
+        optional($._white_space),
+        $.conditional_condition_operator,
+        optional($._white_space),
+        $.conditional_condition_part,
+        optional($._white_space),
+      ),
+    // conditional_condition_part: (_) => /[^=!><\]\n]+/,
+    conditional_condition_part: (_) => choice(/"[^\"\]\n]+"/, /[^=!><\]\n]+/),
+    conditional_condition_operator: (_) =>
+      choice("==", "!=", ">", "<", ">=", "<="),
+
+    // single line
+    // conditional_line: ($) =>
+    //   seq(
+    //     $.conditional_start,
+    //     "::",
+    //     $.conditional_attributes,
+    //     /\[[^\]\n]*\]/,
+    //     $._newline,
+    //   ),
+
+    // block style
+    // conditional_block: ($) =>
+    //   prec(
+    //     1,
+    //     seq(
+    //       $.conditional_start,
+    //       "::",
+    //       $.conditional_attributes,
+    //       "[]",
+    //       $._newline,
+    //       optional($._block_content),
+    //       $.conditional_end,
+    //       "::",
+    //       optional($.conditional_attributes),
+    //       "[]",
+    //       $._newline,
+    //     ),
+    //   ),
+
+    // conditional_start: (_) => choice("ifdef", "ifndef"),
+    // conditional_end: (_) => "endif",
+    _conditional_attributes: ($) =>
+      repeat1(
+        seq(
+          alias($._attribute_name, $.attribute_name),
+          optional($.conditional_attribute_separator),
+        ),
+      ),
+    conditional_attribute_separator: (_) => /[,+]/,
 
     // ------------------------------------------------------------------------
 

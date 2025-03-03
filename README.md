@@ -217,10 +217,10 @@ Not everything in the checklists is relevant to grammar.
 - [ ] Icons
 - [ ] Keyboard Macro
 - [ ] Button and Menu UI Macros
-- [ ] Admonitions
+- [x] Admonitions
   - [x] One Line
-  - [ ] Multi Line
-  - [ ] Block notation
+  - [x] Multi Line
+  - [x] Block notation
 - [x] Sidebars
 
   ```lisp
@@ -341,6 +341,7 @@ Not everything in the checklists is relevant to grammar.
   - [ ] Include Inline Macro
 
 - [ ] Conditionals
+  - [x] Simple per line (ifdef, ifndef, ifeval, endif)
 - [ ] Passthroughs
 
   ```lisp

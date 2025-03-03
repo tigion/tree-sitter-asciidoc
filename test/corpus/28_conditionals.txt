@@ -1,0 +1,102 @@
+==================
+Conditionals ifdef
+==================
+
+ifdef::attribute+aaa+bbb[]
+Lorem ipsum 1
+endif::[]
+
+ifdef::attribute[Lorem ipsum]
+
+---
+
+(document
+  (document_body
+    (conditional
+      (conditional_name)
+      (attribute_name)
+      (conditional_attribute_separator)
+      (attribute_name)
+      (conditional_attribute_separator)
+      (attribute_name)
+      (conditional_bracket)
+      (conditional_bracket))
+    (paragraph)
+    (conditional
+      (conditional_name)
+      (conditional_bracket)
+      (conditional_bracket))
+    (conditional
+      (conditional_name)
+      (attribute_name)
+      (conditional_bracket)
+      (conditional_content)
+      (conditional_bracket))))
+
+==================
+Conditionals ifndef
+==================
+
+ifndef::attribute,aaa[]
+Lorem ipsum 2
+endif::[]
+
+---
+
+(document
+  (document_body
+    (conditional
+      (conditional_name)
+      (attribute_name)
+      (conditional_attribute_separator)
+      (attribute_name)
+      (conditional_bracket)
+      (conditional_bracket))
+    (paragraph)
+    (conditional
+      (conditional_name)
+      (conditional_bracket)
+      (conditional_bracket))))
+
+==================
+Conditionals ifeval
+==================
+
+ifeval::["{attribute}" == "true"]
+Lorem ipsum 3
+endif::[]
+
+ifeval::[{attribute} == 2]
+Lorem ipsum 3
+endif::[]
+
+---
+
+(document
+  (document_body
+    (conditional
+      (conditional_name)
+      (conditional_bracket)
+      (conditional_condition
+        (conditional_condition_part)
+        (conditional_condition_operator)
+        (conditional_condition_part))
+      (conditional_bracket))
+    (paragraph)
+    (conditional
+      (conditional_name)
+      (conditional_bracket)
+      (conditional_bracket))
+    (conditional
+      (conditional_name)
+      (conditional_bracket)
+      (conditional_condition
+        (conditional_condition_part)
+        (conditional_condition_operator)
+        (conditional_condition_part))
+      (conditional_bracket))
+    (paragraph)
+    (conditional
+      (conditional_name)
+      (conditional_bracket)
+      (conditional_bracket))))

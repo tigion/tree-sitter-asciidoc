@@ -89,6 +89,75 @@
     }
   },
   {
+    "type": "conditional",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "conditional_attribute_separator",
+          "named": true
+        },
+        {
+          "type": "conditional_bracket",
+          "named": true
+        },
+        {
+          "type": "conditional_condition",
+          "named": true
+        },
+        {
+          "type": "conditional_content",
+          "named": true
+        },
+        {
+          "type": "conditional_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditional_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "conditional_condition_operator",
+          "named": true
+        },
+        {
+          "type": "conditional_condition_part",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditional_condition_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "conditional_condition_part",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "conditional_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "document",
     "named": true,
     "root": true,
@@ -162,6 +231,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "conditional",
           "named": true
         },
         {
@@ -352,6 +425,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -493,6 +570,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -588,6 +669,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "conditional",
           "named": true
         },
         {
@@ -706,6 +791,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -814,6 +903,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "conditional",
           "named": true
         },
         {
@@ -949,6 +1042,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1040,6 +1137,11 @@
     "fields": {}
   },
   {
+    "type": "section_header_marker",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "section_level1",
     "named": true,
     "fields": {},
@@ -1061,6 +1163,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "conditional",
           "named": true
         },
         {
@@ -1167,6 +1273,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1266,6 +1376,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1361,6 +1475,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1452,6 +1570,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1535,6 +1657,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1611,6 +1737,10 @@
     "named": false
   },
   {
+    "type": "!=",
+    "named": false
+  },
+  {
     "type": "'''",
     "named": false
   },
@@ -1655,7 +1785,27 @@
     "named": false
   },
   {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
     "named": false
   },
   {
@@ -1707,6 +1857,22 @@
     "named": false
   },
   {
+    "type": "conditional_attribute_separator",
+    "named": true
+  },
+  {
+    "type": "conditional_bracket",
+    "named": true
+  },
+  {
+    "type": "conditional_content",
+    "named": true
+  },
+  {
+    "type": "endif",
+    "named": false
+  },
+  {
     "type": "example",
     "named": false
   },
@@ -1717,6 +1883,14 @@
   {
     "type": "example_block_marker_start",
     "named": true
+  },
+  {
+    "type": "ifdef",
+    "named": false
+  },
+  {
+    "type": "ifndef",
+    "named": false
   },
   {
     "type": "image",
@@ -1784,10 +1958,6 @@
   },
   {
     "type": "pass_block_marker_start",
-    "named": true
-  },
-  {
-    "type": "section_header_marker",
     "named": true
   },
   {

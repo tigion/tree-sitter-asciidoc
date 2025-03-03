@@ -48,4 +48,21 @@ Lorem ipsum dolor sit amet.
 
 (document
   (document_body
-    (admonition)))
+    (admonition
+      (element_attributes
+        (admonition_marker))
+      (example_block
+        (example_block_marker_start)
+        (paragraph)
+        (example_block_marker_end)))
+    (admonition
+      (element_attributes
+        (admonition_marker))
+      (open_block
+        (open_block_marker_start)
+        (paragraph)
+        (open_block_marker_end)))
+    (admonition
+      (element_attributes
+        (admonition_marker))
+      (paragraph))))

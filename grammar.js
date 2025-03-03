@@ -645,32 +645,14 @@ module.exports = grammar({
     //     $.admonition_caution,
     //     $.admonition_warning,
     //   ),
-    //
-    // admonition_note: ($) => seq($.admonition_note_marker, ":", $._line),
-    // admonition_note_marker: (_) => "NOTE",
-    // admonition_tip: ($) => seq($.admonition_tip_marker, ":", $._line),
-    // admonition_tip_marker: (_) => "TIP",
-    // admonition_important: ($) =>
-    //   seq($.admonition_important_marker, ":", $._line),
-    // admonition_important_marker: (_) => "IMPORTANT",
-    // admonition_caution: ($) => seq($.admonition_caution_marker, ":", $._line),
-    // admonition_caution_marker: (_) => "CAUTION",
-    // admonition_warning: ($) => seq($.admonition_warning_marker, ":", $._line),
-    // admonition_warning_marker: (_) => "WARNING",
 
-    admonition: ($) => choice($.admonition_line, $.admonition_block_style),
+    admonition: ($) => choice($._admonition_line, $._admonition_block_style),
 
     // Line
-    admonition_line: ($) => seq($.admonition_marker, ":", $._line),
+    _admonition_line: ($) => seq($.admonition_marker, ":", $._line),
 
-    // Open Block or Paragraph style
-    //
-    // TODO:
-    // - [ ] Update tests
-    // - [ ] Hidde unrelated nodes
-    // - [ ] Update highlights.scm
-    //
-    admonition_block_style: ($) =>
+    // Example Block, Open Block or Paragraph style
+    _admonition_block_style: ($) =>
       seq(
         alias($.admonition_attributes, $.element_attributes),
         $._newline,

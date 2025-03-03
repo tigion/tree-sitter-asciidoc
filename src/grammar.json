@@ -2015,15 +2015,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "admonition_line"
+          "name": "_admonition_line"
         },
         {
           "type": "SYMBOL",
-          "name": "admonition_block_style"
+          "name": "_admonition_block_style"
         }
       ]
     },
-    "admonition_line": {
+    "_admonition_line": {
       "type": "SEQ",
       "members": [
         {
@@ -2040,7 +2040,7 @@
         }
       ]
     },
-    "admonition_block_style": {
+    "_admonition_block_style": {
       "type": "SEQ",
       "members": [
         {
@@ -2274,5 +2274,6 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }

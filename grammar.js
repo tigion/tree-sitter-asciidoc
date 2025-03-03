@@ -328,22 +328,26 @@ module.exports = grammar({
     // ------------------------------------------------------------------------
 
     _block_not_section: ($) =>
-      prec.left(
-        choice(
-          $._blank_lines,
-          $._comments,
-          $.document_attribute,
-          $.element_attributes,
-          $.page_break,
-          $.break,
-          $.macro,
-          $.title,
-          $._block,
-          $.paragraph,
-          $.list,
-          $.list_continuation_marker,
-          $.admonition,
-          $.catch_unresolved,
+      prec.left(choice($._block_content, $.catch_unresolved)),
+
+    _block_content: ($) =>
+      repeat1(
+        prec.left(
+          choice(
+            $._blank_lines,
+            $._comments,
+            $.document_attribute,
+            $.element_attributes,
+            $.page_break,
+            $.break,
+            $.macro,
+            $.title,
+            $._block,
+            $.paragraph,
+            $.list,
+            $.list_continuation_marker,
+            $.admonition,
+          ),
         ),
       ),
 
@@ -389,9 +393,13 @@ module.exports = grammar({
     //
     // - `'''`
     // - Markdown: `---`, `- - -`, `***`,  `* * *`
-    //
+
+    // Break
     break: ($) => seq($.break_marker, $._newline),
-    break_marker: (_) => choice("'''", /- ?- ?-/, /\* ?\* ?\*/),
+    break_marker: (_) => choice("'''", "---", "- - -", "***", "* * *"),
+    // break_marker: (_) => choice("'''", /- ?- ?-/, /\* ?\* ?\*/),
+
+    // Page break
     page_break: ($) => seq($.page_break_marker, $._newline),
     page_break_marker: (_) => "<<<",
 
@@ -436,31 +444,6 @@ module.exports = grammar({
         $.sidebar_block,
         $.example_block,
         $.pass_block,
-      ),
-
-    // TODO: WIP
-    //
-    // _block_content: ($) => repeat1($._not_block),
-    _block_content: ($) =>
-      repeat1(
-        prec.left(
-          choice(
-            $._blank_lines,
-            $._comments,
-            $.document_attribute,
-            $.element_attributes,
-            $.page_break,
-            $.break,
-            $.macro,
-            $.title,
-            $._block,
-            $.paragraph,
-            $.list,
-            $.list_continuation_marker,
-            $.admonition,
-            // $.catch_unresolved, // WARNING: This freezes Neovim with input `--`
-          ),
-        ),
       ),
 
     // Open Block with block style
@@ -656,6 +639,7 @@ module.exports = grammar({
       seq(
         alias($.admonition_attributes, $.element_attributes),
         $._newline,
+        optional($.title),
         choice($.example_block, $.open_block, $.paragraph),
       ),
     admonition_attributes: ($) => seq("[", $.admonition_marker, "]"),

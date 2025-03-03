@@ -26,6 +26,10 @@
         {
           "type": "paragraph",
           "named": true
+        },
+        {
+          "type": "title",
+          "named": true
         }
       ]
     }
@@ -1611,7 +1615,23 @@
     "named": false
   },
   {
+    "type": "* * *",
+    "named": false
+  },
+  {
+    "type": "***",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "- - -",
+    "named": false
+  },
+  {
+    "type": "---",
     "named": false
   },
   {

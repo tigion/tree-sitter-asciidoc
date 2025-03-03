@@ -1,4 +1,6 @@
 = Admonitions
+:icons: font
+
 
 == Note
 
@@ -10,6 +12,7 @@ Lorem ipsum
 --
 
 [NOTE]
+.Title
 ====
 Lorem ipsum
 ====

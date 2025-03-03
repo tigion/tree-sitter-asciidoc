@@ -73,31 +73,31 @@
 ((admonition_marker) @name (#eq? @name "WARNING")) @comment.warning ":" @punctuation.bracket
 ; Block Style
 (admonition
-  (element_attributes (admonition_marker) @name (#eq? @name "NOTE"))
+  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "NOTE") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.note)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.note)
   ])
 (admonition
-  (element_attributes (admonition_marker) @name (#eq? @name "TIP"))
+  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "TIP") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.info)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.info)
   ])
 (admonition
-  (element_attributes (admonition_marker) @name (#eq? @name "IMPORTANT"))
+  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "IMPORTANT") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.error)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.error)
   ])
 (admonition
-  (element_attributes (admonition_marker) @name (#eq? @name "CAUTION"))
+  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "CAUTION") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.error)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.error)
   ])
 (admonition
-  (element_attributes (admonition_marker) @name (#eq? @name "WARNING"))
+  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "WARNING") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.warning)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.warning)

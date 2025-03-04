@@ -17,6 +17,23 @@ Better other parsers:
 >
 > Source: [AsciiDoc Language Documentation - About this documentation](https://docs.asciidoctor.org/asciidoc/latest/#about-this-documentation)
 
+## Screenshots
+
+![Example](./docs/screenshot_20250304.png)
+
+> [!NOTE]
+> The highlights are work in progress. The colors are not yet final.
+>
+> With `set syntax=asciidoc` the default vim syntax colors can also be used.
+
+## References
+
+- [AsciiDoc Language Documentation](https://docs.asciidoctor.org/asciidoc/latest/)
+
+## Rule Coverage
+
+- Overview and progress of current: [Rule Coverage](./docs/rule_coverage.md)
+
 ## Use
 
 ### Neovim
@@ -39,317 +56,18 @@ parser_config.asciidoc = {
 
 For highlighting, copy the _queries/highlights.scm_ to your _nvim/queries/asciidoc/_ directory.
 
-> [!NOTE]
-> The highlights are work in progress. The colors are not yet final.
->
-> With `set syntax=asciidoc` the default vim syntax colors can also be used.
-
-For Snacks.image support, add a file _nvim/queries/asciidoc/images.scm_ with the following content:
+To support image preview with [Snacks.image](https://github.com/folke/snacks.nvim/blob/main/docs/image.md), add a file _nvim/queries/asciidoc/images.scm_ with the following content:
 
 ```scheme
+; Show image from `image` macro.
 (macro
   (name) @name (#eq? @name "image")
   (target) @image.src
 ) @image
+
+; Optional: Show image from `imageFile` attribute.
+(document_attribute
+  (attribute_name) @name (#eq? @name "imageFile")
+  (attribute_value) @image.src
+) @image
 ```
-
-## References
-
-- [AsciiDoc Language Documentation](https://docs.asciidoctor.org/asciidoc/latest/)
-
-## Rule Coverage
-
-Not everything in the checklists is relevant to grammar.
-
-### Document structure
-
-```lisp
-(document
-  (document_header
-    (document_title)
-    (document_authors)
-    (document_revision)
-    (document_attribute))
-    ...
-
-  (document_body
-    ...))
-```
-
-### Basic
-
-- [x] Lines
-- [x] Empty lines
-- [ ] Extended lines with `\` on the end
-- [x] Paragraphs
-- [ ] Blocks with title, attributes, anchor, title
-- [ ] Text and inline elements
-- [ ] Nested Blocks (like example_block inside example_block)
-
-### Document Header
-
-- [x] Document Title
-
-  ```lisp
-  (document_title)
-  ```
-
-- [ ] Author Information
-
-  - [x] Authors Line
-
-  ```lisp
-  (document_authors)
-  ```
-
-- [x] Revision Information
-
-  ```lisp
-  (document_revision)
-  ```
-
-- [x] Document Attributes
-- [x] Comments
-
-### Document Body
-
-#### Parts & Sections
-
-- [x] Parts
-
-  ```lisp
-  (part)
-    (part_header
-      (part_header_marker)
-      (part_header_content)))
-  ```
-
-- [x] Sections Level 1 bis 5
-
-  ```lisp
-  (section_level1
-    (section_header
-      (section_header_marker)
-      (section_header_content)))
-  ```
-
-  - [x] Nested Sections Level
-
-    ```lisp
-      (section_level1
-        (section_header
-          (section_header_marker)
-          (section_header_content))
-        (section_level2
-          (section_header
-            (section_header_marker)
-            (section_header_content))))
-    ```
-
-#### Blocks
-
-- [x] Document Attributes
-
-  ```lisp
-  (document_attribute
-    (attribute_name)
-    (attribute_value))
-  ```
-
-- [ ] Element Attributes
-
-  - [x] Line
-
-    ```lisp
-    (element_attributes
-      (_attribute_list
-        (_attribute_unparsed
-        ...)))
-    ```
-
-- [x] Paragraphs
-
-  ```lisp
-  (paragraph)
-  ```
-
-- [x] Breaks
-
-  - [x] Thematic Breaks
-
-    ```lisp
-    (break)
-    ```
-
-  - [x] Page Breaks
-
-    ```lisp
-    (page_break)
-    ```
-
-- [ ] Text Formatting and Punctuation
-  - [ ] ...
-- [ ] Lists
-  - [x] Simple identification of list lines
-  - [ ] Unordered Lists
-  - [ ] Ordered Lists
-  - [ ] Checklists
-- [ ] Description Lists
-  - [ ] Horizontal Description List
-  - [ ] Question and Answer Lists
-  - [ ] Description Lists With Marker
-- [ ] Links
-- [ ] Cross References
-- [ ] Footnotes
-- [ ] Images
-
-  - [x] Block Image Macro
-
-    ```lisp
-    (macro
-      (name)
-      (target))
-    ```
-
-  - [ ] Inline Image Macro
-
-- [ ] Audio and Video
-- [ ] Icons
-- [ ] Keyboard Macro
-- [ ] Button and Menu UI Macros
-- [x] Admonitions
-  - [x] One Line
-  - [x] Multi Line
-  - [x] Block notation
-- [x] Sidebars
-
-  ```lisp
-  (sidebar_block)
-  ```
-
-  ```lisp
-  (sidebar_block
-    (element_attributes)
-    (open_block/paragraph))
-  ```
-
-- [x] Example Blocks
-
-  ```lisp
-  (example_block)
-  ```
-
-  ```lisp
-  (example_block
-    (element_attributes)
-    (open_block/paragraph))
-  ```
-
-- [ ] Blockquotes
-- [ ] Verses
-- [ ] Verbatim and Source Blocks
-
-  - [ ] Source Code Blocks
-  - [x] Listing Blocks
-
-    ```lisp
-    (listing_block)
-    ```
-
-    ```lisp
-    (listing_block
-      (element_attributes)
-      (open_block/paragraph))
-    ```
-
-  - [x] Literal Blocks
-
-    ```lisp
-    (literal_block)
-    ```
-
-    ```lisp
-    (literal_block
-      (element_attributes)
-      (open_block/paragraph))
-    ```
-
-  - [x] Callouts
-
-    ```lisp
-    (listing_block
-      (listing_block_marker_start)
-      (listing_block_content
-        (block_content
-          (paragraph))
-      (listing_block_marker_end)
-      (listing_callout
-        (callout))
-    ```
-
-- [ ] Tables
-- [ ] Equations and Formulas (STEM)
-- [x] Open Blocks
-
-  ```lisp
-  (open_block)
-  ```
-
-- [ ] Collapsible Blocks
-- [x] Comments
-
-  - [x] Comment Line
-
-    ```lisp
-    (comment
-      (_comment_line))
-    ```
-
-  - [x] Comment Block
-
-    ```lisp
-    (comment
-      (_comment_block))
-    ```
-
-  - [x] Comment Open Block Style
-
-    ```lisp
-    (comment
-      (_comment_attributes)
-      (open_block))
-    ```
-
-  - [x] Comment Paragraph Style
-
-    ```lisp
-    (comment
-      (_comment_attributes)
-      (paragraph))
-    ```
-
-- [ ] Includes
-
-  - [x] Include Block Macro
-
-    ```lisp
-    (macro
-      (name)
-      (target))
-    ```
-
-  - [ ] Include Inline Macro
-
-- [ ] Conditionals
-  - [x] Simple per line (ifdef, ifndef, ifeval, endif)
-- [ ] Passthroughs
-
-  ```lisp
-  (pass_block)
-  ```
-
-  ```lisp
-  (pass_block
-    (element_attributes)
-    (paragraph))
-  ```

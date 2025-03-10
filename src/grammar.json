@@ -963,6 +963,10 @@
             {
               "type": "SYMBOL",
               "name": "conditional"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "table"
             }
           ]
         }
@@ -1219,6 +1223,14 @@
         {
           "type": "STRING",
           "value": "image"
+        },
+        {
+          "type": "STRING",
+          "value": "audio"
+        },
+        {
+          "type": "STRING",
+          "value": "video"
         },
         {
           "type": "STRING",
@@ -2389,6 +2401,90 @@
     "conditional_attribute_separator": {
       "type": "PATTERN",
       "value": "[,+]"
+    },
+    "table": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "table_marker"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "REPEAT1",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "table_cell"
+                    }
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_newline"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_blank_line"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "table_marker"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        }
+      ]
+    },
+    "table_cell": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "table_cell_marker"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_white_space"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^|\\n]*"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_white_space"
+          }
+        }
+      ]
+    },
+    "table_marker": {
+      "type": "STRING",
+      "value": "|==="
+    },
+    "table_cell_marker": {
+      "type": "STRING",
+      "value": "|"
     },
     "catch_unresolved": {
       "type": "TOKEN",

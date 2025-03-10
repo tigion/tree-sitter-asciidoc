@@ -1,0 +1,47 @@
+==================|||
+Tables (basic)
+==================|||
+
+|===
+| Cell in column 1, row 1 | Cell in column 1, row 1
+|===
+
+[cols="1,1"]
+|===
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3
+|===
+
+---|||
+
+(document
+  (document_body
+    (table
+      (table_marker)
+      (table_cell
+        (table_cell_marker))
+      (table_cell
+        (table_cell_marker))
+      (table_marker))
+    (element_attributes)
+    (table
+      (table_marker)
+      (table_cell
+        (table_cell_marker))
+      (table_cell
+        (table_cell_marker))
+      (table_cell
+        (table_cell_marker))
+      (table_cell
+        (table_cell_marker))
+      (table_cell
+        (table_cell_marker))
+      (table_cell
+        (table_cell_marker))
+      (table_marker))))

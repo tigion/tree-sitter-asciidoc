@@ -68,7 +68,7 @@ Not everything is relevant to grammar.
 |  🟠   |       | **Images**                                  |                        |
 |       |  🟡   | - Block image macro                         |                        |
 |       |  🔴   | - Inline image macro                        |                        |
-|  🔴   |       | **Audio and Video**                         |                        |
+|  🟡   |       | **Audio and Video**                         |                        |
 |  🔴   |       | **Icons**                                   |                        |
 |       |  🔴   | - Icon Macro                                |                        |
 |  🔴   |       | **Keyboard Macro**                          |                        |
@@ -86,7 +86,7 @@ Not everything is relevant to grammar.
 |       |  🟢   | - Listing Blocks                            |                        |
 |       |  🟢   | - Literal Blocks                            |                        |
 |       |  🟡   | - Callouts                                  |                        |
-|  🔴   |       | **Tables**                                  |                        |
+|  🟡   |       | **Tables**                                  |                        |
 |  🔴   |       | **Equations and Formulas (STEM)**           |                        |
 |  🟢   |       | **Open Blocks**                             |                        |
 |  🔴   |       | **Collapsible Blocks**                      |                        |

@@ -348,6 +348,7 @@ module.exports = grammar({
             $.list_continuation_marker,
             $.admonition,
             $.conditional,
+            $.table,
           ),
         ),
       ),
@@ -415,7 +416,7 @@ module.exports = grammar({
         seq("[", optional(alias($.macro_attributes, $.attributes)), "]"),
         $._newline,
       ),
-    macro_name: (_) => choice("image", "include"),
+    macro_name: (_) => choice("image", "audio", "video", "include"),
     // macro_name: ($) => $._macro_name, // FIX: Problem with other nodes start with chars.
     macro_target: (_) => /[^\[]+/,
     macro_attributes: (_) => /[^\]]+/,
@@ -609,6 +610,14 @@ module.exports = grammar({
 
     // ------------------------------------------------------------------------
 
+    // Description Lists
+    // - https://docs.asciidoctor.org/asciidoc/latest/lists/description/
+
+    // description_list: ($) =>
+    // description_list_marker: (_) => choice(/::/, /:::/, /::::/, /;;/),
+
+    // ------------------------------------------------------------------------
+
     // List Continuation
     //
     // TODO:
@@ -739,6 +748,31 @@ module.exports = grammar({
         ),
       ),
     conditional_attribute_separator: (_) => /[,+]/,
+
+    // ------------------------------------------------------------------------
+
+    // Tables
+    // - https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/
+
+    table: ($) =>
+      seq(
+        $.table_marker,
+        $._newline,
+        repeat(choice(seq(repeat1($.table_cell), $._newline), $._blank_line)),
+        $.table_marker,
+        $._newline,
+      ),
+
+    table_cell: ($) =>
+      seq(
+        $.table_cell_marker,
+        repeat($._white_space),
+        /[^|\n]*/,
+        repeat($._white_space),
+      ),
+
+    table_marker: (_) => "|===",
+    table_cell_marker: (_) => "|",
 
     // ------------------------------------------------------------------------
 

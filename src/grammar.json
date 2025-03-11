@@ -2483,8 +2483,21 @@
       "value": "|==="
     },
     "table_cell_marker": {
-      "type": "STRING",
-      "value": "|"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_table_cell_marker_operator"
+        },
+        {
+          "type": "STRING",
+          "value": "|"
+        }
+      ]
+    },
+    "_table_cell_marker_operator": {
+      "type": "PATTERN",
+      "value": "[0-9.+*a<^>]*"
     },
     "catch_unresolved": {
       "type": "TOKEN",

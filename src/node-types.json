@@ -1814,6 +1814,11 @@
     }
   },
   {
+    "type": "table_cell_marker",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "title",
     "named": true,
     "fields": {}
@@ -2063,10 +2068,6 @@
     "named": true
   },
   {
-    "type": "table_cell_marker",
-    "named": true
-  },
-  {
     "type": "table_marker",
     "named": true
   },
@@ -2076,6 +2077,10 @@
   },
   {
     "type": "video",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   }
 ]

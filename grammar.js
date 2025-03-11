@@ -754,6 +754,9 @@ module.exports = grammar({
     // Tables
     // - https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/
 
+    // TODO:
+    // - [ ] inline cell specifier operators
+
     table: ($) =>
       seq(
         $.table_marker,
@@ -772,7 +775,8 @@ module.exports = grammar({
       ),
 
     table_marker: (_) => "|===",
-    table_cell_marker: (_) => "|",
+    table_cell_marker: ($) => seq($._table_cell_marker_operator, "|"),
+    _table_cell_marker_operator: (_) => /[0-9.+*a<^>]*/,
 
     // ------------------------------------------------------------------------
 

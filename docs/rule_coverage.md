@@ -108,6 +108,7 @@ Not everything is relevant to grammar.
 |       |  🟢   | - Passthrough Blocks                        |                        |
 |       |  🔴   | - Inline Passthroughs                       |                        |
 |  ❌   |       | ~~Reference~~                               |                        |
+|  🟡   |       | **plantuml**                                |                        |
 
 <!-- - Introduction -->
 <!--   - [ ] Document Structure -->

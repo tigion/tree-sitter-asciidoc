@@ -110,3 +110,18 @@ include::file.adoc["attribute text", attribute2]
       (name)
       (target)
       (attributes))))
+
+==================
+Plantuml (Block)
+==================
+
+include::file.puml[format="svg"]
+
+---
+
+(document
+  (document_body
+    (macro
+      (name)
+      (target)
+      (attributes))))

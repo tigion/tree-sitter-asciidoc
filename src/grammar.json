@@ -1235,6 +1235,10 @@
         {
           "type": "STRING",
           "value": "include"
+        },
+        {
+          "type": "STRING",
+          "value": "plantuml"
         }
       ]
     },

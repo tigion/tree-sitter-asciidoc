@@ -2056,6 +2056,10 @@
     "named": true
   },
   {
+    "type": "plantuml",
+    "named": false
+  },
+  {
     "type": "sidebar",
     "named": false
   },

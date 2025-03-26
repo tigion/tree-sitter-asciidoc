@@ -416,7 +416,7 @@ module.exports = grammar({
         seq("[", optional(alias($.macro_attributes, $.attributes)), "]"),
         $._newline,
       ),
-    macro_name: (_) => choice("image", "audio", "video", "include"),
+    macro_name: (_) => choice("image", "audio", "video", "include", "plantuml"),
     // macro_name: ($) => $._macro_name, // FIX: Problem with other nodes start with chars.
     macro_target: (_) => /[^\[]+/,
     macro_attributes: (_) => /[^\]]+/,

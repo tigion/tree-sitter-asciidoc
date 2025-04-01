@@ -10,11 +10,13 @@ Lorem ipsum.
 
 (document
   (document_body
-    (paragraph)
+    (paragraph
+      (inline))
     (section_level3
       (section_header
         (section_header_marker)
-        (section_header_content)))))
+        (section_header_content
+          (inline))))))
 
 ==================|||
 Case 02
@@ -32,12 +34,14 @@ Lorem ipsum.
 
 (document
   (document_body
-    (title)
+    (title
+      (inline))
     (element_attributes)
     (example_block
       (example_block_marker_start)
       (example_block
         (example_block_marker_start)
-        (paragraph)
+        (paragraph
+          (inline))
         (example_block_marker_end))
       (example_block_marker_end))))

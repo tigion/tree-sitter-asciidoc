@@ -10,7 +10,8 @@ Header: Document Title
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content))))
+      (document_title_content
+        (inline)))))
 
 ==================
 Header: Authors
@@ -25,8 +26,10 @@ John Doe
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content))
-    (document_authors)))
+      (document_title_content
+        (inline)))
+    (document_authors
+      (inline))))
 
 
 ==================
@@ -45,11 +48,16 @@ John Doe
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content))
-    (document_authors)
-    (comment)
-    (comment)
-    (comment)))
+      (document_title_content
+        (inline)))
+    (document_authors
+      (inline))
+    (comment
+      (inline))
+    (comment
+      (inline))
+    (comment
+      (inline))))
 
 ==================
 Header: Authors, Revision
@@ -65,9 +73,12 @@ John Doe
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content))
-    (document_authors)
-    (document_revision)))
+      (document_title_content
+        (inline)))
+    (document_authors
+      (inline))
+    (document_revision
+      (inline))))
 
 
 ==================
@@ -86,14 +97,18 @@ John Doe
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content))
-    (document_authors)
-    (document_revision)
+      (document_title_content
+        (inline)))
+    (document_authors
+      (inline))
+    (document_revision
+      (inline))
     (document_attribute
       (attribute_name))
     (document_attribute
       (attribute_name)
-      (attribute_value))))
+      (attribute_value
+        (inline)))))
 
 ==================
 Header: Authors, Revision, Attributes + Comments
@@ -112,21 +127,29 @@ John Doe
 ---
 
 (document
-  (comment)
+  (comment
+    (inline))
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content))
-    (comment)
-    (document_authors)
-    (comment)
-    (document_revision)
-    (comment)
+      (document_title_content
+        (inline)))
+    (comment
+      (inline))
+    (document_authors
+      (inline))
+    (comment
+      (inline))
+    (document_revision
+      (inline))
+    (comment
+      (inline))
     (document_attribute
       (attribute_name))
     (document_attribute
       (attribute_name)
-      (attribute_value))))
+      (attribute_value
+        (inline)))))
 
 ==================
 Header: Authors, Attributes + Comments
@@ -145,15 +168,20 @@ John Doe
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content))
-    (comment)
-    (document_authors)
-    (comment)
+      (document_title_content
+        (inline)))
+    (comment
+      (inline))
+    (document_authors
+      (inline))
+    (comment
+      (inline))
     (document_attribute
       (attribute_name))
     (document_attribute
       (attribute_name)
-      (attribute_value))))
+      (attribute_value
+        (inline)))))
 
 
 ==================
@@ -166,11 +194,13 @@ Header: Comment + Document Title
 ---
 
 (document
-  (comment)
+  (comment
+    (inline))
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content))))
+      (document_title_content
+        (inline)))))
 
 ==================
 Body: Section 1
@@ -185,7 +215,8 @@ Body: Section 1
     (section_level1
       (section_header
         (section_header_marker)
-        (section_header_content)))))
+        (section_header_content
+          (inline))))))
 
 ==================
 Body: Comment + Section 1
@@ -197,12 +228,14 @@ Body: Comment + Section 1
 ---
 
 (document
-  (comment)
+  (comment
+    (inline))
   (document_body
     (section_level1
       (section_header
         (section_header_marker)
-        (section_header_content)))))
+        (section_header_content
+          (inline))))))
 
 ==================
 Header + Body
@@ -218,12 +251,14 @@ Header + Body
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content)))
+      (document_title_content
+        (inline))))
   (document_body
     (section_level1
       (section_header
         (section_header_marker)
-        (section_header_content)))))
+        (section_header_content
+          (inline))))))
 
 ==================
 Header + Body: Comments
@@ -238,17 +273,21 @@ Header + Body: Comments
 ---
 
 (document
-  (comment)
+  (comment
+    (inline))
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content)))
+      (document_title_content
+        (inline))))
   (document_body
-    (comment)
+    (comment
+      (inline))
     (section_level1
       (section_header
         (section_header_marker)
-        (section_header_content)))))
+        (section_header_content
+          (inline))))))
 
 ==================
 Header + Body: Part
@@ -266,16 +305,19 @@ Header + Body: Part
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content)))
+      (document_title_content
+        (inline))))
   (document_body
     (part
       (part_header
         (part_header_marker)
-        (part_header_content))
+        (part_header_content
+          (inline)))
       (section_level1
         (section_header
           (section_header_marker)
-          (section_header_content))))))
+          (section_header_content
+            (inline)))))))
 
 ==================
 Header + Body: Comments + Part
@@ -293,19 +335,25 @@ Header + Body: Comments + Part
 ---
 
 (document
-  (comment)
+  (comment
+    (inline))
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content)))
+      (document_title_content
+        (inline))))
   (document_body
-    (comment)
+    (comment
+      (inline))
     (part
       (part_header
         (part_header_marker)
-        (part_header_content))
-      (comment)
+        (part_header_content
+          (inline)))
+      (comment
+        (inline))
       (section_level1
         (section_header
           (section_header_marker)
-          (section_header_content))))))
+          (section_header_content
+            (inline)))))))

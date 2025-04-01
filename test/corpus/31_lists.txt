@@ -9,7 +9,8 @@ List
 (document
   (document_body
     (list
-      (marker))))
+      (marker)
+      (inline))))
 
 ==================
 List Marker
@@ -24,11 +25,14 @@ List Marker
 (document
   (document_body
     (list
-      (marker))
+      (marker)
+      (inline))
     (list
-      (marker))
+      (marker)
+      (inline))
     (list
-      (marker))))
+      (marker)
+      (inline))))
 
 ==================
 List Nested
@@ -43,8 +47,11 @@ List Nested
 (document
   (document_body
     (list
-      (marker))
+      (marker)
+      (inline))
     (list
-      (marker))
+      (marker)
+      (inline))
     (list
-      (marker))))
+      (marker)
+      (inline))))

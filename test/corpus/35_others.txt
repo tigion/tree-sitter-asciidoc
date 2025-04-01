@@ -11,6 +11,8 @@ Lorem ipsum.
 (document
   (document_body
     (list
-      (marker))
+      (marker)
+      (inline))
     (list_continuation_marker)
-    (paragraph)))
+    (paragraph
+      (inline))))

@@ -7,7 +7,8 @@ Comment Line Style
 ---
 
 (document
-  (comment))
+  (comment
+    (inline)))
 
 ==================
 Comment Block Style
@@ -27,8 +28,12 @@ Comment text
 ---
 
 (document
-  (comment)
-  (comment))
+  (comment
+    (inline))
+  (comment
+    (inline)
+    (inline)
+    (inline)))
 
 ==================
 Comment Open Block Style
@@ -53,13 +58,17 @@ Comment text
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph)
+      (paragraph
+        (inline))
       (open_block_marker_end)))
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph)
-      (paragraph)
+      (paragraph
+        (inline)
+        (inline))
+      (paragraph
+        (inline))
       (open_block_marker_end))))
 
 ==================
@@ -73,7 +82,8 @@ Comment text
 
 (document
   (comment
-    (paragraph)))
+    (paragraph
+      (inline))))
 
 ==================
 Comment (multiple)
@@ -103,14 +113,23 @@ Comment text
 ---
 
 (document
-  (comment)
   (comment
-    (paragraph))
-  (comment)
+    (inline))
+  (comment
+    (paragraph
+      (inline)))
+  (comment
+    (inline))
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph)
-      (paragraph)
-      (open_block_marker_end)))
-  (comment))
+      (paragraph
+        (inline)
+        (inline))
+      (paragraph
+        (inline))
+  (open_block_marker_end)))
+    (comment
+      (inline)
+      (inline)
+      (inline)))

@@ -38,7 +38,8 @@ Document Attribute + Value
   (document_body
     (document_attribute
       (attribute_name)
-      (attribute_value))))
+      (attribute_value
+        (inline)))))
 
 ==================
 Document Attributes
@@ -55,7 +56,8 @@ Document Attributes
       (attribute_name))
     (document_attribute
       (attribute_name)
-      (attribute_value))))
+      (attribute_value
+        (inline)))))
 
 ==================
 Element Attribute

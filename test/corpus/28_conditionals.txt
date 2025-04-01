@@ -21,7 +21,8 @@ ifdef::attribute[Lorem ipsum]
       (attribute_name)
       (conditional_bracket)
       (conditional_bracket))
-    (paragraph)
+    (paragraph
+      (inline))
     (conditional
       (conditional_name)
       (conditional_bracket)
@@ -52,7 +53,8 @@ endif::[]
       (attribute_name)
       (conditional_bracket)
       (conditional_bracket))
-    (paragraph)
+    (paragraph
+      (inline))
     (conditional
       (conditional_name)
       (conditional_bracket)
@@ -82,7 +84,8 @@ endif::[]
         (conditional_condition_operator)
         (conditional_condition_part))
       (conditional_bracket))
-    (paragraph)
+    (paragraph
+      (inline))
     (conditional
       (conditional_name)
       (conditional_bracket)
@@ -95,7 +98,8 @@ endif::[]
         (conditional_condition_operator)
         (conditional_condition_part))
       (conditional_bracket))
-    (paragraph)
+    (paragraph
+      (inline))
     (conditional
       (conditional_name)
       (conditional_bracket)

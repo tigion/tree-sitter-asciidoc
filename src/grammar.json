@@ -200,7 +200,7 @@
     },
     "document_title_content": {
       "type": "SYMBOL",
-      "name": "_inner_line"
+      "name": "inline"
     },
     "document_authors": {
       "type": "SEQ",
@@ -335,7 +335,7 @@
     },
     "attribute_value": {
       "type": "SYMBOL",
-      "name": "_inner_line"
+      "name": "inline"
     },
     "element_attributes": {
       "type": "SYMBOL",
@@ -881,7 +881,7 @@
     },
     "section_header_content": {
       "type": "SYMBOL",
-      "name": "_inner_line"
+      "name": "inline"
     },
     "_block_not_section": {
       "type": "PREC_LEFT",
@@ -1984,7 +1984,7 @@
     },
     "_list_content": {
       "type": "SYMBOL",
-      "name": "_inner_line"
+      "name": "inline"
     },
     "list_continuation_marker": {
       "type": "STRING",
@@ -2540,7 +2540,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_inner_line"
+          "name": "inline"
         },
         {
           "type": "SYMBOL",
@@ -2548,7 +2548,7 @@
         }
       ]
     },
-    "_inner_line": {
+    "inline": {
       "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
@@ -2582,8 +2582,13 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "[^\\n+ ]+"
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[^\\n+ ]+"
+              },
+              "named": true,
+              "value": "inline"
             },
             {
               "type": "SYMBOL",
@@ -2595,8 +2600,13 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "[ +]"
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[ +]"
+              },
+              "named": true,
+              "value": "inline"
             },
             {
               "type": "SYMBOL",

@@ -17,15 +17,20 @@ WARNING: Lorem ipsum dolor sit amet.
 (document
   (document_body
     (admonition
-      (admonition_marker))
+      (admonition_marker)
+        (inline))
     (admonition
-      (admonition_marker))
+      (admonition_marker)
+        (inline))
     (admonition
-      (admonition_marker))
+      (admonition_marker)
+        (inline))
     (admonition
-      (admonition_marker))
+      (admonition_marker)
+        (inline))
     (admonition
-      (admonition_marker))))
+      (admonition_marker)
+        (inline))))
 
 ==================|||
 Admonitions (block style)
@@ -53,16 +58,19 @@ Lorem ipsum dolor sit amet.
         (admonition_marker))
       (example_block
         (example_block_marker_start)
-        (paragraph)
+        (paragraph
+          (inline))
         (example_block_marker_end)))
     (admonition
       (element_attributes
         (admonition_marker))
       (open_block
         (open_block_marker_start)
-        (paragraph)
+        (paragraph
+          (inline))
         (open_block_marker_end)))
     (admonition
       (element_attributes
         (admonition_marker))
-      (paragraph))))
+      (paragraph
+        (inline)))))

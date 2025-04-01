@@ -8,7 +8,8 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 
 (document
   (document_body
-    (paragraph)))
+    (paragraph
+      (inline))))
 
 ==================
 Praragraph 2
@@ -21,7 +22,9 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 
 (document
   (document_body
-    (paragraph)))
+    (paragraph
+      (inline)
+      (inline))))
 
 ==================
 Paragraphs
@@ -35,8 +38,10 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 
 (document
   (document_body
-    (paragraph)
-    (paragraph)))
+    (paragraph
+      (inline))
+    (paragraph
+      (inline))))
 
 ==================
 Paragraphs 2
@@ -52,5 +57,7 @@ A===
 
 (document
   (document_body
-    (paragraph)
-    (paragraph)))
+    (paragraph
+      (inline))
+    (paragraph
+      (inline))))

@@ -15,23 +15,28 @@ Sections 1 to 5
     (section_level1
       (section_header
         (section_header_marker)
-        (section_header_content))
+        (section_header_content
+          (inline)))
       (section_level2
         (section_header
           (section_header_marker)
-          (section_header_content))
+          (section_header_content
+            (inline)))
         (section_level3
           (section_header
             (section_header_marker)
-            (section_header_content))
+            (section_header_content
+              (inline)))
           (section_level4
             (section_header
               (section_header_marker)
-              (section_header_content))
+              (section_header_content
+                (inline)))
             (section_level5
               (section_header
                 (section_header_marker)
-                (section_header_content)))))))))
+                (section_header_content
+                  (inline))))))))))
 
 ==================
 Document Title + Part + Sections 1 to 5
@@ -52,29 +57,36 @@ Document Title + Part + Sections 1 to 5
   (document_header
     (document_title
       (document_title_marker)
-      (document_title_content)))
+      (document_title_content
+        (inline))))
   (document_body
     (part
       (part_header
         (part_header_marker)
-        (part_header_content))
+        (part_header_content
+          (inline)))
       (section_level1
         (section_header
           (section_header_marker)
-          (section_header_content))
+          (section_header_content
+            (inline)))
         (section_level2
           (section_header
             (section_header_marker)
-            (section_header_content))
+            (section_header_content
+              (inline)))
           (section_level3
             (section_header
               (section_header_marker)
-              (section_header_content))
+              (section_header_content
+                (inline)))
             (section_level4
               (section_header
                 (section_header_marker)
-                (section_header_content))
+                (section_header_content
+                  (inline)))
               (section_level5
                 (section_header
                   (section_header_marker)
-                  (section_header_content))))))))))
+                  (section_header_content
+                    (inline)))))))))))

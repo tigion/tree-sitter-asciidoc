@@ -84,7 +84,7 @@ module.exports = grammar({
         seq($.document_title_marker, " ", $.document_title_content, $._newline),
       ),
     document_title_marker: (_) => prec(2, "="),
-    document_title_content: ($) => $._inner_line,
+    document_title_content: ($) => $.inline,
     // Document authors
     // document_authors: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
     document_authors: ($) => seq(/[^:=\n]/, $._line),
@@ -145,7 +145,7 @@ module.exports = grammar({
     attribute_unset: (_) => "!",
     attribute_name: ($) => $._attribute_name,
     // attribute_value: ($) => repeat1($._char),
-    attribute_value: ($) => $._inner_line,
+    attribute_value: ($) => $.inline,
 
     // Element Attributes
     //
@@ -323,7 +323,7 @@ module.exports = grammar({
     section_level5_header_marker: (_) => "======",
 
     // section_header_content: ($) => repeat1($._char),
-    section_header_content: ($) => $._inner_line,
+    section_header_content: ($) => $.inline,
 
     // ------------------------------------------------------------------------
 
@@ -606,7 +606,7 @@ module.exports = grammar({
     // list_marker: (_) => token(seq(/[ ]*/, choice(/[-]+/, /[*]+/, /[.]+/), " ")),
 
     // _list_content: ($) => repeat1($._char),
-    _list_content: ($) => $._inner_line,
+    _list_content: ($) => $.inline,
 
     // ------------------------------------------------------------------------
 
@@ -810,8 +810,8 @@ module.exports = grammar({
         // $._line_with_newline,
       ),
 
-    _line: ($) => seq($._inner_line, $._newline),
-    _inner_line: ($) => repeat1($._char),
+    _line: ($) => seq($.inline, $._newline),
+    inline: ($) => repeat1($._char),
 
     _blank_lines: ($) => repeat1($._blank_line),
     _blank_line: ($) => seq($._newline),
@@ -820,8 +820,8 @@ module.exports = grammar({
     _line_with_newline: ($) =>
       choice(
         $._newline,
-        seq(/[^\n+ ]+/, $._line_with_newline),
-        seq(/[ +]/, $._line_with_newline),
+        seq(alias(/[^\n+ ]+/, $.inline), $._line_with_newline),
+        seq(alias(/[ +]/, $.inline), $._line_with_newline),
         seq($.line_continuation_marker, $._line_with_newline),
       ),
     line_continuation_marker: (_) => " +\n",

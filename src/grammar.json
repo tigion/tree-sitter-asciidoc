@@ -1259,11 +1259,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_no_white_space"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_line"
+          "name": "_line_start_without_space"
         }
       ]
     },
@@ -2554,6 +2550,40 @@
         "type": "SYMBOL",
         "name": "_char"
       }
+    },
+    "_line_start_without_space": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_inline_start_without_space"
+          },
+          "named": true,
+          "value": "inline"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        }
+      ]
+    },
+    "_inline_start_without_space": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_no_white_space"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_char"
+          }
+        }
+      ]
     },
     "_blank_lines": {
       "type": "REPEAT1",

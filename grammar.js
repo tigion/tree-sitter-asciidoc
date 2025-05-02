@@ -427,7 +427,8 @@ module.exports = grammar({
     // - [x] Only recognize syntax
     // - [ ] Reference to the next block
     // title: ($) => seq(".", /[^\s]/, repeat($._char), $._newline),
-    title: ($) => seq(".", $._no_white_space, $._line),
+    // title: ($) => seq(".", $._no_white_space, $._line),
+    title: ($) => seq(".", $._line_start_without_space),
 
     // ------------------------------------------------------------------------
 
@@ -812,6 +813,10 @@ module.exports = grammar({
 
     _line: ($) => seq($.inline, $._newline),
     inline: ($) => repeat1($._char),
+
+    _line_start_without_space: ($) =>
+      seq(alias($._inline_start_without_space, $.inline), $._newline),
+    _inline_start_without_space: ($) => seq($._no_white_space, repeat($._char)),
 
     _blank_lines: ($) => repeat1($._blank_line),
     _blank_line: ($) => seq($._newline),

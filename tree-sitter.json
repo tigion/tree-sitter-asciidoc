@@ -5,6 +5,7 @@
       "camelcase": "AsciiDoc",
       "scope": "source.asciidoc",
       "file-types": ["adoc"],
+      "highlights": "queries/highlights.scm",
       "injection-regex": "^asciidoc$"
     }
   ],
@@ -30,4 +31,3 @@
     "swift": true
   }
 }
-

@@ -1,0 +1,49 @@
+= Listings
+
+[#id1]
+== Listing Example
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+[source,sql]
+----
+SELECT * FROM users WHERE id = 1;
+----
+
+[source, sql]
+----
+SELECT * FROM users WHERE id = 1;
+----
+
+[source,sql]
+----
+SELECT *
+FROM users
+WHERE id = 1;
+----x
+----
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+[source,python]
+----
+def hello_world():
+    print("Hello, World!")
+
+hello_world()
+----
+
+[source]
+----
+def hello_world():
+    print("Hello, World!")
+
+hello_world()
+----
+
+----
+def hello_world():
+    print("Hello, World!")
+
+hello_world()
+----

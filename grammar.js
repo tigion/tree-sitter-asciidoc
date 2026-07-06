@@ -12,6 +12,8 @@
 module.exports = grammar({
   name: "asciidoc",
 
+  externals: ($) => [$.listing_block_content],
+
   extras: (_) => [],
   // extras: ($) => [$._comment],
   // extras: (_) => ["\n"],
@@ -149,6 +151,20 @@ module.exports = grammar({
 
     // Element Attributes
     //
+    // element_attributes: ($) =>
+    //   seq(
+    //     "[",
+    //     optional($._raw_element_attributes),
+    //     "]",
+    //     $._newline,
+    //   ),
+    //
+    // source_attributes: ($) =>
+    //   seq("source", optional(seq(",", field("language", $.attribute_name)))),
+    //
+    // _raw_element_attributes: ($) =>
+    //   seq($._attribute_unparsed, repeat(seq(",", $._attribute_unparsed))),
+    // TODO: Support attributes direct per object (e.g. headers, tables, etc.)
     element_attributes: ($) => $._attribute_list,
     _attribute_list: ($) =>
       seq(
@@ -161,6 +177,8 @@ module.exports = grammar({
       ),
     // eslint-disable-next-line no-useless-escape
     _attribute_unparsed: (_) => /[^,\]\n]*/,
+
+    id_attributes: ($) => seq("[#", $._attribute_name, "]", $._newline),
 
     // ------------------------------------------------------------------------
 
@@ -182,6 +200,7 @@ module.exports = grammar({
     part: ($) =>
       prec.right(
         seq(
+          optional($.element_attributes),
           $.part_header,
           repeat(
             choice(
@@ -200,6 +219,7 @@ module.exports = grammar({
     section_level1: ($) =>
       prec.right(
         seq(
+          optional($.element_attributes),
           alias($.section_level1_header, $.section_header),
           repeat(
             choice(
@@ -217,6 +237,7 @@ module.exports = grammar({
     section_level2: ($) =>
       prec.right(
         seq(
+          optional($.element_attributes),
           alias($.section_level2_header, $.section_header),
           repeat(
             choice(
@@ -229,6 +250,7 @@ module.exports = grammar({
     section_level3: ($) =>
       prec.right(
         seq(
+          optional($.element_attributes),
           alias($.section_level3_header, $.section_header),
           repeat(
             choice(
@@ -241,6 +263,7 @@ module.exports = grammar({
     section_level4: ($) =>
       prec.right(
         seq(
+          optional($.element_attributes),
           alias($.section_level4_header, $.section_header),
           repeat(choice($.section_level5, $._block_not_section)),
         ),
@@ -248,6 +271,7 @@ module.exports = grammar({
     section_level5: ($) =>
       prec.right(
         seq(
+          optional($.element_attributes),
           alias($.section_level5_header, $.section_header),
           repeat($._block_not_section),
         ),
@@ -337,7 +361,8 @@ module.exports = grammar({
             $._blank_lines,
             $._comments,
             $.document_attribute,
-            $.element_attributes,
+            // $.element_attributes,
+            $.id_attributes,
             $.page_break,
             $.break,
             $.macro,
@@ -440,13 +465,16 @@ module.exports = grammar({
     // - Currently is only one nesting for example_block supported.
     //
     _block: ($) =>
-      choice(
-        $.open_block,
-        $.listing_block,
-        $.literal_block,
-        $.sidebar_block,
-        $.example_block,
-        $.pass_block,
+      seq(
+        // optional($.element_attributes),
+        choice(
+          $.open_block,
+          $.listing_block,
+          $.literal_block,
+          $.sidebar_block,
+          $.example_block,
+          $.pass_block,
+        ),
       ),
 
     // Open Block with block style
@@ -465,17 +493,34 @@ module.exports = grammar({
         choice($._listing_block, $._listing_block_style),
         repeat($.listing_callout),
       ),
+
     listing_callout: ($) => seq($.callout, " ", $._line_with_newline),
     // listing_callout: ($) => seq($.callout, " ", repeat1($._char), $._newline),
     callout: (_) => /<[0-9]+>/,
     // Block style
     _listing_block: ($) =>
-      prec.left(
-        seq(
-          alias("----\n", $.listing_block_marker_start),
-          alias(optional($._block_content), $.listing_block_content),
-          alias("----\n", $.listing_block_marker_end),
+      seq(
+        optional($.source_attributes),
+        alias("----\n", $.listing_block_marker_start),
+        optional($.listing_block_content),
+        alias("----\n", $.listing_block_marker_end),
+      ),
+    // TODO: Support multiple attributes (e.g. `[source,ruby,linenums]`)
+    // TODO: Support attribute shorthands (https://docs.asciidoctor.org/asciidoc/latest/attributes/positional-and-named-attributes/#block-style-and-attribute-shorthand)
+    source_attributes: ($) =>
+      seq(
+        "[",
+        "source", //optional("source"),
+        optional(
+          seq(
+            ",",
+            optional($._white_space),
+            field("language", $.attribute_name),
+            optional($._white_space),
+          ),
         ),
+        "]",
+        $._newline,
       ),
     // Open Block or Paragraph style
     _listing_block_style: ($) =>
@@ -532,6 +577,7 @@ module.exports = grammar({
     _example_block: ($) =>
       prec.left(
         seq(
+          optional($.element_attributes),
           alias("====\n", $.example_block_marker_start),
           repeat(
             prec.left(
@@ -546,6 +592,7 @@ module.exports = grammar({
       ),
     _example_block_level2: ($) =>
       seq(
+        optional($.element_attributes),
         alias("=====\n", $.example_block_marker_start),
         optional($._block_content),
         alias("=====\n", $.example_block_marker_end),
@@ -599,7 +646,7 @@ module.exports = grammar({
     // - [ ] Nested list items
 
     // list: ($) => seq(repeat1($.list_item), $._newline),
-    list: ($) => $._list_item,
+    list: ($) => seq(optional($.element_attributes), $._list_item),
     _list_item: ($) =>
       seq(alias($.list_marker, $.marker), $._list_content, $._newline),
     list_marker: (_) =>
@@ -760,6 +807,7 @@ module.exports = grammar({
 
     table: ($) =>
       seq(
+        optional($.element_attributes),
         $.table_marker,
         $._newline,
         repeat(choice(seq(repeat1($.table_cell), $._newline), $._blank_line)),

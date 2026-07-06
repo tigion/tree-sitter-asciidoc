@@ -270,11 +270,11 @@
           "named": true
         },
         {
-          "type": "element_attributes",
+          "type": "example_block",
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
@@ -501,6 +501,10 @@
           "named": true
         },
         {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -552,6 +556,11 @@
     }
   },
   {
+    "type": "id_attributes",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "inline",
     "named": true,
     "fields": {}
@@ -564,6 +573,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "element_attributes",
+          "named": true
+        },
         {
           "type": "inline",
           "named": true
@@ -610,92 +623,9 @@
         {
           "type": "paragraph",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "listing_block_content",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "admonition",
-          "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "conditional",
-          "named": true
-        },
-        {
-          "type": "document_attribute",
-          "named": true
-        },
-        {
-          "type": "element_attributes",
-          "named": true
-        },
-        {
-          "type": "example_block",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
-          "named": true
-        },
-        {
-          "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "pass_block",
-          "named": true
-        },
-        {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
-          "named": true
-        },
-        {
-          "type": "title",
+          "type": "source_attributes",
           "named": true
         }
       ]
@@ -758,6 +688,10 @@
         },
         {
           "type": "example_block",
+          "named": true
+        },
+        {
+          "type": "id_attributes",
           "named": true
         },
         {
@@ -876,11 +810,11 @@
           "named": true
         },
         {
-          "type": "element_attributes",
+          "type": "example_block",
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
@@ -1010,6 +944,10 @@
         },
         {
           "type": "example_block",
+          "named": true
+        },
+        {
+          "type": "id_attributes",
           "named": true
         },
         {
@@ -1163,6 +1101,10 @@
           "named": true
         },
         {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -1301,6 +1243,10 @@
           "named": true
         },
         {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -1412,6 +1358,10 @@
           "named": true
         },
         {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -1519,6 +1469,10 @@
           "named": true
         },
         {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -1622,6 +1576,10 @@
           "named": true
         },
         {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -1721,6 +1679,10 @@
           "named": true
         },
         {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -1812,6 +1774,10 @@
           "named": true
         },
         {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -1871,6 +1837,22 @@
     }
   },
   {
+    "type": "source_attributes",
+    "named": true,
+    "fields": {
+      "language": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "table",
     "named": true,
     "fields": {},
@@ -1878,6 +1860,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "element_attributes",
+          "named": true
+        },
         {
           "type": "table_cell",
           "named": true
@@ -2025,6 +2011,10 @@
     "named": false
   },
   {
+    "type": "[#",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -2109,6 +2099,10 @@
     "named": false
   },
   {
+    "type": "listing_block_content",
+    "named": true
+  },
+  {
     "type": "listing_block_marker_end",
     "named": true
   },
@@ -2171,6 +2165,10 @@
   {
     "type": "sidebar_block_marker_start",
     "named": true
+  },
+  {
+    "type": "source",
+    "named": false
   },
   {
     "type": "table_marker",

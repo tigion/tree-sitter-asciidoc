@@ -58,17 +58,20 @@ Comment text
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph
-        (inline))
+      (paragraph_context
+        (paragraph
+          (inline)))
       (open_block_marker_end)))
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph
-        (inline)
-        (inline))
-      (paragraph
-        (inline))
+      (paragraph_context
+        (paragraph
+          (inline)
+          (inline)))
+      (paragraph_context
+        (paragraph
+          (inline)))
       (open_block_marker_end))))
 
 ==================
@@ -123,13 +126,15 @@ Comment text
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph
-        (inline)
-        (inline))
-      (paragraph
-        (inline))
-  (open_block_marker_end)))
-    (comment
-      (inline)
-      (inline)
-      (inline)))
+      (paragraph_context
+        (paragraph
+          (inline)
+          (inline)))
+      (paragraph_context
+        (paragraph
+          (inline)))
+      (open_block_marker_end)))
+  (comment
+    (inline)
+    (inline)
+    (inline)))

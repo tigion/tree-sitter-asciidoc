@@ -11,17 +11,20 @@ macro::target["value 1", value]
 
 (document
   (document_body
-    (macro
-      (name)
-      (target))
-    (macro
-      (name)
-      (target)
-      (attributes))
-    (macro
-      (name)
-      (target)
-      (attributes))))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))))
 
 ==================
 Image (Block)
@@ -35,17 +38,20 @@ image::image.png["Alt text", 500, 600]
 
 (document
   (document_body
-    (macro
-      (name)
-      (target))
-    (macro
-      (name)
-      (target)
-      (attributes))
-    (macro
-      (name)
-      (target)
-      (attributes))))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))))
 
 ==================
 Audio (Block)
@@ -59,13 +65,15 @@ audio::ocean-waves.wav[start=60,opts=autoplay]
 
 (document
   (document_body
-    (macro
-      (name)
-    (target))
+    (macro_context
       (macro
-        (name)
-        (target)
-        (attributes))))
+        (macro_name)
+        (macro_target)))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))))
 
 ==================
 Video (Block)
@@ -79,13 +87,15 @@ video::video-file.mp4[width=640,start=60,opts=autoplay]
 
 (document
   (document_body
-    (macro
-      (name)
-    (target))
+    (macro_context
       (macro
-        (name)
-        (target)
-        (attributes))))
+        (macro_name)
+        (macro_target)))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))))
 
 ==================
 Include (Block)
@@ -99,17 +109,20 @@ include::file.adoc["attribute text", attribute2]
 
 (document
   (document_body
-    (macro
-      (name)
-      (target))
-    (macro
-      (name)
-      (target)
-      (attributes))
-    (macro
-      (name)
-      (target)
-      (attributes))))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))))
 
 ==================
 Plantuml (Block)
@@ -121,7 +134,8 @@ include::file.puml[format="svg"]
 
 (document
   (document_body
-    (macro
-      (name)
-      (target)
-      (attributes))))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))))

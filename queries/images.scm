@@ -4,8 +4,8 @@
 ; https://github.com/folke/snacks.nvim/blob/main/docs/image.md
 
 (macro
-  (name) @name (#eq? @name "image")
-  (target) @image.src (#match? @image.src "^[^{]")
+  (macro_name) @name (#eq? @name "image")
+  (macro_target) @image.src (#match? @image.src "^[^{]")
 ) @image
 
 (document_attribute

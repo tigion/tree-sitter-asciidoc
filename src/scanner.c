@@ -12,7 +12,9 @@ typedef enum {
   STATE_DASH4
 } State;
 
-void *tree_sitter_asciidoc_external_scanner_create() { return NULL; }
+void *tree_sitter_asciidoc_external_scanner_create() {
+  return NULL;
+}
 
 void tree_sitter_asciidoc_external_scanner_destroy(void *payload) {}
 
@@ -46,30 +48,29 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer,
 
     // Update the state machine based on the current character.
     switch (state) {
-    case STATE_NORMAL:
-      if (current_character == '-')
-        state = STATE_DASH1;
-      break;
+      case STATE_NORMAL:
+        if (current_character == '-')
+          state = STATE_DASH1;
+        break;
 
-    case STATE_DASH1:
-      state = (current_character == '-') ? STATE_DASH2 : STATE_NORMAL;
-      break;
+      case STATE_DASH1:
+        state = (current_character == '-') ? STATE_DASH2 : STATE_NORMAL;
+        break;
 
-    case STATE_DASH2:
-      state = (current_character == '-') ? STATE_DASH3 : STATE_NORMAL;
-      break;
+      case STATE_DASH2:
+        state = (current_character == '-') ? STATE_DASH3 : STATE_NORMAL;
+        break;
 
-    case STATE_DASH3:
-      state = (current_character == '-') ? STATE_DASH4 : STATE_NORMAL;
-      break;
+      case STATE_DASH3:
+        state = (current_character == '-') ? STATE_DASH4 : STATE_NORMAL;
+        break;
 
-    case STATE_DASH4:
-      if (current_character == '\n') {
-        return true; // Fence delimiter `----\n` found.
-      }
-
-      state = STATE_NORMAL;
-      break;
+      case STATE_DASH4:
+        if (current_character == '\n') {
+          return true; // Fence delimiter `----\n` found.
+        }
+        state = STATE_NORMAL;
+        break;
     }
 
     // Move the lexer to the next character.

@@ -16,23 +16,33 @@ qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (open_block
-      (open_block_marker_start)
-        (paragraph
-          (inline))
-      (open_block_marker_end))
-    (open_block
-      (open_block_marker_start)
-        (paragraph
-          (inline))
-        (paragraph
-          (inline))
-      (open_block_marker_end))))
+    (block_context
+      (open_block
+        (open_block_marker_start)
+        (paragraph_context
+          (paragraph
+            (inline)))
+        (open_block_marker_end)))
+    (block_context
+      (open_block
+        (open_block_marker_start)
+        (paragraph_context
+          (paragraph
+            (inline)))
+        (paragraph_context
+          (paragraph
+            (inline)))
+        (open_block_marker_end)))))
 
 ==================|||
 Listing Block
 ==================|||
 
+----
+printf("Hello, World!");
+----
+
+[source,c]
 ----
 printf("Hello, World!");
 ----
@@ -49,24 +59,73 @@ printf("Hello, World!");
 
 (document
   (document_body
-    (listing_block
-      (listing_block_marker_start)
-      (listing_block_content
+    (block_context
+      (listing_block
+        (listing_block_marker_start)
+        (listing_block_content)
+        (listing_block_marker_end)))
+    (block_context
+      (listing_block
+        (source_attributes
+          (source_attribute_name)
+          language: (attribute_name))
+        (listing_block_marker_start)
+        (listing_block_content)
+        (listing_block_marker_end)))
+    (block_context
+      (listing_block
+        (element_attributes)
+        (open_block
+          (open_block_marker_start)
+          (paragraph_context
+            (paragraph
+              (inline)))
+          (open_block_marker_end))))
+    (block_context
+      (listing_block
+        (element_attributes)
         (paragraph
-          (inline)))
-      (listing_block_marker_end))
-    (listing_block
-      (element_attributes)
-      (open_block
-        (open_block_marker_start)
-        (paragraph
-          (inline))
-        (open_block_marker_end)))
-    (listing_block
-      (element_attributes)
-      (paragraph
-        (inline)))))
+          (inline))))))
 
+==================|||
+Listing Block Callouts
+:skip
+==================|||
+
+----
+printf("Hello, World!"); <1> <2> <3>
+----
+<1> This is a callout.
+<2> This is a callout. +
+    This is a second line of the callout.
+<3> This is a callout. +
+This is a second line of the callout.
+
+---|||
+
+(document
+  (document_body
+    (block_context
+      (listing_block
+        (listing_block_marker_start)
+        (listing_block_content)
+        (listing_block_marker_end)
+        (listing_callout
+          (callout_marker)
+          (callout_content
+            (inline)))
+        (listing_callout
+          (callout_marker)
+          (callout_content
+            (inline)
+            (line_continuation_marker)
+            (inline)))
+        (listing_callout
+          (callout_marker)
+          (callout_content
+            (inline)
+            (line_continuation_marker)
+            (inline)))))))
 
 ==================|||
 Listing Block Callouts
@@ -132,22 +191,27 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (literal_block
-      (literal_block_marker_start)
-        (paragraph
-          (inline))
-      (literal_block_marker_end))
-    (literal_block
-      (element_attributes)
-      (open_block
-        (open_block_marker_start)
+    (block_context
+      (literal_block
+        (literal_block_marker_start)
+        (paragraph_context
           (paragraph
-            (inline))
-        (open_block_marker_end)))
-    (literal_block
-      (element_attributes)
-      (paragraph
-        (inline)))))
+            (inline)))
+        (literal_block_marker_end)))
+    (block_context
+      (literal_block
+        (element_attributes)
+        (open_block
+          (open_block_marker_start)
+          (paragraph_context
+            (paragraph
+              (inline)))
+          (open_block_marker_end))))
+    (block_context
+      (literal_block
+        (element_attributes)
+        (paragraph
+          (inline))))))
 
 ==================|||
 Sidebar Block
@@ -169,22 +233,27 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (sidebar_block
-      (sidebar_block_marker_start)
-        (paragraph
-          (inline))
-      (sidebar_block_marker_end))
-    (sidebar_block
-      (element_attributes)
-      (open_block
-        (open_block_marker_start)
+    (block_context
+      (sidebar_block
+        (sidebar_block_marker_start)
+        (paragraph_context
           (paragraph
-            (inline))
-        (open_block_marker_end)))
-    (sidebar_block
-       (element_attributes)
-       (paragraph
-         (inline)))))
+            (inline)))
+        (sidebar_block_marker_end)))
+    (block_context
+      (sidebar_block
+        (element_attributes)
+        (open_block
+          (open_block_marker_start)
+          (paragraph_context
+            (paragraph
+              (inline)))
+          (open_block_marker_end))))
+    (block_context
+      (sidebar_block
+        (element_attributes)
+        (paragraph
+          (inline))))))
 
 ==================|||
 Example Block
@@ -206,22 +275,27 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (example_block
-      (example_block_marker_start)
-        (paragraph
-          (inline))
-      (example_block_marker_end))
-    (example_block
-      (element_attributes)
-      (open_block
-        (open_block_marker_start)
+    (block_context
+      (example_block
+        (example_block_marker_start)
+        (paragraph_context
           (paragraph
-            (inline))
-        (open_block_marker_end)))
-    (example_block
-      (element_attributes)
-      (paragraph
-        (inline)))))
+            (inline)))
+        (example_block_marker_end)))
+    (block_context
+      (example_block
+        (element_attributes)
+        (open_block
+          (open_block_marker_start)
+          (paragraph_context
+            (paragraph
+              (inline)))
+          (open_block_marker_end))))
+    (block_context
+      (example_block
+        (element_attributes)
+        (paragraph
+          (inline))))))
 
 ==================|||
 Example Block (1x nested)
@@ -237,14 +311,17 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (example_block
-      (example_block_marker_start)
+    (block_context
       (example_block
         (example_block_marker_start)
-        (paragraph
-          (inline))
-        (example_block_marker_end))
-      (example_block_marker_end))))
+        (block_context
+          (example_block
+            (example_block_marker_start)
+            (paragraph_context
+              (paragraph
+                (inline)))
+            (example_block_marker_end)))
+        (example_block_marker_end)))))
 
 
 ==================|||
@@ -262,12 +339,15 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (pass_block
-      (pass_block_marker_start)
-      (paragraph
-        (inline))
-      (pass_block_marker_end))
-    (pass_block
-      (element_attributes)
-      (paragraph
-        (inline)))))
+    (block_context
+      (pass_block
+        (pass_block_marker_start)
+        (paragraph_context
+          (paragraph
+            (inline)))
+        (pass_block_marker_end)))
+    (block_context
+      (pass_block
+        (element_attributes)
+        (paragraph
+          (inline))))))

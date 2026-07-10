@@ -10,10 +10,13 @@ Better other parsers:
 ---
 
 > [!WARNING]
-> The grammar is not yet complete and the names of the rules or the structure of the tree nodes may change.
+> The grammar is not yet complete and the names of the rules or the structure
+> of the tree nodes may change.
 
 > [!NOTE]
-> Until the first version of the AsciiDoc Language Specification is ratified, AsciiDoc is defined by the Asciidoctor implementation. There is no other official definition of the language.
+> Until the first version of the AsciiDoc Language Specification is ratified,
+> AsciiDoc is defined by the Asciidoctor implementation. There is no other
+> official definition of the language.
 >
 > Source: [AsciiDoc Language Documentation - About this documentation](https://docs.asciidoctor.org/asciidoc/latest/#about-this-documentation)
 
@@ -38,7 +41,43 @@ Better other parsers:
 
 ### Neovim
 
-Add the following to your `init.lua` or `nvim-treesitter.lua` config and after a restart run `:TSInstallFromGrammar asciidoc`.
+#### nvim-treesitter/nvim-treesitter
+
+Add the following to your `init.lua` or `nvim-treesitter.lua` config and after
+a restart run `:TSInstall asciidoc` (`:TSInstallFromGrammar asciidoc`).
+
+##### main-Branch
+
+```lua
+-- asciidoc: Adds a (experimental) parser for AsciiDoc.
+-- Source: https://github.com/nvim-treesitter/nvim-treesitter/blob/main/README.md#adding-parsers
+--
+-- NOTE: Install with:   `:TSInstall asciidoc`
+--       Update with:    `:TSUpdate`
+--       Uninstall with: `:TSUninstall asciidoc`
+--
+-- WARN: Uninstall with `:TSUninstall asciidoc`
+-- This removes only in `~/.local/share/nvim/site/parser` and `queries` but
+-- not in `parser-info`
+--
+vim.api.nvim_create_autocmd('User', {
+pattern = 'TSUpdate',
+  callback = function()
+    ---@diagnostic disable-next-line missing-fields
+    require('nvim-treesitter.parsers').asciidoc = {
+      ---@diagnostic disable-next-line missing-fields
+      install_info = {
+        -- url = 'https://github.com/tigion/tree-sitter-asciidoc', -- git repo
+        path = '~/foo/bar/tree-sitter-asciidoc', -- local path
+        -- revision = '2535b07174b9b00aadbe4c775c96254b9e40c30d', -- commit hash for revision to check out; HEAD if missing
+        queries = 'queries', -- directory with query files
+      },
+    }
+  end,
+})
+```
+
+##### master-Branch
 
 ```lua
 -- Adds a (experimental) parser for AsciiDoc.
@@ -54,20 +93,8 @@ parser_config.asciidoc = {
 }
 ```
 
-For highlighting, copy the _queries/highlights.scm_ to your _nvim/queries/asciidoc/_ directory.
-
-To support image preview with [Snacks.image](https://github.com/folke/snacks.nvim/blob/main/docs/image.md), add a file _nvim/queries/asciidoc/images.scm_ with the following content:
-
-```scheme
-; Show image from `image` macro.
-(macro
-  (name) @name (#eq? @name "image")
-  (target) @image.src
-) @image
-
-; Optional: Show image from `imageFile` attribute.
-(document_attribute
-  (attribute_name) @name (#eq? @name "imageFile")
-  (attribute_value) @image.src
-) @image
-```
+For highlighting, copy the _queries/highlights.scm_ and
+_queries/injections.scm_ to your _nvim/queries/asciidoc/_ directory.
+To support image preview with
+[Snacks.image](https://github.com/folke/snacks.nvim/blob/main/docs/image.md),
+copy the _queries/images.scm_ to your _nvim/queries/asciidoc/_ directory.

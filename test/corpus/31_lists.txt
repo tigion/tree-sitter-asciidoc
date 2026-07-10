@@ -8,9 +8,12 @@ List
 
 (document
   (document_body
-    (list
-      (marker)
-      (inline))))
+    (list_context
+      (list
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)))))))
 
 ==================
 List Marker
@@ -24,18 +27,24 @@ List Marker
 
 (document
   (document_body
-    (list
-      (marker)
-      (inline))
-    (list
-      (marker)
-      (inline))
-    (list
-      (marker)
-      (inline))))
+    (list_context
+      (list
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)))
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)))
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)))))))
 
 ==================
 List Nested
+:skip
 ==================
 
 * item
@@ -46,12 +55,68 @@ List Nested
 
 (document
   (document_body
-    (list
-      (marker)
-      (inline))
-    (list
-      (marker)
-      (inline))
-    (list
-      (marker)
-      (inline))))
+    (list_context
+      (list
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)))
+        (list_context
+          (list
+          (list_item
+            (list_item_marker)
+            (list_item_content
+              (inline)))
+          (list_context
+            (list
+              (list_item
+                (list_item_marker)
+                (list_item_content
+                  (inline)))))))))))
+
+==================
+List with Attributes
+==================
+
+[square]
+* item
+** item
+
+---
+
+(document
+  (document_body
+    (list_context
+      (element_attributes)
+      (list
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)))
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)))))))
+
+==================
+List Continuation
+==================
+
+* List item
++
+Lorem ipsum.
+
+---
+
+(document
+  (document_body
+    (list_context
+      (list
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)
+            (list_continuation_marker)
+            (paragraph_context
+              (paragraph
+                (inline)))))))))

@@ -8,11 +8,11 @@
       "required": true,
       "types": [
         {
-          "type": "admonition_marker",
+          "type": "admonition_attributes",
           "named": true
         },
         {
-          "type": "element_attributes",
+          "type": "admonition_marker",
           "named": true
         },
         {
@@ -33,6 +33,21 @@
         },
         {
           "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "admonition_attributes",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "admonition_marker",
           "named": true
         }
       ]
@@ -64,6 +79,49 @@
     }
   },
   {
+    "type": "block_context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "example_block",
+          "named": true
+        },
+        {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
+          "type": "listing_block",
+          "named": true
+        },
+        {
+          "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "open_block",
+          "named": true
+        },
+        {
+          "type": "pass_block",
+          "named": true
+        },
+        {
+          "type": "sidebar_block",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "break",
     "named": true,
     "fields": {},
@@ -82,6 +140,25 @@
     "type": "break_marker",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "callout_content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "inline",
+          "named": true
+        },
+        {
+          "type": "line_continuation_marker",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "comment",
@@ -250,6 +327,10 @@
           "named": true
         },
         {
+          "type": "block_context",
+          "named": true
+        },
+        {
           "type": "break",
           "named": true
         },
@@ -274,31 +355,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -306,15 +371,11 @@
           "named": true
         },
         {
-          "type": "paragraph",
+          "type": "paragraph_context",
           "named": true
         },
         {
           "type": "part",
-          "named": true
-        },
-        {
-          "type": "pass_block",
           "named": true
         },
         {
@@ -338,11 +399,7 @@
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -444,17 +501,7 @@
   {
     "type": "element_attributes",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "admonition_marker",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "example_block",
@@ -462,10 +509,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_context",
           "named": true
         },
         {
@@ -489,10 +540,6 @@
           "named": true
         },
         {
-          "type": "example_block",
-          "named": true
-        },
-        {
           "type": "example_block_marker_end",
           "named": true
         },
@@ -501,23 +548,15 @@
           "named": true
         },
         {
-          "type": "list",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -533,15 +572,11 @@
           "named": true
         },
         {
-          "type": "pass_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -550,6 +585,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "id_attributes",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "inline",
@@ -565,11 +605,97 @@
       "required": true,
       "types": [
         {
+          "type": "list_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "element_attributes",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_continuation_marker",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "list_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "list_item_content",
+          "named": true
+        },
+        {
+          "type": "list_item_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_item_content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_context",
+          "named": true
+        },
+        {
+          "type": "id_attributes",
+          "named": true
+        },
+        {
           "type": "inline",
           "named": true
         },
         {
-          "type": "marker",
+          "type": "list_continuation_marker",
+          "named": true
+        },
+        {
+          "type": "macro_context",
+          "named": true
+        },
+        {
+          "type": "paragraph_context",
+          "named": true
+        },
+        {
+          "type": "table_context",
           "named": true
         }
       ]
@@ -610,92 +736,9 @@
         {
           "type": "paragraph",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "listing_block_content",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "admonition",
-          "named": true
         },
         {
-          "type": "break",
-          "named": true
-        },
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "conditional",
-          "named": true
-        },
-        {
-          "type": "document_attribute",
-          "named": true
-        },
-        {
-          "type": "element_attributes",
-          "named": true
-        },
-        {
-          "type": "example_block",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
-          "named": true
-        },
-        {
-          "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "pass_block",
-          "named": true
-        },
-        {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
-          "named": true
-        },
-        {
-          "type": "title",
+          "type": "source_attributes",
           "named": true
         }
       ]
@@ -710,15 +753,11 @@
       "required": true,
       "types": [
         {
-          "type": "callout",
+          "type": "callout_content",
           "named": true
         },
         {
-          "type": "inline",
-          "named": true
-        },
-        {
-          "type": "line_continuation_marker",
+          "type": "callout_marker",
           "named": true
         }
       ]
@@ -737,6 +776,10 @@
           "named": true
         },
         {
+          "type": "block_context",
+          "named": true
+        },
+        {
           "type": "break",
           "named": true
         },
@@ -757,23 +800,11 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
+          "type": "list_context",
           "named": true
         },
         {
@@ -785,7 +816,7 @@
           "named": true
         },
         {
-          "type": "macro",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -801,15 +832,11 @@
           "named": true
         },
         {
-          "type": "pass_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -828,22 +855,45 @@
       "required": true,
       "types": [
         {
-          "type": "attributes",
+          "type": "macro_attributes",
           "named": true
         },
         {
-          "type": "name",
+          "type": "macro_name",
           "named": true
         },
         {
-          "type": "target",
+          "type": "macro_target",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "name",
+    "type": "macro_context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "element_attributes",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_name",
     "named": true,
     "fields": {}
   },
@@ -857,6 +907,10 @@
       "types": [
         {
           "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_context",
           "named": true
         },
         {
@@ -880,31 +934,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -920,19 +958,11 @@
           "named": true
         },
         {
-          "type": "paragraph",
+          "type": "paragraph_context",
           "named": true
         },
         {
-          "type": "pass_block",
-          "named": true
-        },
-        {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -963,10 +993,33 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "inline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "paragraph_context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "element_attributes",
+          "named": true
+        },
+        {
+          "type": "paragraph",
+          "named": true
+        },
+        {
+          "type": "title",
           "named": true
         }
       ]
@@ -982,6 +1035,10 @@
       "types": [
         {
           "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_context",
           "named": true
         },
         {
@@ -1009,31 +1066,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -1041,15 +1082,11 @@
           "named": true
         },
         {
-          "type": "paragraph",
+          "type": "paragraph_context",
           "named": true
         },
         {
           "type": "part_header",
-          "named": true
-        },
-        {
-          "type": "pass_block",
           "named": true
         },
         {
@@ -1073,11 +1110,7 @@
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -1139,6 +1172,10 @@
           "named": true
         },
         {
+          "type": "block_context",
+          "named": true
+        },
+        {
           "type": "break",
           "named": true
         },
@@ -1159,31 +1196,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -1195,7 +1216,7 @@
           "named": true
         },
         {
-          "type": "pass_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1207,11 +1228,7 @@
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -1273,6 +1290,10 @@
           "named": true
         },
         {
+          "type": "block_context",
+          "named": true
+        },
+        {
           "type": "break",
           "named": true
         },
@@ -1297,31 +1318,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -1329,11 +1334,7 @@
           "named": true
         },
         {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "pass_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1357,11 +1358,7 @@
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -1384,6 +1381,10 @@
           "named": true
         },
         {
+          "type": "block_context",
+          "named": true
+        },
+        {
           "type": "break",
           "named": true
         },
@@ -1408,31 +1409,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -1440,11 +1425,7 @@
           "named": true
         },
         {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "pass_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1464,11 +1445,7 @@
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -1491,6 +1468,10 @@
           "named": true
         },
         {
+          "type": "block_context",
+          "named": true
+        },
+        {
           "type": "break",
           "named": true
         },
@@ -1515,31 +1496,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -1547,11 +1512,7 @@
           "named": true
         },
         {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "pass_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1567,11 +1528,7 @@
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -1594,6 +1551,10 @@
           "named": true
         },
         {
+          "type": "block_context",
+          "named": true
+        },
+        {
           "type": "break",
           "named": true
         },
@@ -1618,31 +1579,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -1650,11 +1595,7 @@
           "named": true
         },
         {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "pass_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1666,11 +1607,7 @@
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -1693,6 +1630,10 @@
           "named": true
         },
         {
+          "type": "block_context",
+          "named": true
+        },
+        {
           "type": "break",
           "named": true
         },
@@ -1717,31 +1658,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "open_block",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -1749,11 +1674,7 @@
           "named": true
         },
         {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "pass_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1761,11 +1682,7 @@
           "named": true
         },
         {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
@@ -1785,6 +1702,10 @@
       "types": [
         {
           "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_context",
           "named": true
         },
         {
@@ -1808,27 +1729,15 @@
           "named": true
         },
         {
-          "type": "example_block",
+          "type": "id_attributes",
           "named": true
         },
         {
-          "type": "list",
+          "type": "list_context",
           "named": true
         },
         {
-          "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "macro",
+          "type": "macro_context",
           "named": true
         },
         {
@@ -1844,11 +1753,7 @@
           "named": true
         },
         {
-          "type": "pass_block",
-          "named": true
-        },
-        {
-          "type": "sidebar_block",
+          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1860,11 +1765,37 @@
           "named": true
         },
         {
-          "type": "table",
+          "type": "table_context",
           "named": true
         },
         {
           "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_attributes",
+    "named": true,
+    "fields": {
+      "language": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "attribute_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "source_attribute_name",
           "named": true
         }
       ]
@@ -1910,6 +1841,29 @@
     "fields": {}
   },
   {
+    "type": "table_context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "element_attributes",
+          "named": true
+        },
+        {
+          "type": "table",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "title",
     "named": true,
     "fields": {},
@@ -1945,6 +1899,14 @@
     "named": false
   },
   {
+    "type": "+\n",
+    "named": false
+  },
+  {
+    "type": "+\r\n",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
@@ -1962,10 +1924,6 @@
   },
   {
     "type": "//",
-    "named": false
-  },
-  {
-    "type": "////",
     "named": false
   },
   {
@@ -2025,6 +1983,10 @@
     "named": false
   },
   {
+    "type": "[#",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -2033,15 +1995,11 @@
     "named": true
   },
   {
-    "type": "attributes",
-    "named": true
-  },
-  {
     "type": "audio",
     "named": false
   },
   {
-    "type": "callout",
+    "type": "callout_marker",
     "named": true
   },
   {
@@ -2101,12 +2059,16 @@
     "named": true
   },
   {
-    "type": "list_continuation_marker",
+    "type": "list_item_marker",
     "named": true
   },
   {
     "type": "listing",
     "named": false
+  },
+  {
+    "type": "listing_block_content",
+    "named": true
   },
   {
     "type": "listing_block_marker_end",
@@ -2129,7 +2091,11 @@
     "named": true
   },
   {
-    "type": "marker",
+    "type": "macro_attributes",
+    "named": true
+  },
+  {
+    "type": "macro_target",
     "named": true
   },
   {
@@ -2173,11 +2139,11 @@
     "named": true
   },
   {
-    "type": "table_marker",
+    "type": "source_attribute_name",
     "named": true
   },
   {
-    "type": "target",
+    "type": "table_marker",
     "named": true
   },
   {

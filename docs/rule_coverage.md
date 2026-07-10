@@ -289,7 +289,9 @@ Not everything is relevant to grammar.
 - [x] Paragraphs
 
   ```lisp
-  (paragraph)
+  (paragraph_context
+    (paragraph
+      (inline)))
   ```
 
 - [x] Breaks
@@ -310,6 +312,16 @@ Not everything is relevant to grammar.
   - [ ] ...
 - [ ] Lists
   - [x] Simple identification of list lines
+
+    ```lisp
+    (list_context
+      (list
+        (list_item
+          (list_item_marker)
+          (list_item_content
+            (inline)))))
+    ```
+
   - [ ] Unordered Lists
   - [ ] Ordered Lists
   - [ ] Checklists
@@ -325,9 +337,11 @@ Not everything is relevant to grammar.
   - [x] Block Image Macro
 
     ```lisp
-    (macro
-      (name)
-      (target))
+    (macro_context
+      (macro
+        (macro_name)
+        (macro_target)
+        (macro_attributes)))
     ```
 
   - [ ] Inline Image Macro
@@ -342,27 +356,122 @@ Not everything is relevant to grammar.
   - [x] Block notation
 - [x] Sidebars
 
-  ```lisp
-  (sidebar_block)
+  <table><tr><td>
+
+  ```asciidoc
+  ****
+  Lorem ipsum
+  ****
   ```
 
+  </td><td>
+
   ```lisp
-  (sidebar_block
-    (element_attributes)
-    (open_block/paragraph))
+  (block_context
+    (sidebar_block
+      (sidebar_block_marker_start)
+      (sidebar_block_marker_end)))
   ```
+
+  </td></tr><tr><td>
+
+  ```asciidoc
+  [sidebar]
+  --
+  Lorem ipsum
+  --
+  ```
+
+  </td><td>
+
+  ```lisp
+  (block_context
+    (sidebar_block
+      (element_attributes)
+      (open_block
+        (open_block_marker_start)
+        (open_block_marker_end))))
+  ```
+
+  </td></tr><tr><td>
+
+  ```asciidoc
+  [sidebar]
+  Lorem ipsum
+  ```
+
+  </td><td>
+
+  ```lisp
+  (block_context
+    (sidebar_block
+      (element_attributes)
+      (paragraph
+        (inline))))
+  ```
+
+  </td></tr></table>
 
 - [x] Example Blocks
 
-  ```lisp
-  (example_block)
+  <table><tr><td>
+
+  ```asciidoc
+  ====
+  Lorem ipsum
+  ====
   ```
 
+  </td><td>
+
   ```lisp
-  (example_block
-    (element_attributes)
-    (open_block/paragraph))
+  (block_context
+    (example_block
+      (example_block_marker_start)
+      (paragraph_context
+        (paragraph
+          (inline)))
+      (example_block_marker_end)))
   ```
+
+  </td></tr><tr><td>
+
+  ```asciidoc
+  [example]
+  --
+  Lorem ipsum
+  --
+  ```
+
+  </td><td>
+
+  ```lisp
+  (block_context
+    (example_block
+      (element_attributes)
+      (open_block
+        (open_block_marker_start)
+        (open_block_marker_end))))
+  ```
+
+  </td></tr><tr><td>
+
+  ```asciidoc
+  [example]
+  Lorem ipsum
+  ```
+
+  </td><td>
+
+  ```lisp
+  (block_context
+    (example_block
+      (element_attributes)
+      (paragraph
+        (inline))))
+  ```
+
+  </td></tr></table>
 
 - [ ] Blockquotes
 - [ ] Verses
@@ -371,48 +480,179 @@ Not everything is relevant to grammar.
   - [ ] Source Code Blocks
   - [x] Listing Blocks
 
-    ```lisp
-    (listing_block)
+    <table><tr><td>
+
+    ```asciidoc
+    [source,c]
+    ----
+    printf("Hello, World!");
+    ----
     ```
 
+    </td><td>
+
     ```lisp
-    (listing_block
-      (element_attributes)
-      (open_block/paragraph))
+    (block_context
+      (listing_block
+        (source_attributes
+          (source_attribute_name)
+          language: (attribute_name))
+        (listing_block_marker_start)
+        (listing_block_content)
+        (listing_block_marker_end)))
     ```
+
+    </td></tr><tr><td>
+
+    ```asciidoc
+    ----
+    printf("Hello, World!");
+    ----
+    ```
+
+    </td><td>
+
+    ```lisp
+    (block_context
+      (listing_block
+        (listing_block_marker_start)
+        (listing_block_content)
+        (listing_block_marker_end)))
+    ```
+
+    </td></tr><tr><td>
+
+    ```asciidoc
+    [listing]
+    --
+    printf("Hello, World!");
+    --
+    ```
+
+    </td><td>
+
+    ```lisp
+    (block_context
+      (listing_block
+        (element_attributes)
+        (open_block
+          (open_block_marker_start)
+          (paragraph_context
+            (paragraph
+              (inline)))
+          (open_block_marker_end))))
+    ```
+
+    </td></tr><tr><td>
+
+    ```asciidoc
+    [listing]
+    printf("Hello, World!");
+    ```
+
+    </td><td>
+
+    ```lisp
+    (block_context
+      (listing_block
+        (element_attributes)
+        (paragraph
+          (inline))))
+    ```
+
+    </td></tr></table>
 
   - [x] Literal Blocks
 
-    ```lisp
-    (literal_block)
+    <table><tr><td>
+
+    ```asciidoc
+    ....
+    Lorem ipsum
+    ....
     ```
 
+    </td><td>
+
     ```lisp
-    (literal_block
-      (element_attributes)
-      (open_block/paragraph))
+    (block_context
+      (literal_block
+        (literal_block_marker_start)
+        (paragraph_context
+          (paragraph
+            (inline)))
+        (literal_block_marker_end)))
     ```
+
+    </td></tr><tr><td>
+
+    ```asciidoc
+    [literal]
+    --
+    Lorem ipsum
+    --
+    ```
+
+    </td><td>
+
+    ```lisp
+    (block_context
+      (literal_block
+        (element_attributes)
+        (open_block
+          (open_block_marker_start)
+          (paragraph_context
+            (paragraph
+              (inline)))
+          (open_block_marker_end))))
+    ```
+
+    </td></tr><tr><td>
+
+    ```asciidoc
+    [literal]
+    Lorem ipsum
+    ```
+
+    </td><td>
+
+    ```lisp
+    (block_context
+      (literal_block
+        (element_attributes)
+        (paragraph
+          (inline))))
+    ```
+
+    </td></tr></table>
 
   - [x] Callouts
 
-    ```lisp
-    (listing_block
-      (listing_block_marker_start)
-      (listing_block_content
-        (block_content
-          (paragraph))
-      (listing_block_marker_end)
-      (listing_callout
-        (callout))
-    ```
-
-- [ ] Tables
+- [x] Tables
 - [ ] Equations and Formulas (STEM)
 - [x] Open Blocks
 
-  ```lisp
-  (open_block)
+  <table><tr><td>
+
+  ```asciidoc
+  --
+  Lorem ipsum
+  --
   ```
+
+  </td><td>
+
+  ```lisp
+  (block_context
+    (open_block
+      (open_block_marker_start)
+      (paragraph_context
+        (paragraph
+          (inline)))
+      (open_block_marker_end)))
+  ```
+
+  </td></tr></table>
 
 - [ ] Collapsible Blocks
 - [x] Comments
@@ -451,24 +691,51 @@ Not everything is relevant to grammar.
 
   - [x] Include Block Macro
 
-    ```lisp
-    (macro
-      (name)
-      (target))
-    ```
-
   - [ ] Include Inline Macro
 
 - [ ] Conditionals
   - [x] Simple per line (ifdef, ifndef, ifeval, endif)
+
 - [ ] Passthroughs
+  - [x] Passthrough Blocks
 
-  ```lisp
-  (pass_block)
-  ```
+    <table><tr><td>
 
-  ```lisp
-  (pass_block
-    (element_attributes)
-    (paragraph))
-  ```
+    ```asciidoc
+    ++++
+    Lorem ipsum
+    ++++
+    ```
+
+    </td><td>
+
+    ```lisp
+    (block_context
+    (pass_block
+      (pass_block_marker_start)
+      (paragraph_context
+        (paragraph
+          (inline)))
+      (pass_block_marker_end)))
+    ```
+
+    </td></tr><tr><td>
+
+    ```asciidoc
+    [pass]
+    Lorem ipsum
+    ```
+
+    </td><td>
+
+    ```lisp
+    (block_context
+    (pass_block
+      (element_attributes)
+      (paragraph
+        (inline))))
+    ```
+
+    </td></tr></table>
+
+  - [ ] Inline Passthroughs

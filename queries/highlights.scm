@@ -26,9 +26,9 @@
 
 ; Macro
 (macro) @punctuation.bracket ;@module
-(macro (name) @keyword.function) ;@function.macro)
-(macro (target) @markup.link)
-(macro (attributes) @constant)
+(macro (macro_name) @keyword.function) ;@function.macro)
+(macro (macro_target) @markup.link)
+(macro (macro_attributes) @constant)
 
 ; Conditional
 ; (conditional) @keyword.function
@@ -60,10 +60,10 @@
     (listing_block_content)
     (open_block)
   ] @markup.raw)
-(callout) @string.escape
+(callout_marker) @string.escape
 
 ; Lists
-(list (marker) @markup.list.markdown)
+(list_item_marker) @markup.list.markdown
 
 ; Tables
 [
@@ -88,38 +88,48 @@
 ((admonition_marker) @name (#eq? @name "WARNING")) @comment.warning ":" @punctuation.bracket
 ; Block Style
 (admonition
-  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "NOTE") "]" @punctuation.bracket)
+  (admonition_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "NOTE") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.note)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.note)
   ])
 (admonition
-  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "TIP") "]" @punctuation.bracket)
+  (admonition_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "TIP") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.info)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.info)
   ])
 (admonition
-  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "IMPORTANT") "]" @punctuation.bracket)
+  (admonition_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "IMPORTANT") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.error)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.error)
   ])
 (admonition
-  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "CAUTION") "]" @punctuation.bracket)
+  (admonition_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "CAUTION") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.error)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.error)
   ])
 (admonition
-  (element_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "WARNING") "]" @punctuation.bracket)
+  (admonition_attributes "[" @punctuation.bracket (admonition_marker) @name (#eq? @name "WARNING") "]" @punctuation.bracket)
   [
     (example_block [ (example_block_marker_start) (example_block_marker_end) ] @comment.warning)
     (open_block [ (open_block_marker_start) (open_block_marker_end) ] @comment.warning)
   ])
 
 ; Other
-(element_attributes) @character.special
+[
+  (id_attributes)
+  (element_attributes)
+  (source_attributes)
+] @character.special
+
+(source_attributes
+  (source_attribute_name) @keyword.function
+  language: (attribute_name) @constant
+) @punctuation.bracket
+
 [
  (page_break_marker)
  (break_marker)

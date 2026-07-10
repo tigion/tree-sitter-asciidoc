@@ -33,7 +33,8 @@
     "prebuildify": "^6.0.1",
     "tree-sitter-cli": "^0.25.10",
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.1.0"
+    "eslint": "^10.1.0",
+    "globals": "^17.6.0"
   },
   "peerDependencies": {
     "tree-sitter": "^0.25.0"

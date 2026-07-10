@@ -1262,8 +1262,17 @@
           "value": "//"
         },
         {
-          "type": "SYMBOL",
-          "name": "_line"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_newline"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_line"
+            }
+          ]
         }
       ]
     },

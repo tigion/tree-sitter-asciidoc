@@ -417,7 +417,7 @@ module.exports = grammar({
 
     // Comment Types
     // Line style
-    _comment_line: ($) => seq("//", $._line),
+    _comment_line: ($) => seq("//", choice($._newline, $._line)),
     // Block style
     _comment_block: ($) =>
       seq(

@@ -83,7 +83,6 @@ module.exports = grammar({
       ),
 
     // Document title
-    // document_title: ($) => prec(2, seq("= ", repeat1($._char), $._newline)),
     document_title: ($) =>
       prec(
         2,
@@ -92,10 +91,8 @@ module.exports = grammar({
     document_title_marker: (_) => prec(2, "="),
     document_title_content: ($) => $.inline,
     // Document authors
-    // document_authors: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
     document_authors: ($) => seq(/[^:=\n]/, $._line),
     // Document revision
-    // document_revision: ($) => seq(/[^:=\n]/, repeat1($._char), $._newline),
     document_revision: ($) => seq(/[^:=\n]/, $._line),
     // Document attributes
     _document_attributes: ($) =>
@@ -350,7 +347,6 @@ module.exports = grammar({
         ),
       ),
 
-    //
     section_level0_header_marker: (_) => "=",
     section_level1_header_marker: (_) => "==",
     section_level2_header_marker: (_) => "===",
@@ -358,7 +354,6 @@ module.exports = grammar({
     section_level4_header_marker: (_) => "=====",
     section_level5_header_marker: (_) => "======",
 
-    // section_header_content: ($) => repeat1($._char),
     section_header_content: ($) => $.inline,
 
     // ------------------------------------------------------------------------
@@ -384,6 +379,9 @@ module.exports = grammar({
             $.table_context,
             $.macro_context,
             $.block_context,
+            // Fallback for standalone context content (e.g. title, attributes, etc.).
+            prec(-1, $.title),
+            prec(-1, $.element_attributes),
           ),
         ),
       ),
@@ -419,17 +417,13 @@ module.exports = grammar({
 
     // Comment Types
     // Line style
-    // _comment_line: ($) => seq("//", $._x_line),
     _comment_line: ($) => seq("//", $._line),
     // Block style
     _comment_block: ($) =>
       seq(
-        "////",
-        $._newline,
-        // repeat(prec.left(choice($._x_line, $._blank_lines))),
+        token(seq("////", /\r?\n/)),
         repeat(prec.left(choice($._line, $._blank_lines))),
-        "////",
-        $._newline,
+        token(seq("////", /\r?\n/)),
       ),
     // Open Block or Paragraph style
     _comment_block_style: ($) =>
@@ -446,7 +440,6 @@ module.exports = grammar({
     // Break
     break: ($) => seq($.break_marker, $._newline),
     break_marker: (_) => choice("'''", "---", "- - -", "***", "* * *"),
-    // break_marker: (_) => choice("'''", /- ?- ?-/, /\* ?\* ?\*/),
 
     // Page break
     page_break: ($) => seq($.page_break_marker, $._newline),
@@ -505,13 +498,11 @@ module.exports = grammar({
       prec.left(
         seq(
           alias($.open_block_marker, $.open_block_marker_start),
-          $._newline,
           optional($._block_content),
           alias($.open_block_marker, $.open_block_marker_end),
-          $._newline,
         ),
       ),
-    open_block_marker: (_) => "--",
+    open_block_marker: (_) => token(seq("--", /\r?\n/)),
 
     // ---------------------------------
 
@@ -532,12 +523,10 @@ module.exports = grammar({
       seq(
         optional($.source_attributes),
         alias($.listing_block_marker, $.listing_block_marker_start),
-        $._newline,
         optional($.listing_block_content),
         alias($.listing_block_marker, $.listing_block_marker_end),
-        $._newline,
       ),
-    listing_block_marker: (_) => "----",
+    listing_block_marker: (_) => token(seq("----", /\r?\n/)),
 
     // TODO: Support multiple attributes (e.g. `[source,ruby,linenums]`)
     // TODO: Support attribute shorthands (https://docs.asciidoctor.org/asciidoc/latest/attributes/positional-and-named-attributes/#block-style-and-attribute-shorthand)
@@ -577,13 +566,11 @@ module.exports = grammar({
         seq(
           optional($.element_attributes),
           alias($.literal_block_marker, $.literal_block_marker_start),
-          $._newline,
           optional($._block_content),
           alias($.literal_block_marker, $.literal_block_marker_end),
-          $._newline,
         ),
       ),
-    literal_block_marker: (_) => "....",
+    literal_block_marker: (_) => token(seq("....", /\r?\n/)),
 
     // Open Block or Paragraph style
     _literal_block_style: ($) =>
@@ -605,13 +592,11 @@ module.exports = grammar({
         seq(
           optional($.element_attributes),
           alias($.sidebar_block_marker, $.sidebar_block_marker_start),
-          $._newline,
           optional($._block_content),
           alias($.sidebar_block_marker, $.sidebar_block_marker_end),
-          $._newline,
         ),
       ),
-    sidebar_block_marker: (_) => "****",
+    sidebar_block_marker: (_) => token(seq("****", /\r?\n/)),
 
     // Open Block or Paragraph style
     _sidebar_block_style: ($) =>
@@ -637,20 +622,16 @@ module.exports = grammar({
       ),
 
     // Level 1
-    // FIX: Problem with the `====` marker and the `====` section level 3 header marker.
     _example_block_level1: ($) =>
       prec.left(
         seq(
           optional($.element_attributes),
           alias($.example_block_level1_marker, $.example_block_marker_start),
-          // $._newline,
           optional($._block_content),
           alias($.example_block_level1_marker, $.example_block_marker_end),
-          // $._newline,
         ),
       ),
-    // example_block_level1_marker: (_) => "====",
-    example_block_level1_marker: (_) => choice("====\n", "====\r\n"),
+    example_block_level1_marker: (_) => token(seq("====", /\r?\n/)),
 
     // Level 2
     _example_block_level2: ($) =>
@@ -658,13 +639,11 @@ module.exports = grammar({
         seq(
           optional($.element_attributes),
           alias($.example_block_level2_marker, $.example_block_marker_start),
-          $._newline,
           optional($._block_content),
           alias($.example_block_level2_marker, $.example_block_marker_end),
-          $._newline,
         ),
       ),
-    example_block_level2_marker: (_) => "=====",
+    example_block_level2_marker: (_) => token(seq("=====", /\r?\n/)),
 
     // Level 3
     _example_block_level3: ($) =>
@@ -672,13 +651,11 @@ module.exports = grammar({
         seq(
           optional($.element_attributes),
           alias($.example_block_level3_marker, $.example_block_marker_start),
-          $._newline,
           optional($._block_content),
           alias($.example_block_level3_marker, $.example_block_marker_end),
-          $._newline,
         ),
       ),
-    example_block_level3_marker: (_) => "======",
+    example_block_level3_marker: (_) => token(seq("======", /\r?\n/)),
 
     // Level 4
     _example_block_level4: ($) =>
@@ -686,13 +663,11 @@ module.exports = grammar({
         seq(
           optional($.element_attributes),
           alias($.example_block_level4_marker, $.example_block_marker_start),
-          $._newline,
           optional($._block_content),
           alias($.example_block_level4_marker, $.example_block_marker_end),
-          $._newline,
         ),
       ),
-    example_block_level4_marker: ($) => seq("=======", $._newline),
+    example_block_level4_marker: (_) => token(seq("=======", /\r?\n/)),
 
     // Open Block or Paragraph style
     _example_block_style: ($) =>
@@ -713,13 +688,11 @@ module.exports = grammar({
       prec.left(
         seq(
           alias($.pass_block_marker, $.pass_block_marker_start),
-          $._newline,
           optional($._block_content),
           alias($.pass_block_marker, $.pass_block_marker_end),
-          $._newline,
         ),
       ),
-    pass_block_marker: (_) => "++++",
+    pass_block_marker: (_) => token(seq("++++", /\r?\n/)),
 
     // Paragraph style
     _pass_block_style: ($) =>
@@ -736,7 +709,6 @@ module.exports = grammar({
     // - https://docs.asciidoctor.org/asciidoc/latest/blocks/paragraphs/
 
     paragraph: ($) => $._lines,
-    // paragraph: ($) => prec.right(repeat1(alias($._line, $.line))),
 
     // ------------------------------------------------------------------------
 
@@ -774,7 +746,7 @@ module.exports = grammar({
         ),
       ),
 
-    list_continuation_marker: (_) => "+\n",
+    list_continuation_marker: (_) => choice("+\n", "+\r\n"),
 
     // ------------------------------------------------------------------------
 
@@ -941,8 +913,6 @@ module.exports = grammar({
 
     // Other body parts (blocks)
     //
-    // TODO: code block, table, blocks, ...
-    //
 
     // ------------------------------------------------------------------------
 
@@ -951,30 +921,11 @@ module.exports = grammar({
 
     // ------------------------------------------------------------------------
 
-    _x_line: ($) =>
-      choice(
-        // seq(":", /[^:\n]*/, optional(seq(":", optional($._char))), $._newline), // incorrect attributes
-        // seq(
-        //   ":",
-        //   alias($.attribute_name, $._off_todo),
-        //   ":",
-        //   repeat1($._char),
-        //   $._newline,
-        // ),
-
-        // seq("[[", repeat($._char), optional("]"), optional("]"), $._newline),
-        // seq("[", repeat($._char), $._newline),
-
-        seq(repeat1($._char), $._newline),
-        // $._line_with_newline,
-      ),
-
     _lines: ($) => prec.right(repeat1($._line)),
 
     _line: ($) => seq($.inline, $._newline),
+
     inline: ($) => repeat1($._char),
-    // _line: ($) => seq($.inline, $._newline),
-    // inline: (_) => token(/[^\n]+/),
 
     _line_start_without_space: ($) =>
       seq(alias($._inline_start_without_space, $.inline), $._newline),

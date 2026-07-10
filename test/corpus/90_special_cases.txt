@@ -49,3 +49,57 @@ Lorem ipsum.
                 (inline)))
             (example_block_marker_end)))
         (example_block_marker_end)))))
+
+==================|||
+Case 03
+==================|||
+
+==== Section Level 3 Header
+
+=======
+Lorem ipsum.
+=======
+
+---|||
+
+(document
+  (document_body
+    (section_level3
+      (section_header
+        (section_header_marker)
+        (section_header_content
+          (inline)))
+      (block_context
+        (example_block
+          (example_block_marker_start)
+          (paragraph_context
+            (paragraph
+              (inline)))
+          (example_block_marker_end))))))
+
+==================|||
+Case 04
+==================|||
+
+==== Section Level 3 Header
+
+====
+Lorem ipsum.
+====
+
+---|||
+
+(document
+  (document_body
+    (section_level3
+      (section_header
+        (section_header_marker)
+        (section_header_content
+          (inline)))
+      (block_context
+        (example_block
+          (example_block_marker_start)
+          (paragraph_context
+            (paragraph
+              (inline)))
+          (example_block_marker_end))))))

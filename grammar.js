@@ -333,7 +333,7 @@ module.exports = grammar({
         1,
         seq(
           alias($.section_level4_header_marker, $.section_header_marker),
-          // " ",
+          " ",
           $.section_header_content,
           $._newline,
         ),
@@ -382,14 +382,11 @@ module.exports = grammar({
             $.paragraph_context,
             $.list_context,
             $.table_context,
-            $.block_context,
             $.macro_context,
+            $.block_context,
           ),
         ),
       ),
-
-    // block_context: ($) =>
-    //   seq(optional($.title), choice($.paragraph, $.list, $._block, $.table)),
 
     paragraph_context: ($) =>
       seq(optional($.title), repeat($.element_attributes), $.paragraph),
@@ -397,10 +394,11 @@ module.exports = grammar({
       seq(optional($.title), repeat($.element_attributes), $.list),
     table_context: ($) =>
       seq(optional($.title), repeat($.element_attributes), $.table),
-    block_context: ($) =>
-      seq(optional($.title), optional($.id_attributes), $._block),
     macro_context: ($) =>
       seq(optional($.title), repeat($.element_attributes), $.macro),
+
+    block_context: ($) =>
+      seq(optional($.title), optional($.id_attributes), $._block),
 
     // ------------------------------------------------------------------------
 
@@ -486,7 +484,6 @@ module.exports = grammar({
     // TODO:
     // - Source Code Block as a special Listing Block with a language attribute
     // - Also Markdown ``` Source Code Block?
-    // - Currently is only one nesting for example_block supported.
     //
     _block: ($) =>
       seq(
@@ -501,37 +498,47 @@ module.exports = grammar({
         ),
       ),
 
-    // Open Block with block style
+    // ---------------------------------
+
+    // Open Block (only block style)
     open_block: ($) =>
       prec.left(
         seq(
-          alias("--\n", $.open_block_marker_start),
+          alias($.open_block_marker, $.open_block_marker_start),
+          $._newline,
           optional($._block_content),
-          alias("--\n", $.open_block_marker_end),
+          alias($.open_block_marker, $.open_block_marker_end),
+          $._newline,
         ),
       ),
+    open_block_marker: (_) => "--",
 
-    // Listing
+    // ---------------------------------
+
+    // Listing Block
     listing_block: ($) =>
       seq(
         choice($._listing_block, $._listing_block_style),
         repeat($.listing_callout),
       ),
 
-    // listing_callout: ($) => seq($.callout, " ", repeat1($._line_with_newline)),
+    // Callout
     listing_callout: ($) => seq($.callout_marker, " ", $.callout_content),
     callout_content: ($) => prec.right(repeat1($._line_with_newline)),
-    // callout_content: ($) => $._line_with_newline,
-    // listing_callout: ($) => seq($.callout, " ", repeat1($._char), $._newline),
     callout_marker: (_) => /<[0-9]+>/,
+
     // Block style
     _listing_block: ($) =>
       seq(
         optional($.source_attributes),
-        alias("----\n", $.listing_block_marker_start),
+        alias($.listing_block_marker, $.listing_block_marker_start),
+        $._newline,
         optional($.listing_block_content),
-        alias("----\n", $.listing_block_marker_end),
+        alias($.listing_block_marker, $.listing_block_marker_end),
+        $._newline,
       ),
+    listing_block_marker: (_) => "----",
+
     // TODO: Support multiple attributes (e.g. `[source,ruby,linenums]`)
     // TODO: Support attribute shorthands (https://docs.asciidoctor.org/asciidoc/latest/attributes/positional-and-named-attributes/#block-style-and-attribute-shorthand)
     source_attributes: ($) =>
@@ -549,6 +556,7 @@ module.exports = grammar({
         "]",
         $._newline,
       ),
+
     // Open Block or Paragraph style
     _listing_block_style: ($) =>
       seq(
@@ -558,18 +566,25 @@ module.exports = grammar({
       ),
     _listing_attributes: (_) => seq("[", "listing", "]"),
 
-    // Literal
+    // ---------------------------------
+
+    // Literal Block
     literal_block: ($) => choice($._literal_block, $._literal_block_style),
+
     // Block style
     _literal_block: ($) =>
       prec.left(
         seq(
           optional($.element_attributes),
-          alias("....\n", $.literal_block_marker_start),
+          alias($.literal_block_marker, $.literal_block_marker_start),
+          $._newline,
           optional($._block_content),
-          alias("....\n", $.literal_block_marker_end),
+          alias($.literal_block_marker, $.literal_block_marker_end),
+          $._newline,
         ),
       ),
+    literal_block_marker: (_) => "....",
+
     // Open Block or Paragraph style
     _literal_block_style: ($) =>
       seq(
@@ -579,18 +594,25 @@ module.exports = grammar({
       ),
     _literal_attributes: (_) => seq("[", "literal", "]"),
 
+    // ---------------------------------
+
     // Sidebar
     sidebar_block: ($) => choice($._sidebar_block, $._sidebar_block_style),
+
     // Block style
     _sidebar_block: ($) =>
       prec.left(
         seq(
           optional($.element_attributes),
-          alias("****\n", $.sidebar_block_marker_start),
+          alias($.sidebar_block_marker, $.sidebar_block_marker_start),
+          $._newline,
           optional($._block_content),
-          alias("****\n", $.sidebar_block_marker_end),
+          alias($.sidebar_block_marker, $.sidebar_block_marker_end),
+          $._newline,
         ),
       ),
+    sidebar_block_marker: (_) => "****",
+
     // Open Block or Paragraph style
     _sidebar_block_style: ($) =>
       seq(
@@ -600,8 +622,11 @@ module.exports = grammar({
       ),
     _sidebar_attributes: (_) => seq("[", "sidebar", "]"),
 
+    // ---------------------------------
+
     // Example
     example_block: ($) => choice($._example_block, $._example_block_style),
+
     // Block style
     _example_block: ($) =>
       choice(
@@ -610,82 +635,64 @@ module.exports = grammar({
         $._example_block_level3,
         $._example_block_level4,
       ),
+
+    // Level 1
+    // FIX: Problem with the `====` marker and the `====` section level 3 header marker.
     _example_block_level1: ($) =>
       prec.left(
         seq(
           optional($.element_attributes),
-          alias("====\n", $.example_block_marker_start),
+          alias($.example_block_level1_marker, $.example_block_marker_start),
+          // $._newline,
           optional($._block_content),
-          alias("====\n", $.example_block_marker_end),
+          alias($.example_block_level1_marker, $.example_block_marker_end),
+          // $._newline,
         ),
       ),
+    // example_block_level1_marker: (_) => "====",
+    example_block_level1_marker: (_) => choice("====\n", "====\r\n"),
+
+    // Level 2
     _example_block_level2: ($) =>
       prec.left(
         seq(
           optional($.element_attributes),
-          alias("=====\n", $.example_block_marker_start),
+          alias($.example_block_level2_marker, $.example_block_marker_start),
+          $._newline,
           optional($._block_content),
-          alias("=====\n", $.example_block_marker_end),
+          alias($.example_block_level2_marker, $.example_block_marker_end),
+          $._newline,
         ),
       ),
+    example_block_level2_marker: (_) => "=====",
+
+    // Level 3
     _example_block_level3: ($) =>
       prec.left(
         seq(
           optional($.element_attributes),
-          alias("======\n", $.example_block_marker_start),
+          alias($.example_block_level3_marker, $.example_block_marker_start),
+          $._newline,
           optional($._block_content),
-          alias("======\n", $.example_block_marker_end),
+          alias($.example_block_level3_marker, $.example_block_marker_end),
+          $._newline,
         ),
       ),
+    example_block_level3_marker: (_) => "======",
+
+    // Level 4
     _example_block_level4: ($) =>
       prec.left(
         seq(
           optional($.element_attributes),
-          alias("=======\n", $.example_block_marker_start),
+          alias($.example_block_level4_marker, $.example_block_marker_start),
+          $._newline,
           optional($._block_content),
-          alias("=======\n", $.example_block_marker_end),
+          alias($.example_block_level4_marker, $.example_block_marker_end),
+          $._newline,
         ),
       ),
-
-    // _example_block: ($) =>
-    //   prec.left(
-    //     seq(
-    //       optional($.element_attributes),
-    //       alias("====\n", $.example_block_marker_start),
-    //       repeat(
-    //         prec.left(
-    //           choice(
-    //             $._block_content,
-    //             alias($._example_block_level2, $.example_block),
-    //           ),
-    //         ),
-    //       ),
-    //       alias("====\n", $.example_block_marker_end),
-    //     ),
-    //   ),
-    // _example_block_level2: ($) =>
-    //   seq(
-    //     optional($.title),
-    //     optional($.element_attributes),
-    //     alias("=====\n", $.example_block_marker_start),
-    //     repeat(
-    //       prec.left(
-    //         choice(
-    //           $._block_content,
-    //           alias($._example_block_level3, $.example_block),
-    //         ),
-    //       ),
-    //     ),
-    //     alias("=====\n", $.example_block_marker_end),
-    //   ),
-    // _example_block_level3: ($) =>
-    //   seq(
-    //     optional($.title),
-    //     optional($.element_attributes),
-    //     alias("======\n", $.example_block_marker_start),
-    //     optional($._block_content),
-    //     alias("======\n", $.example_block_marker_end),
-    //   ),
+    example_block_level4_marker: ($) => seq("=======", $._newline),
 
     // Open Block or Paragraph style
     _example_block_style: ($) =>
@@ -696,17 +703,24 @@ module.exports = grammar({
       ),
     _example_attributes: (_) => seq("[", "example", "]"),
 
+    // ---------------------------------
+
     // Passthrough
     pass_block: ($) => choice($._pass_block, $._pass_block_style),
+
     // Block style
     _pass_block: ($) =>
       prec.left(
         seq(
-          alias("++++\n", $.pass_block_marker_start),
+          alias($.pass_block_marker, $.pass_block_marker_start),
+          $._newline,
           optional($._block_content),
-          alias("++++\n", $.pass_block_marker_end),
+          alias($.pass_block_marker, $.pass_block_marker_end),
+          $._newline,
         ),
       ),
+    pass_block_marker: (_) => "++++",
+
     // Paragraph style
     _pass_block_style: ($) =>
       seq(
@@ -720,7 +734,7 @@ module.exports = grammar({
 
     // Paragraphs
     // - https://docs.asciidoctor.org/asciidoc/latest/blocks/paragraphs/
-    //
+
     paragraph: ($) => $._lines,
     // paragraph: ($) => prec.right(repeat1(alias($._line, $.line))),
 
@@ -736,13 +750,17 @@ module.exports = grammar({
     // - [ ] Nested list items context
 
     list: ($) => prec.right(repeat1($.list_item)),
+
     list_item: ($) => seq($.list_item_marker, $.list_item_content),
+
     list_item_marker: (_) =>
       token(seq(choice(/[-]+/, /[*]+/, /[.]+/, /[0-9]+./), " ")),
-    // list_marker: (_) => token(seq(/[ ]*/, choice(/[-]+/, /[*]+/, /[.]+/), " ")),
+    // list_item_marker: (_) =>
+    //   token(seq(/[ ]*/, choice(/[-]+/, /[*]+/, /[.]+/), " ")),
 
     list_item_content: ($) =>
       seq($._lines, repeat($._list_continuation_content)),
+
     _list_continuation_content: ($) =>
       seq(
         $.list_continuation_marker,
@@ -755,6 +773,7 @@ module.exports = grammar({
           $.id_attributes,
         ),
       ),
+
     list_continuation_marker: (_) => "+\n",
 
     // ------------------------------------------------------------------------
@@ -790,6 +809,7 @@ module.exports = grammar({
         optional($.title),
         choice($.example_block, $.open_block, $.paragraph),
       ),
+
     admonition_attributes: ($) =>
       seq("[", $.admonition_marker, "]", $._newline),
 

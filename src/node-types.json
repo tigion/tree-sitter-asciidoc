@@ -575,6 +575,16 @@
     }
   },
   {
+    "type": "example_block_marker_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "example_block_marker_start",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "id_attributes",
     "named": true,
     "fields": {}
@@ -1886,6 +1896,26 @@
     "named": false
   },
   {
+    "type": "====\n",
+    "named": false
+  },
+  {
+    "type": "====\r\n",
+    "named": false
+  },
+  {
+    "type": "=====",
+    "named": false
+  },
+  {
+    "type": "======",
+    "named": false
+  },
+  {
+    "type": "=======",
+    "named": false
+  },
+  {
     "type": ">",
     "named": false
   },
@@ -1964,14 +1994,6 @@
   {
     "type": "example",
     "named": false
-  },
-  {
-    "type": "example_block_marker_end",
-    "named": true
-  },
-  {
-    "type": "example_block_marker_start",
-    "named": true
   },
   {
     "type": "ifdef",

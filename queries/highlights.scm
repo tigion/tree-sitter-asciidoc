@@ -67,7 +67,8 @@
 
 ; Tables
 [
-  (table_marker)
+  (table_marker_start)
+  (table_marker_end)
   (table_cell_marker)
 ] @constant
 

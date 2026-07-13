@@ -42,17 +42,23 @@ Tables (basic)
     (context
       (element_attributes)
       (table
-        (table_marker)
+        (table_marker_start)
         (table_cell
-          (table_cell_marker))
+          (table_cell_marker)
+          (table_cell_content))
         (table_cell
-          (table_cell_marker))
+          (table_cell_marker)
+          (table_cell_content))
         (table_cell
-          (table_cell_marker))
+          (table_cell_marker)
+          (table_cell_content))
         (table_cell
-          (table_cell_marker))
+          (table_cell_marker)
+          (table_cell_content))
         (table_cell
-          (table_cell_marker))
+          (table_cell_marker)
+          (table_cell_content))
         (table_cell
-          (table_cell_marker))
-        (table_marker)))))
+          (table_cell_marker)
+          (table_cell_content))
+        (table_marker_end)))))

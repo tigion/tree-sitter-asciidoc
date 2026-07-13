@@ -2979,12 +2979,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "table_marker"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_newline"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "table_marker"
+          },
+          "named": true,
+          "value": "table_marker_start"
         },
         {
           "type": "REPEAT",
@@ -3015,12 +3016,13 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "table_marker"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_newline"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "table_marker"
+          },
+          "named": true,
+          "value": "table_marker_end"
         }
       ]
     },
@@ -3039,8 +3041,8 @@
           }
         },
         {
-          "type": "PATTERN",
-          "value": "[^|\\n]*"
+          "type": "SYMBOL",
+          "name": "table_cell_content"
         },
         {
           "type": "REPEAT",
@@ -3052,8 +3054,20 @@
       ]
     },
     "table_marker": {
-      "type": "STRING",
-      "value": "|==="
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "|==="
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\r?\\n"
+          }
+        ]
+      }
     },
     "table_cell_marker": {
       "type": "SEQ",
@@ -3071,6 +3085,10 @@
     "_table_cell_marker_operator": {
       "type": "PATTERN",
       "value": "[0-9.+*a<^>]*"
+    },
+    "table_cell_content": {
+      "type": "PATTERN",
+      "value": "[^|\\n]*"
     },
     "catch_unresolved": {
       "type": "TOKEN",

@@ -1,13 +1,8 @@
-====
-=====
-Die Git-Konfiguration
-[global]Hallo
-Einstellungen
+.title
+[cols="1,1,1"]
+|===
+| column1 | column2
 
-[source, console]
-----
-$ git config --global user.name "Vorname Nachname"
-$ git config --global user.email vorname.nachname@stud.htw-dresden.de
-----
-=====
-====
+| cell1.1 | cell1.2
+| cell2.1 | cell2.2
+|===

@@ -1557,7 +1557,11 @@
           "named": true
         },
         {
-          "type": "table_marker",
+          "type": "table_marker_end",
+          "named": true
+        },
+        {
+          "type": "table_marker_start",
           "named": true
         }
       ]
@@ -1568,9 +1572,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "table_cell_content",
+          "named": true
+        },
         {
           "type": "table_cell_marker",
           "named": true
@@ -1863,7 +1871,15 @@
     "named": true
   },
   {
-    "type": "table_marker",
+    "type": "table_cell_content",
+    "named": true
+  },
+  {
+    "type": "table_marker_end",
+    "named": true
+  },
+  {
+    "type": "table_marker_start",
     "named": true
   },
   {

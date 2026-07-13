@@ -871,27 +871,29 @@ module.exports = grammar({
 
     // TODO:
     // - [ ] inline cell specifier operators
+    // - [ ] line continuation for table cells
 
     table: ($) =>
       seq(
-        $.table_marker,
-        $._newline,
+        alias($.table_marker, $.table_marker_start),
         repeat(choice(seq(repeat1($.table_cell), $._newline), $._blank_line)),
-        $.table_marker,
-        $._newline,
+        alias($.table_marker, $.table_marker_end),
       ),
 
     table_cell: ($) =>
       seq(
         $.table_cell_marker,
         repeat($._white_space),
-        /[^|\n]*/,
+        $.table_cell_content,
         repeat($._white_space),
       ),
 
-    table_marker: (_) => "|===",
+    table_marker: (_) => token(seq("|===", /\r?\n/)),
+
     table_cell_marker: ($) => seq($._table_cell_marker_operator, "|"),
     _table_cell_marker_operator: (_) => /[0-9.+*a<^>]*/,
+
+    table_cell_content: (_) => /[^|\n]*/,
 
     // ------------------------------------------------------------------------
 

@@ -149,22 +149,11 @@ module.exports = grammar({
     //     - `#` ... ID for `id=`
     //     - `.` ... role for `role=`
     //     - `%` ... option for `option=`
-    //
-    // element_attributes: ($) =>
-    //   seq(
-    //     "[",
-    //     optional($._raw_element_attributes),
-    //     "]",
-    //     $._newline,
-    //   ),
-    //
-    // source_attributes: ($) =>
-    //   seq("source", optional(seq(",", field("language", $.attribute_name)))),
-    //
-    // _raw_element_attributes: ($) =>
-    //   seq($._attribute_unparsed, repeat(seq(",", $._attribute_unparsed))),
-    // TODO: Support attributes direct per object (e.g. headers, tables, etc.)
+
     element_attributes: ($) => $._attribute_list,
+
+    // _attribute_list: (_) => token(seq("[", /[^\]\r\n]*/, "]", /\r?\n/)),
+
     _attribute_list: ($) =>
       seq(
         "[",
@@ -172,8 +161,10 @@ module.exports = grammar({
           seq($._attribute_unparsed, repeat(seq(",", $._attribute_unparsed))),
         ),
         "]",
+        // FIX: Problem: `[attribute]...` is recognized as an element_attribute,
+        //      but should be an inline node.
+        /[ \t]*/, // HACK: Workaround for `[attribute]...` / `[attribute] ...`
         $._newline,
-        // token(seq("]", /\r?\n/)),
       ),
     _attribute_unparsed: (_) => /[^,\]\r\n]+/,
 
@@ -375,11 +366,11 @@ module.exports = grammar({
             $.admonition,
             // Blocks with context (e.g. title, attributes, etc.)
             $.context,
-            // $.paragraph_context,
-            // $.list_context,
-            // $.table_context,
-            // $.macro_context,
-            // $.block_context,
+            // $.paragraph,
+            // $.list,
+            // $.table,
+            // $.macro,
+            // $._block,
             // Fallback for standalone context content (e.g. title, attributes, etc.).
             prec(-1, $.title),
             prec(-1, $.element_attributes),
@@ -389,6 +380,7 @@ module.exports = grammar({
 
     context: ($) =>
       seq(
+        // repeat1(choice($.title, $.element_attributes)),
         repeat(choice($.title, $.element_attributes)),
         choice($.paragraph, $.list, $.table, $.macro, $._block),
       ),
@@ -939,6 +931,7 @@ module.exports = grammar({
     _char: (_) => /[^\n]/,
 
     _newline: (_) => /\r?\n/,
+    // _newline: (_) => /[ \t]*\r?\n/,
     _white_space: (_) => /[ \t]+/, // TODO: Use instead of `" "`?
     _no_white_space: (_) => /[^ \t]/,
 

@@ -41,7 +41,7 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer,
   // or reach the end of the file.
   while (true) {
     if (lexer->eof(lexer))
-      return true; // End of file reached.
+      return false; // End of file reached.
 
     // Get the current character from the lexer.
     char current_character = lexer->lookahead;

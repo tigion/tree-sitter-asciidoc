@@ -1,11 +1,13 @@
-Lorem ipsum dolor sit amet,
-\[foo,bar]consectetur adipiscing elit.
+====
+=====
+Die Git-Konfiguration
+[global]Hallo
+Einstellungen
 
-.Example
-[source,c,aaabbb]
+[source, console]
 ----
-#include <stdio.h>
+$ git config --global user.name "Vorname Nachname"
+$ git config --global user.email vorname.nachname@stud.htw-dresden.de
 ----
-
-[listing]
-Hallo
+=====
+====

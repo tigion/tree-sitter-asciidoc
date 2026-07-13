@@ -21,7 +21,7 @@ ifdef::attribute[Lorem ipsum]
       (attribute_name)
       (conditional_bracket)
       (conditional_bracket))
-    (paragraph_context
+    (context
       (paragraph
         (inline)))
     (conditional
@@ -54,7 +54,7 @@ endif::[]
       (attribute_name)
       (conditional_bracket)
       (conditional_bracket))
-    (paragraph_context
+    (context
       (paragraph
         (inline)))
     (conditional
@@ -86,7 +86,7 @@ endif::[]
         (conditional_condition_operator)
         (conditional_condition_part))
       (conditional_bracket))
-    (paragraph_context
+    (context
       (paragraph
         (inline)))
     (conditional
@@ -101,7 +101,7 @@ endif::[]
         (conditional_condition_operator)
         (conditional_condition_part))
       (conditional_bracket))
-    (paragraph_context
+    (context
       (paragraph
         (inline)))
     (conditional

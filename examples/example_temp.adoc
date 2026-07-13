@@ -1,4 +1,11 @@
-// 1
-//
+Lorem ipsum dolor sit amet,
+\[foo,bar]consectetur adipiscing elit.
 
+.Example
+[source,c,aaabbb]
+----
+#include <stdio.h>
+----
+
+[listing]
 Hallo

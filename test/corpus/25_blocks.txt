@@ -16,20 +16,20 @@ qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (block_context
+    (context
       (open_block
         (open_block_marker_start)
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
         (open_block_marker_end)))
-    (block_context
+    (context
       (open_block
         (open_block_marker_start)
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
         (open_block_marker_end)))))
@@ -59,12 +59,12 @@ printf("Hello, World!");
 
 (document
   (document_body
-    (block_context
+    (context
       (listing_block
         (listing_block_marker_start)
         (listing_block_content)
         (listing_block_marker_end)))
-    (block_context
+    (context
       (listing_block
         (source_attributes
           (source_attribute_name)
@@ -72,16 +72,16 @@ printf("Hello, World!");
         (listing_block_marker_start)
         (listing_block_content)
         (listing_block_marker_end)))
-    (block_context
+    (context
       (listing_block
         (element_attributes)
         (open_block
           (open_block_marker_start)
-          (paragraph_context
+          (context
             (paragraph
               (inline)))
           (open_block_marker_end))))
-    (block_context
+    (context
       (listing_block
         (element_attributes)
         (paragraph
@@ -105,7 +105,7 @@ This is a second line of the callout.
 
 (document
   (document_body
-    (block_context
+    (context
       (listing_block
         (listing_block_marker_start)
         (listing_block_content)
@@ -191,23 +191,23 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (block_context
+    (context
       (literal_block
         (literal_block_marker_start)
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
         (literal_block_marker_end)))
-    (block_context
+    (context
       (literal_block
         (element_attributes)
         (open_block
           (open_block_marker_start)
-          (paragraph_context
+          (context
             (paragraph
               (inline)))
           (open_block_marker_end))))
-    (block_context
+    (context
       (literal_block
         (element_attributes)
         (paragraph
@@ -233,23 +233,23 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (block_context
+    (context
       (sidebar_block
         (sidebar_block_marker_start)
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
         (sidebar_block_marker_end)))
-    (block_context
+    (context
       (sidebar_block
         (element_attributes)
         (open_block
           (open_block_marker_start)
-          (paragraph_context
+          (context
             (paragraph
               (inline)))
           (open_block_marker_end))))
-    (block_context
+    (context
       (sidebar_block
         (element_attributes)
         (paragraph
@@ -275,23 +275,23 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (block_context
+    (context
       (example_block
         (example_block_marker_start)
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
         (example_block_marker_end)))
-    (block_context
+    (context
       (example_block
         (element_attributes)
         (open_block
           (open_block_marker_start)
-          (paragraph_context
+          (context
             (paragraph
               (inline)))
           (open_block_marker_end))))
-    (block_context
+    (context
       (example_block
         (element_attributes)
         (paragraph
@@ -311,13 +311,13 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (block_context
+    (context
       (example_block
         (example_block_marker_start)
-        (block_context
+        (context
           (example_block
             (example_block_marker_start)
-            (paragraph_context
+            (context
               (paragraph
                 (inline)))
             (example_block_marker_end)))
@@ -339,14 +339,14 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
 
 (document
   (document_body
-    (block_context
+    (context
       (pass_block
         (pass_block_marker_start)
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
         (pass_block_marker_end)))
-    (block_context
+    (context
       (pass_block
         (element_attributes)
         (paragraph

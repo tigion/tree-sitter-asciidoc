@@ -10,7 +10,7 @@ Lorem ipsum.
 
 (document
   (document_body
-    (paragraph_context
+    (context
       (paragraph
         (inline)))
     (section_level3
@@ -35,16 +35,16 @@ Lorem ipsum.
 
 (document
   (document_body
-    (block_context
+    (context
       (title
         (inline))
+      (element_attributes)
       (example_block
-        (element_attributes)
         (example_block_marker_start)
-        (block_context
+        (context
           (example_block
             (example_block_marker_start)
-            (paragraph_context
+            (context
               (paragraph
                 (inline)))
             (example_block_marker_end)))
@@ -69,10 +69,10 @@ Lorem ipsum.
         (section_header_marker)
         (section_header_content
           (inline)))
-      (block_context
+      (context
         (example_block
           (example_block_marker_start)
-          (paragraph_context
+          (context
             (paragraph
               (inline)))
           (example_block_marker_end))))))
@@ -96,10 +96,10 @@ Lorem ipsum.
         (section_header_marker)
         (section_header_content
           (inline)))
-      (block_context
+      (context
         (example_block
           (example_block_marker_start)
-          (paragraph_context
+          (context
             (paragraph
               (inline)))
           (example_block_marker_end))))))

@@ -27,7 +27,7 @@ module.exports = grammar({
   conflicts: ($) => [
     [$.document_header],
     [$._block_not_section],
-    [$.block_context, $._list_continuation_content],
+    // [$.block_context, $._list_continuation_content],
   ],
 
   rules: {
@@ -173,9 +173,9 @@ module.exports = grammar({
         ),
         "]",
         $._newline,
+        // token(seq("]", /\r?\n/)),
       ),
-    // eslint-disable-next-line no-useless-escape
-    _attribute_unparsed: (_) => /[^,\]\n]*/,
+    _attribute_unparsed: (_) => /[^,\]\r\n]+/,
 
     id_attributes: ($) => seq("[#", $._attribute_name, "]", $._newline),
 
@@ -374,11 +374,12 @@ module.exports = grammar({
             $.conditional,
             $.admonition,
             // Blocks with context (e.g. title, attributes, etc.)
-            $.paragraph_context,
-            $.list_context,
-            $.table_context,
-            $.macro_context,
-            $.block_context,
+            $.context,
+            // $.paragraph_context,
+            // $.list_context,
+            // $.table_context,
+            // $.macro_context,
+            // $.block_context,
             // Fallback for standalone context content (e.g. title, attributes, etc.).
             prec(-1, $.title),
             prec(-1, $.element_attributes),
@@ -386,17 +387,16 @@ module.exports = grammar({
         ),
       ),
 
-    paragraph_context: ($) =>
-      seq(optional($.title), repeat($.element_attributes), $.paragraph),
-    list_context: ($) =>
-      seq(optional($.title), repeat($.element_attributes), $.list),
-    table_context: ($) =>
-      seq(optional($.title), repeat($.element_attributes), $.table),
-    macro_context: ($) =>
-      seq(optional($.title), repeat($.element_attributes), $.macro),
-
-    block_context: ($) =>
-      seq(optional($.title), optional($.id_attributes), $._block),
+    context: ($) =>
+      seq(
+        repeat(choice($.title, $.element_attributes)),
+        choice($.paragraph, $.list, $.table, $.macro, $._block),
+      ),
+    context_without_list: ($) =>
+      seq(
+        repeat(choice($.title, $.element_attributes)),
+        choice($.paragraph, $.table, $.macro, $._block),
+      ),
 
     // ------------------------------------------------------------------------
 
@@ -540,6 +540,7 @@ module.exports = grammar({
             optional($._white_space),
             field("language", $.attribute_name),
             optional($._white_space),
+            repeat(seq(",", /[^,\]\n]*/)), // catch unresolved attributes
           ),
         ),
         "]",
@@ -564,7 +565,6 @@ module.exports = grammar({
     _literal_block: ($) =>
       prec.left(
         seq(
-          optional($.element_attributes),
           alias($.literal_block_marker, $.literal_block_marker_start),
           optional($._block_content),
           alias($.literal_block_marker, $.literal_block_marker_end),
@@ -590,7 +590,6 @@ module.exports = grammar({
     _sidebar_block: ($) =>
       prec.left(
         seq(
-          optional($.element_attributes),
           alias($.sidebar_block_marker, $.sidebar_block_marker_start),
           optional($._block_content),
           alias($.sidebar_block_marker, $.sidebar_block_marker_end),
@@ -625,7 +624,6 @@ module.exports = grammar({
     _example_block_level1: ($) =>
       prec.left(
         seq(
-          optional($.element_attributes),
           alias($.example_block_level1_marker, $.example_block_marker_start),
           optional($._block_content),
           alias($.example_block_level1_marker, $.example_block_marker_end),
@@ -637,7 +635,6 @@ module.exports = grammar({
     _example_block_level2: ($) =>
       prec.left(
         seq(
-          optional($.element_attributes),
           alias($.example_block_level2_marker, $.example_block_marker_start),
           optional($._block_content),
           alias($.example_block_level2_marker, $.example_block_marker_end),
@@ -649,7 +646,6 @@ module.exports = grammar({
     _example_block_level3: ($) =>
       prec.left(
         seq(
-          optional($.element_attributes),
           alias($.example_block_level3_marker, $.example_block_marker_start),
           optional($._block_content),
           alias($.example_block_level3_marker, $.example_block_marker_end),
@@ -661,7 +657,6 @@ module.exports = grammar({
     _example_block_level4: ($) =>
       prec.left(
         seq(
-          optional($.element_attributes),
           alias($.example_block_level4_marker, $.example_block_marker_start),
           optional($._block_content),
           alias($.example_block_level4_marker, $.example_block_marker_end),
@@ -737,10 +732,7 @@ module.exports = grammar({
       seq(
         $.list_continuation_marker,
         choice(
-          $.paragraph_context,
-          $.block_context,
-          $.table_context,
-          $.macro_context,
+          alias($.context_without_list, $.context),
           $.admonition,
           $.id_attributes,
         ),

@@ -58,7 +58,7 @@ Lorem ipsum dolor sit amet.
         (admonition_marker))
       (example_block
         (example_block_marker_start)
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
         (example_block_marker_end)))
@@ -67,7 +67,7 @@ Lorem ipsum dolor sit amet.
         (admonition_marker))
       (open_block
         (open_block_marker_start)
-        (paragraph_context
+        (context
           (paragraph
             (inline)))
         (open_block_marker_end)))

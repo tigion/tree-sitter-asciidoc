@@ -36,7 +36,7 @@ labore adipisicing minim sint.
 
 (document
   (document_body
-    (paragraph_context
+    (context
       (title
         (inline))
       (paragraph
@@ -55,7 +55,7 @@ Title for List
 
 (document
   (document_body
-    (list_context
+    (context
       (title
         (inline))
       (list
@@ -85,7 +85,7 @@ labore adipisicing minim sint.
 
 (document
   (document_body
-    (block_context
+    (context
       (title
         (inline))
       (listing_block

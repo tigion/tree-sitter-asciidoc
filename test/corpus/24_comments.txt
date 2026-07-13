@@ -58,18 +58,18 @@ Comment text
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph_context
+      (context
         (paragraph
           (inline)))
       (open_block_marker_end)))
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph_context
+      (context
         (paragraph
           (inline)
           (inline)))
-      (paragraph_context
+      (context
         (paragraph
           (inline)))
       (open_block_marker_end))))
@@ -126,11 +126,11 @@ Comment text
   (comment
     (open_block
       (open_block_marker_start)
-      (paragraph_context
+      (context
         (paragraph
           (inline)
           (inline)))
-      (paragraph_context
+      (context
         (paragraph
           (inline)))
       (open_block_marker_end)))

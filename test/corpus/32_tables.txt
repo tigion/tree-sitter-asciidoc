@@ -10,7 +10,7 @@ Tables (basic)
 
 (document
   (document_body
-    (table_context
+    (context
       (table
         (table_marker)
         (table_cell
@@ -39,7 +39,7 @@ Tables (basic)
 
 (document
   (document_body
-    (table_context
+    (context
       (element_attributes)
       (table
         (table_marker)

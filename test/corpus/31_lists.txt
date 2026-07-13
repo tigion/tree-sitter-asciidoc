@@ -8,7 +8,7 @@ List
 
 (document
   (document_body
-    (list_context
+    (context
       (list
         (list_item
           (list_item_marker)
@@ -27,7 +27,7 @@ List Marker
 
 (document
   (document_body
-    (list_context
+    (context
       (list
         (list_item
           (list_item_marker)
@@ -55,19 +55,19 @@ List Nested
 
 (document
   (document_body
-    (list_context
+    (context
       (list
         (list_item
           (list_item_marker)
           (list_item_content
             (inline)))
-        (list_context
+        (context
           (list
           (list_item
             (list_item_marker)
             (list_item_content
               (inline)))
-          (list_context
+          (context
             (list
               (list_item
                 (list_item_marker)
@@ -86,7 +86,7 @@ List with Attributes
 
 (document
   (document_body
-    (list_context
+    (context
       (element_attributes)
       (list
         (list_item
@@ -110,13 +110,13 @@ Lorem ipsum.
 
 (document
   (document_body
-    (list_context
+    (context
       (list
         (list_item
           (list_item_marker)
           (list_item_content
             (inline)
             (list_continuation_marker)
-            (paragraph_context
+            (context
               (paragraph
                 (inline)))))))))

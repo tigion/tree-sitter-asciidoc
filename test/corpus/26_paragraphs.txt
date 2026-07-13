@@ -8,7 +8,7 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 
 (document
   (document_body
-    (paragraph_context
+    (context
       (paragraph
         (inline)))))
 
@@ -23,7 +23,7 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 
 (document
   (document_body
-    (paragraph_context
+    (context
       (paragraph
         (inline)
         (inline)))))
@@ -40,10 +40,10 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 
 (document
   (document_body
-    (paragraph_context
+    (context
       (paragraph
         (inline)))
-    (paragraph_context
+    (context
       (paragraph
         (inline)))))
 
@@ -61,9 +61,9 @@ A===
 
 (document
   (document_body
-    (paragraph_context
+    (context
       (paragraph
         (inline)))
-    (paragraph_context
+    (context
       (paragraph
         (inline)))))

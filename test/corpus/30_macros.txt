@@ -11,16 +11,16 @@ macro::target["value 1", value]
 
 (document
   (document_body
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)))
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)
         (macro_attributes)))
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)
@@ -38,16 +38,16 @@ image::image.png["Alt text", 500, 600]
 
 (document
   (document_body
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)))
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)
         (macro_attributes)))
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)
@@ -65,11 +65,11 @@ audio::ocean-waves.wav[start=60,opts=autoplay]
 
 (document
   (document_body
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)))
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)
@@ -87,11 +87,11 @@ video::video-file.mp4[width=640,start=60,opts=autoplay]
 
 (document
   (document_body
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)))
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)
@@ -109,16 +109,16 @@ include::file.adoc["attribute text", attribute2]
 
 (document
   (document_body
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)))
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)
         (macro_attributes)))
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)
@@ -134,7 +134,7 @@ include::file.puml[format="svg"]
 
 (document
   (document_body
-    (macro_context
+    (context
       (macro
         (macro_name)
         (macro_target)

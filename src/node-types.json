@@ -79,49 +79,6 @@
     }
   },
   {
-    "type": "block_context",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "example_block",
-          "named": true
-        },
-        {
-          "type": "id_attributes",
-          "named": true
-        },
-        {
-          "type": "listing_block",
-          "named": true
-        },
-        {
-          "type": "literal_block",
-          "named": true
-        },
-        {
-          "type": "open_block",
-          "named": true
-        },
-        {
-          "type": "pass_block",
-          "named": true
-        },
-        {
-          "type": "sidebar_block",
-          "named": true
-        },
-        {
-          "type": "title",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "break",
     "named": true,
     "fields": {},
@@ -253,6 +210,65 @@
     "fields": {}
   },
   {
+    "type": "context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "element_attributes",
+          "named": true
+        },
+        {
+          "type": "example_block",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "listing_block",
+          "named": true
+        },
+        {
+          "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "open_block",
+          "named": true
+        },
+        {
+          "type": "paragraph",
+          "named": true
+        },
+        {
+          "type": "pass_block",
+          "named": true
+        },
+        {
+          "type": "sidebar_block",
+          "named": true
+        },
+        {
+          "type": "table",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "document",
     "named": true,
     "root": true,
@@ -327,10 +343,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -347,6 +359,10 @@
           "named": true
         },
         {
+          "type": "context",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -359,19 +375,7 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
           "named": true
         },
         {
@@ -396,10 +400,6 @@
         },
         {
           "type": "section_level5",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -516,10 +516,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -529,6 +525,10 @@
         },
         {
           "type": "conditional",
+          "named": true
+        },
+        {
+          "type": "context",
           "named": true
         },
         {
@@ -552,14 +552,6 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "open_block",
           "named": true
         },
@@ -569,14 +561,6 @@
         },
         {
           "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -606,29 +590,6 @@
       "types": [
         {
           "type": "list_item",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "list_context",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "element_attributes",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "title",
           "named": true
         }
       ]
@@ -671,7 +632,7 @@
           "named": true
         },
         {
-          "type": "block_context",
+          "type": "context",
           "named": true
         },
         {
@@ -684,18 +645,6 @@
         },
         {
           "type": "list_continuation_marker",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         }
       ]
@@ -776,10 +725,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -789,6 +734,10 @@
         },
         {
           "type": "conditional",
+          "named": true
+        },
+        {
+          "type": "context",
           "named": true
         },
         {
@@ -804,19 +753,11 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
           "type": "literal_block_marker_end",
           "named": true
         },
         {
           "type": "literal_block_marker_start",
-          "named": true
-        },
-        {
-          "type": "macro_context",
           "named": true
         },
         {
@@ -829,14 +770,6 @@
         },
         {
           "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -870,29 +803,6 @@
     }
   },
   {
-    "type": "macro_context",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "element_attributes",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "title",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "macro_name",
     "named": true,
     "fields": {}
@@ -910,10 +820,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -923,6 +829,10 @@
         },
         {
           "type": "conditional",
+          "named": true
+        },
+        {
+          "type": "context",
           "named": true
         },
         {
@@ -938,14 +848,6 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "open_block_marker_end",
           "named": true
         },
@@ -955,14 +857,6 @@
         },
         {
           "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -1003,29 +897,6 @@
     }
   },
   {
-    "type": "paragraph_context",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "element_attributes",
-          "named": true
-        },
-        {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "title",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "part",
     "named": true,
     "fields": {},
@@ -1035,10 +906,6 @@
       "types": [
         {
           "type": "admonition",
-          "named": true
-        },
-        {
-          "type": "block_context",
           "named": true
         },
         {
@@ -1058,6 +925,10 @@
           "named": true
         },
         {
+          "type": "context",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1070,19 +941,7 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1107,10 +966,6 @@
         },
         {
           "type": "section_level5",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -1172,10 +1027,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -1185,6 +1036,10 @@
         },
         {
           "type": "conditional",
+          "named": true
+        },
+        {
+          "type": "context",
           "named": true
         },
         {
@@ -1200,14 +1055,6 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "page_break",
           "named": true
         },
@@ -1216,19 +1063,11 @@
           "named": true
         },
         {
-          "type": "paragraph_context",
-          "named": true
-        },
-        {
           "type": "pass_block_marker_end",
           "named": true
         },
         {
           "type": "pass_block_marker_start",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -1290,10 +1129,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -1310,6 +1145,10 @@
           "named": true
         },
         {
+          "type": "context",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1322,19 +1161,7 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1358,10 +1185,6 @@
           "named": true
         },
         {
-          "type": "table_context",
-          "named": true
-        },
-        {
           "type": "title",
           "named": true
         }
@@ -1381,10 +1204,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -1401,6 +1220,10 @@
           "named": true
         },
         {
+          "type": "context",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1413,19 +1236,7 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1442,10 +1253,6 @@
         },
         {
           "type": "section_level5",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -1468,10 +1275,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -1488,6 +1291,10 @@
           "named": true
         },
         {
+          "type": "context",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1500,19 +1307,7 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1525,10 +1320,6 @@
         },
         {
           "type": "section_level5",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -1551,10 +1342,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -1571,6 +1358,10 @@
           "named": true
         },
         {
+          "type": "context",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1583,19 +1374,7 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "page_break",
-          "named": true
-        },
-        {
-          "type": "paragraph_context",
           "named": true
         },
         {
@@ -1604,10 +1383,6 @@
         },
         {
           "type": "section_level5",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -1630,10 +1405,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -1650,6 +1421,10 @@
           "named": true
         },
         {
+          "type": "context",
+          "named": true
+        },
+        {
           "type": "document_attribute",
           "named": true
         },
@@ -1662,27 +1437,11 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "page_break",
           "named": true
         },
         {
-          "type": "paragraph_context",
-          "named": true
-        },
-        {
           "type": "section_header",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -1705,10 +1464,6 @@
           "named": true
         },
         {
-          "type": "block_context",
-          "named": true
-        },
-        {
           "type": "break",
           "named": true
         },
@@ -1718,6 +1473,10 @@
         },
         {
           "type": "conditional",
+          "named": true
+        },
+        {
+          "type": "context",
           "named": true
         },
         {
@@ -1733,14 +1492,6 @@
           "named": true
         },
         {
-          "type": "list_context",
-          "named": true
-        },
-        {
-          "type": "macro_context",
-          "named": true
-        },
-        {
           "type": "open_block",
           "named": true
         },
@@ -1753,19 +1504,11 @@
           "named": true
         },
         {
-          "type": "paragraph_context",
-          "named": true
-        },
-        {
           "type": "sidebar_block_marker_end",
           "named": true
         },
         {
           "type": "sidebar_block_marker_start",
-          "named": true
-        },
-        {
-          "type": "table_context",
           "named": true
         },
         {
@@ -1839,29 +1582,6 @@
     "type": "table_cell_marker",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "table_context",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "element_attributes",
-          "named": true
-        },
-        {
-          "type": "table",
-          "named": true
-        },
-        {
-          "type": "title",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "title",

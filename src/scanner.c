@@ -1,15 +1,22 @@
 #include "tree_sitter/parser.h"
 #include <stdbool.h>
 
-enum TokenType { LISTING_BLOCK_CONTENT };
+// The token types must be declared in the same order that the external tokens
+// are listed in the grammar's `externals` rule, because tree-sitter indexes
+// `valid_symbols` by that order.
+enum TokenType { LISTING_BLOCK_CONTENT, LITERAL_BLOCK_CONTENT };
 
 // Define the states of the state machine.
+//
+// The states are fence-agnostic: they track a run of four identical fence
+// characters (`-` for listing blocks, `.` for literal blocks) followed by a
+// newline. The actual fence character is recorded in `fence_character`.
 typedef enum {
   STATE_NORMAL,
-  STATE_DASH1,
-  STATE_DASH2,
-  STATE_DASH3,
-  STATE_DASH4
+  STATE_FENCE1,
+  STATE_FENCE2,
+  STATE_FENCE3,
+  STATE_FENCE4
 } State;
 
 void *tree_sitter_asciidoc_external_scanner_create() {
@@ -29,10 +36,17 @@ void tree_sitter_asciidoc_external_scanner_deserialize(void *payload,
 
 bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer,
                                                 const bool *valid_symbols) {
-  if (!valid_symbols[LISTING_BLOCK_CONTENT])
+  // Determine which fence character to look for based on the valid symbols.
+  char fence_char;
+  if (valid_symbols[LISTING_BLOCK_CONTENT]) {
+    fence_char = '-';
+    lexer->result_symbol = LISTING_BLOCK_CONTENT;
+  } else if (valid_symbols[LITERAL_BLOCK_CONTENT]) {
+    fence_char = '.';
+    lexer->result_symbol = LITERAL_BLOCK_CONTENT;
+  } else {
     return false;
-
-  lexer->result_symbol = LISTING_BLOCK_CONTENT;
+  }
 
   // Initialize the state machine.
   State state = STATE_NORMAL;
@@ -44,30 +58,30 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer,
       return false; // End of file reached.
 
     // Get the current character from the lexer.
-    char current_character = lexer->lookahead;
+    char current_char = lexer->lookahead;
 
     // Update the state machine based on the current character.
     switch (state) {
       case STATE_NORMAL:
-        if (current_character == '-')
-          state = STATE_DASH1;
+        if (current_char == fence_char)
+          state = STATE_FENCE1;
         break;
 
-      case STATE_DASH1:
-        state = (current_character == '-') ? STATE_DASH2 : STATE_NORMAL;
+      case STATE_FENCE1:
+        state = (current_char == fence_char) ? STATE_FENCE2 : STATE_NORMAL;
         break;
 
-      case STATE_DASH2:
-        state = (current_character == '-') ? STATE_DASH3 : STATE_NORMAL;
+      case STATE_FENCE2:
+        state = (current_char == fence_char) ? STATE_FENCE3 : STATE_NORMAL;
         break;
 
-      case STATE_DASH3:
-        state = (current_character == '-') ? STATE_DASH4 : STATE_NORMAL;
+      case STATE_FENCE3:
+        state = (current_char == fence_char) ? STATE_FENCE4 : STATE_NORMAL;
         break;
 
-      case STATE_DASH4:
-        if (current_character == '\n') {
-          return true; // Fence delimiter `----\n` found.
+      case STATE_FENCE4:
+        if (current_char == '\n') {
+          return true; // Fence delimiter `----\n` or `....\n` found.
         }
         state = STATE_NORMAL;
         break;

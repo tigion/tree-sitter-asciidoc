@@ -12,7 +12,7 @@
 module.exports = grammar({
   name: "asciidoc",
 
-  externals: ($) => [$.listing_block_content],
+  externals: ($) => [$.listing_block_content, $.literal_block_content],
 
   extras: (_) => [],
   // extras: ($) => [$._comment],
@@ -558,7 +558,7 @@ module.exports = grammar({
       prec.left(
         seq(
           alias($.literal_block_marker, $.literal_block_marker_start),
-          optional($._block_content),
+          optional($.literal_block_content),
           alias($.literal_block_marker, $.literal_block_marker_end),
         ),
       ),

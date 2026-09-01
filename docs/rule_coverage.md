@@ -578,9 +578,7 @@ Not everything is relevant to grammar.
     (block_context
       (literal_block
         (literal_block_marker_start)
-        (paragraph_context
-          (paragraph
-            (inline)))
+        (literal_block_content)
         (literal_block_marker_end)))
     ```
 

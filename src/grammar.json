@@ -1835,7 +1835,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_block_content"
+                "name": "literal_block_content"
               },
               {
                 "type": "BLANK"
@@ -3283,6 +3283,10 @@
     {
       "type": "SYMBOL",
       "name": "listing_block_content"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "literal_block_content"
     }
   ],
   "inline": [],

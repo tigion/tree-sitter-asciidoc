@@ -721,35 +721,11 @@
       "required": true,
       "types": [
         {
-          "type": "admonition",
-          "named": true
-        },
-        {
-          "type": "break",
-          "named": true
-        },
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "conditional",
-          "named": true
-        },
-        {
-          "type": "context",
-          "named": true
-        },
-        {
-          "type": "document_attribute",
-          "named": true
-        },
-        {
           "type": "element_attributes",
           "named": true
         },
         {
-          "type": "id_attributes",
+          "type": "literal_block_content",
           "named": true
         },
         {
@@ -765,15 +741,7 @@
           "named": true
         },
         {
-          "type": "page_break",
-          "named": true
-        },
-        {
           "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "title",
           "named": true
         }
       ]
@@ -1809,6 +1777,10 @@
   {
     "type": "literal",
     "named": false
+  },
+  {
+    "type": "literal_block_content",
+    "named": true
   },
   {
     "type": "literal_block_marker_end",

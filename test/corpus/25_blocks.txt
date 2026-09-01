@@ -194,9 +194,7 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint.
     (context
       (literal_block
         (literal_block_marker_start)
-        (context
-          (paragraph
-            (inline)))
+        (literal_block_content)
         (literal_block_marker_end)))
     (context
       (literal_block

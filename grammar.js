@@ -382,12 +382,12 @@ module.exports = grammar({
       seq(
         // repeat1(choice($.title, $.element_attributes)),
         repeat(choice($.title, $.element_attributes)),
-        choice($.paragraph, $.list, $.table, $.macro, $._block),
+        choice($.list, $.table, $.macro, $._block, $.paragraph),
       ),
     context_without_list: ($) =>
       seq(
         repeat(choice($.title, $.element_attributes)),
-        choice($.paragraph, $.table, $.macro, $._block),
+        choice($.table, $.macro, $._block, $.paragraph),
       ),
 
     // ------------------------------------------------------------------------
@@ -443,15 +443,16 @@ module.exports = grammar({
     macro: ($) =>
       seq(
         $.macro_name,
-        "::",
+        // "::",
         $.macro_target,
         seq("[", optional($.macro_attributes), "]"),
         $._newline,
       ),
-    macro_name: (_) => choice("image", "audio", "video", "include", "plantuml"),
-    // macro_name: ($) => $._macro_name, // FIX: Problem with other nodes start with chars.
-    macro_target: (_) => /[^\[]+/,
-    macro_attributes: (_) => /[^\]]+/,
+    macro_name: (_) =>
+      token(choice("image::", "audio::", "video::", "include::", "plantuml::")),
+    // choice("image", "audio", "video", "include", "plantuml"),
+    macro_target: (_) => /[^\[\r\n]+/,
+    macro_attributes: (_) => /[^\]\r\n]+/,
 
     // ------------------------------------------------------------------------
 

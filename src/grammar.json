@@ -1089,10 +1089,6 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "paragraph"
-            },
-            {
-              "type": "SYMBOL",
               "name": "list"
             },
             {
@@ -1106,6 +1102,10 @@
             {
               "type": "SYMBOL",
               "name": "_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "paragraph"
             }
           ]
         }
@@ -1135,10 +1135,6 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "paragraph"
-            },
-            {
-              "type": "SYMBOL",
               "name": "table"
             },
             {
@@ -1148,6 +1144,10 @@
             {
               "type": "SYMBOL",
               "name": "_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "paragraph"
             }
           ]
         }
@@ -1370,10 +1370,6 @@
           "name": "macro_name"
         },
         {
-          "type": "STRING",
-          "value": "::"
-        },
-        {
           "type": "SYMBOL",
           "name": "macro_target"
         },
@@ -1409,37 +1405,40 @@
       ]
     },
     "macro_name": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "image"
-        },
-        {
-          "type": "STRING",
-          "value": "audio"
-        },
-        {
-          "type": "STRING",
-          "value": "video"
-        },
-        {
-          "type": "STRING",
-          "value": "include"
-        },
-        {
-          "type": "STRING",
-          "value": "plantuml"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "image::"
+          },
+          {
+            "type": "STRING",
+            "value": "audio::"
+          },
+          {
+            "type": "STRING",
+            "value": "video::"
+          },
+          {
+            "type": "STRING",
+            "value": "include::"
+          },
+          {
+            "type": "STRING",
+            "value": "plantuml::"
+          }
+        ]
+      }
     },
     "macro_target": {
       "type": "PATTERN",
-      "value": "[^\\[]+"
+      "value": "[^\\[\\r\\n]+"
     },
     "macro_attributes": {
       "type": "PATTERN",
-      "value": "[^\\]]+"
+      "value": "[^\\]\\r\\n]+"
     },
     "title": {
       "type": "SEQ",

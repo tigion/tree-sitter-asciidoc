@@ -771,11 +771,6 @@
     }
   },
   {
-    "type": "macro_name",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "open_block",
     "named": true,
     "fields": {},
@@ -1691,10 +1686,6 @@
     "named": true
   },
   {
-    "type": "audio",
-    "named": false
-  },
-  {
     "type": "callout_marker",
     "named": true
   },
@@ -1743,14 +1734,6 @@
     "named": false
   },
   {
-    "type": "image",
-    "named": false
-  },
-  {
-    "type": "include",
-    "named": false
-  },
-  {
     "type": "line_continuation_marker",
     "named": true
   },
@@ -1795,6 +1778,10 @@
     "named": true
   },
   {
+    "type": "macro_name",
+    "named": true
+  },
+  {
     "type": "macro_target",
     "named": true
   },
@@ -1823,10 +1810,6 @@
     "named": true
   },
   {
-    "type": "plantuml",
-    "named": false
-  },
-  {
     "type": "sidebar",
     "named": false
   },
@@ -1853,10 +1836,6 @@
   {
     "type": "table_marker_start",
     "named": true
-  },
-  {
-    "type": "video",
-    "named": false
   },
   {
     "type": "|",
